@@ -20,13 +20,19 @@ async function main() {
     // let yaDisk = new YandexDisk(seretKeyYandex);
     let app = new App(dealId);
     await app.init();
-
 }
 
 
-$(document).ready(function() {
+// $(document).ready(function() {
+//     BX24.init(async function(){
+//         await main();
+//         BX24.fitWindow();
+//     })
+// });
+
+document.addEventListener("DOMContentLoaded", async function() {
     BX24.init(async function(){
         await main();
         BX24.fitWindow();
-    })
+    });
 });
