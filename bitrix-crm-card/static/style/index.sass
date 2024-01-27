@@ -1,0 +1,172 @@
+@media (max-width: 1400px)
+    .lead-product-card
+        height: 250px !important
+
+.header-size
+    font-size: 16px !important
+
+.table-header-size
+    font-size: 14px !important
+
+.table-body-size
+    font-size: 14px !important
+
+.file-upload-container
+    width: 100%
+
+.file-upload-label
+    cursor: pointer
+    border: 1px solid #ccc
+    border-radius: 5px
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.upload-icon
+    font-size: 24px
+
+.upload-text
+    margin-top: 5px
+
+.preview-image
+    width: 100%
+    height: 100%
+    object-fit: cover
+    display: none
+
+.file-upload-label:hover
+    background-color: #f0f0f0
+    
+.lead-container
+    margin: 15px 10px
+
+    > div
+        margin-top:15px
+
+    textarea
+        -webkit-box-sizing: border-box
+        -moz-box-sizing: border-box
+        box-sizing: border-box
+        width: -webkit-fill-available
+        width: -moz-available
+        width: fill-available
+
+    .lead-products
+        display: flex
+        border: 1px solid #cfcfcf
+        border-radius: 5px
+        padding: 5px
+        margin-top: 10px
+        min-height: 450px
+        height: 500px
+
+        .lead-product-buttons
+            height: 100%
+
+
+        .lead-button-add-product
+            > a
+                line-height: 16px
+                background-color: #dc3545
+                border-color: #dc3545
+                border-radius: 5px
+                color: #ffffff
+                padding: 12px
+                &::after
+                    content: none
+                &:hover
+                    background-color: #bb2d3b
+                    border-color: #b02a37
+
+        .lead-products-cards
+            margin: 0 10px
+            overflow: auto
+
+            > div:nth-child(-n + 5)
+                margin-top: 0
+            
+            img
+                border-radius: 0
+
+            .lead-product-card
+                height: 350px
+
+                .card-header
+                    display: flex
+                    justify-content: space-between
+                    .card-header-title
+                    .card-header-status
+                        font-size: 24px
+                        cursor: pointer
+
+                .card-body
+                    padding: 0
+                    img
+                        height: 100%
+                        width: 100%
+
+                .card-footer
+
+        .lead-response-calc
+            button
+                background-color: #198754
+                border-color: #198754
+                // background-color: #00c100
+                // border-color: #00c100
+                color: #ffffff
+                line-height: 16px
+                width: 36px !important
+                padding: 5px 0
+
+                &:hover
+                    background-color: #157347
+                    border-color: #146c43
+                    // background-color: #06aa06
+                    // border-color: #06aa06
+
+                &:active
+                    background-color: #146c43
+                    border-color: #13653f
+                    // background-color: #00c100
+                    // border-color: #00c100
+                    color: black
+
+
+
+
+.product-container
+    position: relative
+    .product-fabric
+        position: absolute
+        max-width: 200px
+        max-height: 100px
+
+    .product-photos-container
+        .product-photo-row-1            
+            .product-photo-1
+                min-height: 100px
+                max-width: 50%
+                
+        .product-photo-row-2
+            display: grid
+            grid-template-columns: auto auto
+            .product-photo-2
+            .product-photo-3
+
+    .product-left-description
+        display: flex
+        gap: 10px
+    table tr td
+        white-space: nowrap
+    //     display: grid
+    //     // grid-template-columns: 100px auto auto auto !important
+    //     // grid-gap: 10px
+    //     grid-template: "f . p1 ." ". . p1 ." "p2 p2 p3 p3"
+    // .photo-fabric
+    //     grid-area: f
+    // .photo-photo-1
+    //     grid-area: p1
+    // .photo-photo-2
+    //     grid-area: p2
+    // .photo-photo-3
+    //     grid-area: p3
