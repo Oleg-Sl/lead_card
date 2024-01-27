@@ -14,13 +14,14 @@ class InstallApiView(views.APIView):
 class IndexApiView(views.APIView):
     @xframe_options_exempt
     def post(self, request):
-        # r = request.data.get("PLACEMENT_OPTIONS", [])
-        # id_deal = re.search(r'\d+', r)[0]
-        # data = {"id": id_deal, }
-        data = {"id": json.dumps(request.data) }
+        print(request.data)
+        r = request.data.get("PLACEMENT_OPTIONS", [])
+        id_deal = re.search(r'\d+', r)[0]
+        data = {"id": id_deal, }
+        # data = {"id": json.dumps(request.data)}
         return render(request, 'lead/index.html', context=data)
 
-    @xframe_options_exempt
-    def get(self, request):
-        data = {"id": 999}
-        return render(request, 'lead/index.html', context=data)
+    # @xframe_options_exempt
+    # def get(self, request):
+    #     data = {"id": 999}
+    #     return render(request, 'lead/index.html', context=data)
