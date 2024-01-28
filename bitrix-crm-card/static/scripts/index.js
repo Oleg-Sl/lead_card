@@ -23,6 +23,8 @@ class App {
         const data = await this.bx24.batch.getDataForStart(this.leadId);
         console.log("data = ", data);
 
+
+
     }
 
 
@@ -36,6 +38,18 @@ class App {
     secureData() {
         let elem = document.querySelector('body');
         elem.innerHTML = '<h1> Доступ запрещен </h1>';
+    }
+
+    formatDate(inputDateString) {
+        const dateObject = new Date(inputDateString);
+        
+        const year = dateObject.getFullYear();
+        const month = String(dateObject.getMonth() + 1).padStart(2, '0');
+        const day = String(dateObject.getDate()).padStart(2, '0');
+        
+        const outputString = `${year}-${month}-${day}`;
+        
+        return outputString;
     }
 }
 

@@ -13,6 +13,7 @@ export default class BatchMethods {
             // departments: 'department.get',
             // fieldsProductData: `crm.item.fields?entityTypeId=${smartNumber}`,
             leadData: `crm.lead.get?id=${leadId}`,
+            responsible: `user.get?id=$result[leadData][ASSIGNED_BY_ID]`,
         };
 
         let data = await this.bx24.callMethod("batch", {
