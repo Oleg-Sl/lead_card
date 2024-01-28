@@ -1,6 +1,6 @@
 import Bitrix24 from './requests.js';
 
-// import BatchMethods from './api_batch.js';
+import BatchMethods from './api_batch.js';
 // import BzProcessMethods from './api_bz_process.js';
 // import ContactMethods from './api_contact.js'
 // import DealMethods from './api_deal.js'
@@ -13,7 +13,7 @@ export default class BitrixService {
     constructor() {
         this.bx24 = new Bitrix24();
 
-        // this.batch = new BatchMethods(this.bx24);
+        this.batch = new BatchMethods(this.bx24);
         // this.bz = new BzProcessMethods(this.bx24);
         // this.contact = new ContactMethods(this.bx24);
         // this.deal = new DealMethods(this.bx24);

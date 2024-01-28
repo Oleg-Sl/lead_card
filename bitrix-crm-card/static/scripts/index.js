@@ -1,7 +1,7 @@
 import BitrixService from './bx24/api.js';
 
 
-const USERS_ACCESS = ['117891', ];
+const USERS_ACCESS = ['11789', ];
 
 class App {
     constructor(leadId, bx24) {
@@ -18,7 +18,10 @@ class App {
             this.secureData();
             return;
         }
+
         this.currentUserId = currentUser?.ID;
+        const data = await this.bx24.batch.getDataForStart();
+        console.log("data = ", data);
 
     }
 
@@ -32,12 +35,8 @@ class App {
 
     secureData() {
         let elem = document.querySelector('body');
-        console.log('elem = ', elem);
-        elem.innerHTML = 'Доступ запрещен';
+        elem.innerHTML = '<h1> Доступ запрещен </h1>';
     }
-
-
-
 }
 
 
