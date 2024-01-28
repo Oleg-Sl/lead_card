@@ -6,13 +6,13 @@ export default class BatchMethods {
         this.bx24 = bx24;
     }
 
-    async getDataForStart(smartNumber, leadId) {
+    async getDataForStart(leadId) {
         const cmd = {
             currentUser: 'user.current',
-            fieldsDealData: 'crm.lead.fields',
+            fieldsLeadData: 'crm.lead.fields',
             // departments: 'department.get',
             // fieldsProductData: `crm.item.fields?entityTypeId=${smartNumber}`,
-            dealContacts: `crm.lead.get?id=${leadId}`,
+            leadData: `crm.lead.get?id=${leadId}`,
         };
 
         let data = await this.bx24.callMethod("batch", {

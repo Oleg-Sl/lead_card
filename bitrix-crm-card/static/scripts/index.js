@@ -20,7 +20,7 @@ class App {
             return;
         }
 
-        const data = await this.bx24.batch.getDataForStart();
+        const data = await this.bx24.batch.getDataForStart(this.leadId);
         console.log("data = ", data);
 
     }
