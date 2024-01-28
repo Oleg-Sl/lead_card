@@ -13,13 +13,13 @@ class App {
 
     async init() {
         const currentUser = await this.bx24.user.getCurrent();
+        this.currentUserId = currentUser?.ID;
         const isAccess = this.restrictUserAccess();
         if (!isAccess) {
             this.secureData();
             return;
         }
 
-        this.currentUserId = currentUser?.ID;
         const data = await this.bx24.batch.getDataForStart();
         console.log("data = ", data);
 
