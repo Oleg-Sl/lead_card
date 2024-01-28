@@ -1,7 +1,7 @@
 import BitrixService from './bx24/api.js';
 
 
-const USERS_ACCESS = ['11789', ];
+const USERS_ACCESS = ['117891', ];
 
 class App {
     constructor(leadId, bx24) {
@@ -13,8 +13,9 @@ class App {
 
     async init() {
         const currentUser = await this.bx24.user.getCurrent();
-        const isAccess = restrictUserAccess();
+        const isAccess = this.restrictUserAccess();
         if (!isAccess) {
+            this.secureData();
             return;
         }
         this.currentUserId = currentUser?.ID;
