@@ -24,6 +24,33 @@ class App {
         const data = await this.bx24.batch.getDataForStart(this.leadId);
         console.log("data = ", data);
 
+        this.initHandler();
+    }
+
+    initHandler() {
+        document.querySelector('#openMspWindow').addEventListener('click', (event) => {
+            BX24.openApplication(
+                {
+                    'opened': true,
+                    'bx24_leftBoundary': 100,
+                    'bx24_label': {
+                        'bgColor':'pink',
+                        'text': 'my task',
+                        'color': '#07ff0e',
+                    },
+                    'bx24_title': 'МСП',
+                    'parameters': {
+                        'productType': 'msp',
+                        'productId': this.leadId,
+                    }
+                },
+                function()
+                {
+                    console.log('Application closed!')
+                }
+            );
+        });
+ 
     }
 
     restrictUserAccess() {

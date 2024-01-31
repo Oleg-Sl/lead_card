@@ -1,51 +1,50 @@
 
-// const API = "https://bits24.bitrix24.ru/rest/9/vhduvllk2mxru5lx/";
 
 
-// export default class FakeWebhookBitrixService {
-//     constructor() {
-//         this.api = API;
+export default class FakeWebhookBitrixService {
+    constructor() {
+        // this.api = API;
 
-//         this.batch = new BatchMethods();
-//         // this.bz = new BzProcessMethods();
-//         this.contact = new ContactMethods();
-//         // this.deal = new DealMethods(this.bx24);
-//         this.smartProcess = new SmartProcessMethods();
-//         // this.task = new TaskMethods(this.bx24);
-//         this.user = new UserMethods(this.bx24);
-//         this.files = new FilesMethods();
+        // this.batch = new BatchMethods();
+        // // this.bz = new BzProcessMethods();
+        // this.contact = new ContactMethods();
+        // // this.deal = new DealMethods(this.bx24);
+        // this.smartProcess = new SmartProcessMethods();
+        // // this.task = new TaskMethods(this.bx24);
+        // this.user = new UserMethods(this.bx24);
+        // this.files = new FilesMethods();
 
-//         this.domain = 'bits24.bitrix.ru';
-//     }
+        // this.domain = 'bits24.bitrix.ru';
+    }
 
-//     async init() {
-//         // this.domain = await this.bx24.getDomain();
-//     }
+    async init() {
+        // this.domain = await this.bx24.getDomain();
+    }
 
-//     makeCall(phoneNumber) {
-//         console.log('Делаем звонок на номер: ', phoneNumber);
-//     }
+    // makeCall(phoneNumber) {
+    //     console.log('Делаем звонок на номер: ', phoneNumber);
+    // }
 
-//     openLine(openLineId) {
-//         console.log('Открытя линию: ', openLineId);
-//     }
+    // openLine(openLineId) {
+    //     console.log('Открытя линию: ', openLineId);
+    // }
 
-//     async openPath(path) {
-//         console.log('Открытие пути: ', path);
-//     }
+    // async openPath(path) {
+    //     console.log('Открытие пути: ', path);
+    // }
 
-//     getUrlSendMessageFromDealId(dealId) {
-//         return `https://${this.domain}/bitrix/components/bitrix/crm.activity.planner/slider.php?context=deal-${dealId}&ajax_action=ACTIVITY_EDIT&activity_id=0&TYPE_ID=4&OWNER_ID=${dealId}&OWNER_TYPE=DEAL&OWNER_PSID=0&FROM_ACTIVITY_ID=0&MESSAGE_TYPE=&SUBJECT=&BODY=&=undefined&__post_data_hash=-1046067848&IFRAME=Y&IFRAME_TYPE=SIDE_SLIDER`;
-//     }
+    // getUrlSendMessageFromDealId(dealId) {
+    //     return `https://${this.domain}/bitrix/components/bitrix/crm.activity.planner/slider.php?context=deal-${dealId}&ajax_action=ACTIVITY_EDIT&activity_id=0&TYPE_ID=4&OWNER_ID=${dealId}&OWNER_TYPE=DEAL&OWNER_PSID=0&FROM_ACTIVITY_ID=0&MESSAGE_TYPE=&SUBJECT=&BODY=&=undefined&__post_data_hash=-1046067848&IFRAME=Y&IFRAME_TYPE=SIDE_SLIDER`;
+    // }
 
-//     getActsFolderId() {
-//         return 6141;
-//     }
+    // getActsFolderId() {
+    //     return 6141;
+    // }
 
-//     getInvoicesFolderId() {
-//         return 6137;
-//     }
-// }
+    // getInvoicesFolderId() {
+    //     return 6137;
+    // }
+}
 
 
 // class FilesMethods {
