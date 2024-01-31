@@ -12,7 +12,7 @@ export default class BatchMethods {
             cmd: cmd
         });
 
-        return data?.result;
+        return data;
     }
 
     async getDataForStart(leadId) {
