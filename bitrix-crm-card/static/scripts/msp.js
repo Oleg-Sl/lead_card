@@ -27,7 +27,7 @@ class App {
         this.user = data?.result?.user;
         this.data = data?.result?.smartProcess?.item;
         this.smartFabricList = data?.result?.smartFabricList?.items;
-        const total = data?.smartFabricList?.result_total?.smartFabricList;
+        const total = data?.result_total?.smartFabricList;
         console.log("data = ", data);
         console.log("total = ", total);
         let allFabrics = await this.getAllFabrics(total);
