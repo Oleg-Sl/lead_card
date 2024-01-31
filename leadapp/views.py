@@ -41,7 +41,6 @@ def GetImage(request):
         response = requests.get(image_url, stream=True)
         response.raise_for_status()
 
-        # Отправка изображения в ответе
         return HttpResponse(content=response.content, content_type=response.headers['content-type'])
     except requests.RequestException as e:
         return HttpResponse(content=f"Error fetching image: {str(e)}", status=500)

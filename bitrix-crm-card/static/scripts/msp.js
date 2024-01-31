@@ -76,7 +76,8 @@ class App {
         const elemImgPhoto_3 = document.querySelector('#imgPhoto_1');
         // console.log(elemImgMainPhoto);
         const fileMainPhoto = '/get-image/?url=' + encodeURIComponent(mainPhotoUrl);
-        elemImgMainPhoto.src = mainPhotoUrl;
+        console.log('fileMainPhoto = ', fileMainPhoto);
+        elemImgMainPhoto.src = fileMainPhoto;
         elemImgPhoto_1.src = fileMainPhoto;
         elemImgPhoto_2.src = photoUrl_2;
         elemImgPhoto_3.src = photoUrl_3;
