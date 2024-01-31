@@ -14,15 +14,15 @@ class InstallApiView(views.APIView):
 class IndexApiView(views.APIView):
     @xframe_options_exempt
     def post(self, request):
-        print(request.data)
-        if request.data.get("PLACEMENT", []) and request.data['PLACEMENT'][0] == 'CRM_LEAD_DETAIL_TAB':
-            r = request.data.get("PLACEMENT_OPTIONS", [])
-            id_deal = re.search(r'\d+', r)[0]
-            data = {"id": id_deal, }
-            return render(request, 'lead/index.html', context=data)
-        else:
-            data = {}
-            return render(request, 'lead/msp.html', context=data)
+        # print(request.data)
+        # if request.data.get("PLACEMENT", []) and request.data['PLACEMENT'][0] == 'CRM_LEAD_DETAIL_TAB':
+        #     r = request.data.get("PLACEMENT_OPTIONS", [])
+        #     id_deal = re.search(r'\d+', r)[0]
+        #     data = {"id": id_deal, }
+        #     return render(request, 'lead/index.html', context=data)
+        # else:
+        data = {}
+        return render(request, 'lead/msp.html', context=data)
 
 
     # @xframe_options_exempt
