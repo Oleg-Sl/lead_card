@@ -1,6 +1,9 @@
 from rest_framework import views
+from django.views.decorators.http import require_GET
 from django.views.decorators.clickjacking import xframe_options_exempt
 from django.shortcuts import render
+from django.http import HttpResponse
+import requests
 import re
 import json
 
@@ -29,3 +32,16 @@ class IndexApiView(views.APIView):
     # def get(self, request):
     #     data = {"id": 999}
     #     return render(request, 'lead/index.html', context=data)
+
+
+@require_GET
+def GetImage(request):
+    image_url = request.GET.get('url', '')
+    try:
+        response = requests.get(image_url, stream=True)
+        response.raise_for_status()
+
+        # Отправка изображения в ответе
+        return HttpResponse(content=response.content, content_type=response.headers['content-type'])
+    except requests.RequestException as e:
+        return HttpResponse(content=f"Error fetching image: {str(e)}", status=500)
