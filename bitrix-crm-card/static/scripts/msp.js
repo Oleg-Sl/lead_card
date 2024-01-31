@@ -28,6 +28,7 @@ class App {
         this.data = data?.result?.smartProcess?.item;
         this.smartFabricList = data?.result?.smartFabricList?.items;
         const total = data?.result_total?.smartFabricList;
+        console.log("total = ", total);
         let allFabrics = await this.getAllFabrics(total);
         this.smartFabricList = this.smartFabricList.concat(allFabrics);
 
