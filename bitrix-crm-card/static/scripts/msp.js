@@ -60,7 +60,8 @@ class App {
         const photoUrl_2 = this.data?.[FIELD_MSP.photo_2]?.url;
         const photoUrl_3 = this.data?.[FIELD_MSP.photo_3]?.url;
         
-        // const fileMainPhoto = await fetch(mainPhotoUrl);
+        const fileMainPhoto = await fetch(mainPhotoUrl);
+        console.log('fileMainPhoto = ', fileMainPhoto);
         // const filePhoto_1 = await fetch(photoUrl_1);
         // const filePhoto_2 = await fetch(photoUrl_2);
         // const filePhoto_3 = await fetch(photoUrl_3);
@@ -74,10 +75,10 @@ class App {
         const elemImgPhoto_2 = document.querySelector('#imgPhoto_1');
         const elemImgPhoto_3 = document.querySelector('#imgPhoto_1');
         // console.log(elemImgMainPhoto);
-        elemImgMainPhoto.src = mainPhoto;
-        elemImgPhoto_1.src = photo_1;
-        elemImgPhoto_2.src = photo_2;
-        elemImgPhoto_3.src = photo_3;
+        elemImgMainPhoto.src = mainPhotoUrl;
+        elemImgPhoto_1.src = photoUrl_1;
+        elemImgPhoto_2.src = photoUrl_2;
+        elemImgPhoto_3.src = photoUrl_3;
     }
 
     renderData() {
