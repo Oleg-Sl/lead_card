@@ -55,10 +55,10 @@ class App {
 
 
     async renderPhotos() {
-        const mainPhotoUrl = this.data?.[FIELD_MSP.mainPhoto]?.url;
-        const photoUrl_1 = this.data?.[FIELD_MSP.photo_1]?.url;
-        const photoUrl_2 = this.data?.[FIELD_MSP.photo_2]?.url;
-        const photoUrl_3 = this.data?.[FIELD_MSP.photo_3]?.url;
+        const mainPhotoUrl = this.data?.[FIELD_MSP.mainPhoto]?.urlMachine;
+        const photoUrl_1 = this.data?.[FIELD_MSP.photo_1]?.urlMachine;
+        const photoUrl_2 = this.data?.[FIELD_MSP.photo_2]?.urlMachine;
+        const photoUrl_3 = this.data?.[FIELD_MSP.photo_3]?.urlMachine;
         
         // const fileMainPhoto = await fetch(mainPhotoUrl);
         // console.log('fileMainPhoto = ', fileMainPhoto);
