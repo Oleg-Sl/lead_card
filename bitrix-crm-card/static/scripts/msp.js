@@ -76,7 +76,12 @@ class App {
         const elemImgPhoto_3 = document.querySelector('#imgPhoto_1');
         // console.log(elemImgMainPhoto);
         const fileMainPhoto = portalUrl + '/get-image/?url=' + encodeURIComponent(mainPhotoUrl);
-        console.log('fileMainPhoto = ', fileMainPhoto);
+        const uploadIcon = elemImgMainPhoto.parentNode.querySelector('.upload-icon');
+        const uploadText = elemImgMainPhoto.parentNode.querySelector('.upload-text');
+        const previewImage = elemImgMainPhoto.parentNode.querySelector('.preview-image');
+        uploadIcon.style.display = 'none';
+        uploadText.style.display = 'none';
+        previewImage.style.display = 'block';
         elemImgMainPhoto.src = fileMainPhoto;
         elemImgPhoto_1.src = fileMainPhoto;
         elemImgPhoto_2.src = photoUrl_2;
