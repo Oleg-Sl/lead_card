@@ -38,13 +38,26 @@ class IndexApiView(views.APIView):
     #     return render(request, 'lead/index.html', context=data)
 
 
-@require_GET
+# @require_GET
+# def GetImage(request):
+#     image_url = request.GET.get('url', '')
+#     try:
+#         response = requests.get(image_url, stream=True)
+#         response.raise_for_status()
+#
+#         return HttpResponse(content=response.content, content_type=response.headers['content-type'])
+#     except requests.RequestException as e:
+#         return HttpResponse(content=f"Error fetching image: {str(e)}", status=500)
+
+
 def GetImage(request):
     image_url = request.GET.get('url', '')
     try:
+        # Используем сервер в качестве посредника (proxy)
         response = requests.get(image_url, stream=True)
         response.raise_for_status()
 
+        # Передаем изображение в ответе
         return HttpResponse(content=response.content, content_type=response.headers['content-type'])
     except requests.RequestException as e:
         return HttpResponse(content=f"Error fetching image: {str(e)}", status=500)
