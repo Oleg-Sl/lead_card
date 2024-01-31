@@ -214,8 +214,8 @@ async function main() {
 // });
 
 document.addEventListener("DOMContentLoaded", async function() {
-    // BX24.init(async function(){
+    BX24.init(async function(){
         await main();
         // BX24.fitWindow();
-    // });
+    });
 });
