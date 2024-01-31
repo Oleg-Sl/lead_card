@@ -24,7 +24,11 @@ class IndexApiView(views.APIView):
         #     data = {"id": id_deal, }
         #     return render(request, 'lead/index.html', context=data)
         # else:
-        data = {}
+        data = {
+            "id": -111,
+            "portal_url": "https://app.bits-company.ru/bitrix-crm-card/leadapp"
+        }
+
         return render(request, 'lead/msp.html', context=data)
 
 

@@ -75,7 +75,7 @@ class App {
         const elemImgPhoto_2 = document.querySelector('#imgPhoto_1');
         const elemImgPhoto_3 = document.querySelector('#imgPhoto_1');
         // console.log(elemImgMainPhoto);
-        const fileMainPhoto = '/get-image/?url=' + encodeURIComponent(mainPhotoUrl);
+        const fileMainPhoto = portalUrl + '/get-image/?url=' + encodeURIComponent(mainPhotoUrl);
         console.log('fileMainPhoto = ', fileMainPhoto);
         elemImgMainPhoto.src = fileMainPhoto;
         elemImgPhoto_1.src = fileMainPhoto;
