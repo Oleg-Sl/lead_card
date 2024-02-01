@@ -52,20 +52,42 @@ class App {
         this.renderPhotos();
     }
 
-
-
     async renderPhotos() {
+        const photoFields = [
+            {field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto'},
+            {field: FIELD_MSP.photo_1,   id: 'imgPhoto_1'},
+            {field: FIELD_MSP.photo_2,   id: 'imgPhoto_2'},
+            {field: FIELD_MSP.photo_3,   id: 'imgPhoto_3'},
+        ];
+    
+        for (let i = 0; i < photoFields.length; i++) {
+            const field = photoFields[i].field;
+            const id = photoFields[i].id;
+            const photoUrl = this.data?.[field]?.urlMachine;
+            // const elemInput = document.querySelector(`#${field}`);
+            const elemImg = document.querySelector(`#${id}`);
+           
+            if (photoUrl) {
+                const filePhoto = portalUrl + '/get-image/?url=' + encodeURIComponent(photoUrl);
+                const uploadIcon = elemImg.parentNode.querySelector('.upload-icon');
+                const uploadText = elemImg.parentNode.querySelector('.upload-text');
+                const previewImage = elemImg.parentNode.querySelector('.preview-image');
+                uploadIcon.style.display = 'none';
+                uploadText.style.display = 'none';
+                previewImage.style.display = 'block';
+                elemImg.src = filePhoto;
+            }
+        }
+    }
+
+    async renderPhoto() {
+        // urls from bitrix
         const mainPhotoUrl = this.data?.[FIELD_MSP.mainPhoto]?.urlMachine;
         const photoUrl_1 = this.data?.[FIELD_MSP.photo_1]?.urlMachine;
         const photoUrl_2 = this.data?.[FIELD_MSP.photo_2]?.urlMachine;
         const photoUrl_3 = this.data?.[FIELD_MSP.photo_3]?.urlMachine;
         
-        // const fileMainPhoto = await fetch(mainPhotoUrl);
-        // console.log('fileMainPhoto = ', fileMainPhoto);
-        // const filePhoto_1 = await fetch(photoUrl_1);
-        // const filePhoto_2 = await fetch(photoUrl_2);
-        // const filePhoto_3 = await fetch(photoUrl_3);
-
+        // HTML elements
         const elemMainPhoto = document.querySelector('#mainPhoto');
         const elemInputPhoto_1 = document.querySelector('#photo_1');
         const elemInputPhoto_2 = document.querySelector('#photo_2');
@@ -74,20 +96,53 @@ class App {
         const elemImgPhoto_1 = document.querySelector('#imgPhoto_1');
         const elemImgPhoto_2 = document.querySelector('#imgPhoto_1');
         const elemImgPhoto_3 = document.querySelector('#imgPhoto_1');
-        // console.log(elemImgMainPhoto);
-        const fileMainPhoto = portalUrl + '/get-image/?url=' + encodeURIComponent(mainPhotoUrl);
-        const uploadIcon = elemImgMainPhoto.parentNode.querySelector('.upload-icon');
-        const uploadText = elemImgMainPhoto.parentNode.querySelector('.upload-text');
-        const previewImage = elemImgMainPhoto.parentNode.querySelector('.preview-image');
-        uploadIcon.style.display = 'none';
-        uploadText.style.display = 'none';
-        previewImage.style.display = 'block';
-        elemImgMainPhoto.src = fileMainPhoto;
-        elemImgPhoto_1.src = fileMainPhoto;
-        elemImgPhoto_2.src = photoUrl_2;
-        elemImgPhoto_3.src = photoUrl_3;
+        
+        // render images
+        if (mainPhotoUrl) {
+            const fileMainPhoto = portalUrl + '/get-image/?url=' + encodeURIComponent(mainPhotoUrl);
+            const uploadIcon = elemImgMainPhoto.parentNode.querySelector('.upload-icon');
+            const uploadText = elemImgMainPhoto.parentNode.querySelector('.upload-text');
+            const previewImage = elemImgMainPhoto.parentNode.querySelector('.preview-image');
+            uploadIcon.style.display = 'none';
+            uploadText.style.display = 'none';
+            previewImage.style.display = 'block';
+            elemImgMainPhoto.src = fileMainPhoto;
+        }
 
+        if (photoUrl_1) {
+            const filePhoto_1 = portalUrl + '/get-image/?url=' + encodeURIComponent(photoUrl_1);
+            const uploadIcon_1 = elemImgPhoto_1.parentNode.querySelector('.upload-icon');
+            const uploadText_1 = elemImgPhoto_1.parentNode.querySelector('.upload-text');
+            const previewImage_1 = elemImgPhoto_1.parentNode.querySelector('.preview-image');
+            uploadIcon_1.style.display = 'none';
+            uploadText_1.style.display = 'none';
+            previewImage_1.style.display = 'block';
+            elemImgPhoto_1.src = filePhoto_1;
+        }
+
+        if (photoUrl_2) {
+            const filePhoto_2 = portalUrl + '/get-image/?url=' + encodeURIComponent(photoUrl_2);
+            const uploadIcon_2 = elemImgPhoto_2.parentNode.querySelector('.upload-icon');
+            const uploadText_2 = elemImgPhoto_2.parentNode.querySelector('.upload-text');
+            const previewImage_2 = elemImgPhoto_2.parentNode.querySelector('.preview-image');
+            uploadIcon_2.style.display = 'none';
+            uploadText_2.style.display = 'none';
+            previewImage_2.style.display = 'block';
+            elemImgPhoto_2.src = filePhoto_2;
+        }
+
+        if (photoUrl_3) {
+            const filePhoto_3 = portalUrl + '/get-image/?url=' + encodeURIComponent(photoUrl_3);
+            const uploadIcon_3 = elemImgPhoto_3.parentNode.querySelector('.upload-icon');
+            const uploadText_3 = elemImgPhoto_3.parentNode.querySelector('.upload-text');
+            const previewImage_3 = elemImgPhoto_3.parentNode.querySelector('.preview-image');
+            uploadIcon_3.style.display = 'none';
+            uploadText_3.style.display = 'none';
+            previewImage_3.style.display = 'block';
+            elemImgPhoto_3.src = filePhoto_1;
+        }
     }
+
 //     const imageUrl = 'https://example.com/path/to/image.jpg';
 // const serverUrl = '/get-image/?url=' + encodeURIComponent(imageUrl);
 
