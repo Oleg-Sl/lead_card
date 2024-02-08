@@ -61,7 +61,7 @@ export class PhotoRenderer {
                 console.log("imagePreview = ", imagePreview);
                 console.log("file = ", file);
                 
-                reader.onload = function(e) {
+                reader.onload = (e) => {
                     imagePreview.src = e.target.result;
                     const existingCropper = this.cropperInstances[imagePreview.id]?.cropper;
                     if (existingCropper) {
