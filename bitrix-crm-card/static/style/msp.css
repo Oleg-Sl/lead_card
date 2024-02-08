@@ -10,6 +10,7 @@
 }
 .photos-parent .child input {
   position: absolute;
+  left: 0;
   z-index: 1000;
 }
 .photos-parent .child .child-container {
@@ -54,4 +55,9 @@
   right: 5px;
   width: calc(50% - 10px);
   height: calc(50% - 10px);
+}
+
+body {
+  height: 105%;
+  overflow: hidden;
 }/*# sourceMappingURL=msp.css.map */

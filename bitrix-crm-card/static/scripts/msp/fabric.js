@@ -20,6 +20,28 @@ export class FabricRenderer {
 
         // список всех тканей
         this.smartFabricList = smartFabricList;
+
+        this.initHandlers();
+    }
+
+    initHandlers() {
+        this.elemChoiceFabric_1.addEventListener('change', (event) => {
+            this.fabricId_1 = event.target.value;
+            this.renderImage();
+            this.setFabricsTypesAndColors();
+        });
+        this.elemChoiceFabric_2.addEventListener('change', (event) => {
+            this.fabricId_2 = event.target.value;
+            this.renderImage();
+            this.setFabricsTypesAndColors();
+        })
+        this.elemChoiceFabric_3.addEventListener('change', (event) => {
+            this.fabricId_3 = event.target.value;
+            this.renderImage();
+            this.setFabricsTypesAndColors();
+        })
+        // this.elemChoiceFabric_2.addEventListener('change', this.onChangeFabric_2.bind(this));
+        // this.elemChoiceFabric_3.addEventListener('change', this.onChangeFabric_3.bind(this));
     }
 
     renderFabrics() {
