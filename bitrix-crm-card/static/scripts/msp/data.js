@@ -2,7 +2,8 @@ import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
 
 
 export class DataRenderer {
-    constructor(data, fields, createdUser, updatedUser) {
+    constructor(bx24, data, fields, createdUser, updatedUser) {
+        this.bx24 = bx24;
         this.data = data;
         this.fields = fields;
         this.createdUser = createdUser;

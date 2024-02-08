@@ -2,7 +2,8 @@ import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
 
 
 export class FabricRenderer {
-    constructor(data, smartFabricList) {
+    constructor(bx24, data, smartFabricList) {
+        this.bx24 = bx24;
         this.data = data;
         this.smartFabricList = smartFabricList;
     }

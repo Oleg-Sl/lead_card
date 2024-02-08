@@ -52,8 +52,8 @@ export class App {
         // console.log("fields = ", this.fields);
 
 //        const photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
-        const dataRenderer = new DataRenderer(this.data, this.fields, this.createdUser, this.updatedUser);
-        const fabricRenderer = new FabricRenderer(this.data, this.smartFabricList);
+        const dataRenderer = new DataRenderer(this.bx24, this.data, this.fields, this.createdUser, this.updatedUser);
+        const fabricRenderer = new FabricRenderer(this.bx24, this.data, this.smartFabricList);
 
 //        photoRenderer.renderPhotos();
         dataRenderer.renderData();
@@ -63,8 +63,6 @@ export class App {
     }
 
     initHandlers() {
-        console.log("FIELD_MSP.createdBy = ", FIELD_MSP.createdBy);
-        console.log("document.querySelector(FIELD_MSP.createdBy) = ", document.querySelector(`#${FIELD_MSP.createdBy}`));
         document.querySelector(`#${FIELD_MSP.createdBy}`).addEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
