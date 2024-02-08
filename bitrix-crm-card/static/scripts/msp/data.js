@@ -10,6 +10,7 @@ export class DataRenderer {
         this.updatedUser = updatedUser;
 
         this.changedData = {}; // Свойство для хранения измененных данных
+        this.initHandlers();
     }
 
     initHandlers() {
