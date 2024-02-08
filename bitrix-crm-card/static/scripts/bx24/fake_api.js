@@ -1,51 +1,46 @@
 
-// const API = "https://bits24.bitrix24.ru/rest/9/vhduvllk2mxru5lx/";
+const API = "https://99frank.bitrix24.ru/rest/11789/qssz3r9yzhhobwr8/";
 
 
-// export default class FakeBitrixService {
-//     constructor() {
-//         this.api = API;
+export default class FakeBitrixService {
+    constructor() {
+        this.batch = new BatchMethods();
+        // // this.bz = new BzProcessMethods(this.bx24);
+        // // this.contact = new ContactMethods(this.bx24);
+        // // this.deal = new DealMethods(this.bx24);
+        // // this.smartProcess = new SmartProcessMethods(this.bx24);
+        // // this.task = new TaskMethods(this.bx24);
+        // this.user = new UserMethods(this.bx24);
+        // this.files = new FilesMethods();
 
-//         this.batch = new BatchMethods();
-//         // this.bz = new BzProcessMethods(this.bx24);
-//         // this.contact = new ContactMethods(this.bx24);
-//         // this.deal = new DealMethods(this.bx24);
-//         // this.smartProcess = new SmartProcessMethods(this.bx24);
-//         // this.task = new TaskMethods(this.bx24);
-//         this.user = new UserMethods(this.bx24);
-//         this.files = new FilesMethods();
+    }
 
-//         this.domain = 'bits24.bitrix.ru';
-//     }
+    async init() {
+        // this.domain = await this.bx24.getDomain();
+    }
 
-//     async init() {
-//         // this.domain = await this.bx24.getDomain();
-//     }
+    // makeCall(phoneNumber) {
+    //     console.log('Делаем звонок на номер: ', phoneNumber);
+    // }
 
-//     makeCall(phoneNumber) {
-//         console.log('Делаем звонок на номер: ', phoneNumber);
-//     }
+    // openLine(openLineId) {
+    //     console.log('Открытя линию: ', openLineId);
+    // }
 
-//     openLine(openLineId) {
-//         console.log('Открытя линию: ', openLineId);
-//     }
+    // async openPath(path) {
+    //     console.log('Открытие пути: ', path);
+    // }
 
-//     async openPath(path) {
-//         console.log('Открытие пути: ', path);
-//     }
 
-//     getUrlSendMessageFromDealId(dealId) {
-//         return `https://${this.domain}/bitrix/components/bitrix/crm.activity.planner/slider.php?context=deal-${dealId}&ajax_action=ACTIVITY_EDIT&activity_id=0&TYPE_ID=4&OWNER_ID=${dealId}&OWNER_TYPE=DEAL&OWNER_PSID=0&FROM_ACTIVITY_ID=0&MESSAGE_TYPE=&SUBJECT=&BODY=&=undefined&__post_data_hash=-1046067848&IFRAME=Y&IFRAME_TYPE=SIDE_SLIDER`;
-//     }
 
-//     getActsFolderId() {
-//         return 6141;
-//     }
+    // getActsFolderId() {
+    //     return 6141;
+    // }
 
-//     getInvoicesFolderId() {
-//         return 6137;
-//     }
-// }
+    // getInvoicesFolderId() {
+    //     return 6137;
+    // }
+}
 
 
 // class FilesMethods {
@@ -170,22 +165,28 @@
 // };
 
 
-// class BatchMethods {
-//     async getDataForStart(cmd) {
-//         return {
-//             deal: DEAL,
-//             company: COMPANY,
-//             company_contacts: COMPANY_CONTACTS,
-//             contacts: CONTACT_DATA,
-//             sources: SOURCE,
-//             stage_history: STAGE_HISTORY,
-//             users: USERS,
-//             departments: DEPARTMENTS,
-//             fields: FIELDS_DEAL,
-//         };
-//     }
+class BatchMethods {
+    async getData(cmd) {
+        try {
+            const response = await fetch(`${API}batch`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    halt: 0,
+                    cmd: cmd
+                })
+            });
 
-// }
+            const result = await response.json();
+            return result?.result;
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+    }
+
+}
 
 
 // const DEAL = {
