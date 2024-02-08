@@ -5,10 +5,6 @@ export class PhotoRenderer {
         this.data = data;
         this.portalUrl = portalUrl;
 
-        this.initHandlers();
-    }
-    
-    renderPhotos() {
         this.photoFields = [
             { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
             { field: FIELD_MSP.photo_1,   id: 'previewImage1' },
@@ -20,6 +16,10 @@ export class PhotoRenderer {
             { field: FIELD_MSP.photo_7,   id: 'previewImage7' },
         ];
 
+        this.initHandlers();
+    }
+    
+    renderPhotos() {
         // Получаем все места вставки фотографий и устанавливаем ссылки на них
         this.photoFields.forEach(({ field, id }) => {
             const photoUrl = this.data?.[field]?.urlMachine;
