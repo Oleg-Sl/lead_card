@@ -4,8 +4,9 @@ import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
 // /            { field: FIELD_MSP.mainPhoto, id: 'previewImageFabric' },
 
 export class FabricRenderer {
-    constructor(bx24, data, smartFabricList) {
+    constructor(bx24, data, smartFabricList, portalUrl) {
         this.bx24 = bx24;
+        this.portalUrl = portalUrl;
 
         // элементы выбора ткани
         this.elemChoiceFabric_1 = document.querySelector(`#upholsteryFabricCollection`);
@@ -74,8 +75,10 @@ export class FabricRenderer {
 
     renderImage() {
         const fabric = this.smartFabricList.find(item => item.id == this.fabricId_1);
+        console.log("fabric = ", fabric);
         if (fabric) {
-            document.querySelector('#previewImageFabric').src = fabric?.[FIELD_FABRIC.image];
+            const filePhoto = this.portalUrl + '/get-image/?url=' + encodeURIComponent(fabric?.[FIELD_FABRIC.image]);
+            document.querySelector('#previewImageFabric').src = filePhoto;
         }
     }
 

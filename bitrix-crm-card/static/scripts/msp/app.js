@@ -53,7 +53,7 @@ export class App {
 
         const photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
         const dataRenderer = new DataRenderer(this.bx24, this.data, this.fields, this.createdUser, this.updatedUser);
-        const fabricRenderer = new FabricRenderer(this.bx24, this.data, this.smartFabricList);
+        const fabricRenderer = new FabricRenderer(this.bx24, this.data, this.smartFabricList, this.portalUrl);
 
         photoRenderer.renderPhotos();
         dataRenderer.renderData();
