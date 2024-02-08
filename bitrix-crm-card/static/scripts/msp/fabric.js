@@ -28,7 +28,7 @@ export class FabricRenderer {
         this.elemChoiceFabric_1.addEventListener('change', (event) => {
             console.log("elemChoiceFabric_1 change");
             this.fabricId_1 = event.target.value;
-            console.log(fabricId_1);
+            console.log(this.fabricId_1);
             this.renderImage();
             this.setFabricsTypesAndColors();
         });
@@ -60,7 +60,7 @@ export class FabricRenderer {
         this.checkOption(this.elemChoiceFabric_3, this.fabricId_3);
 
         // инициализация chosen
-        $(`#upholsteryFabricCollection`).chosen();
+        // $(`#upholsteryFabricCollection`).chosen();
         $(`#upholsteryFabricCollection_1`).chosen();
         $(`#upholsteryFabricCollection_2`).chosen();
 
