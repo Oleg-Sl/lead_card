@@ -20,23 +20,7 @@ export class FabricRenderer {
 
         // список всех тканей
         this.smartFabricList = smartFabricList;
-
-        // this.initHandlers();
     }
-
-    // initHandlers() {
-    //     this.elemChoiceFabric_1.addEventListener('chosen:change', (event) => {
-            
-    //     });
-    //     this.elemChoiceFabric_2.addEventListener('chosen:change', (event) => {
-    //         this.fabricId_2 = event.target.value;
-    //         this.setFabricsTypesAndColors();
-    //     })
-    //     this.elemChoiceFabric_3.addEventListener('chosen:change', (event) => {
-    //         this.fabricId_3 = event.target.value;
-    //         this.setFabricsTypesAndColors();
-    //     })
-    // }
 
     renderFabrics() {
         const contentHTML = this.getFabricsOptionsSelectHTML();
