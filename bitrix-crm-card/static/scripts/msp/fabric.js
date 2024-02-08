@@ -52,18 +52,18 @@ export class FabricRenderer {
         this.checkOption(this.elemChoiceFabric_3, this.fabricId_3);
 
         // инициализация chosen
-        $(this.elemChoiceFabric_1).chosen().change(function() {
+        $(this.elemChoiceFabric_1).chosen().change(() => {
             this.fabricId_1 =$(this).val();
             this.renderImage();
             this.setFabricsTypesAndColors();
         });
 
-        $(`#upholsteryFabricCollection_1`).chosen().change(function() {
+        $(`#upholsteryFabricCollection_1`).chosen().change(() => {
             this.fabricId_2 =$(this).val();
             this.setFabricsTypesAndColors();
         });
 
-        $(`#upholsteryFabricCollection_2`).chosen().change(function() {
+        $(`#upholsteryFabricCollection_2`).chosen().change(() => {
             this.fabricId_2 =$(this).val();
             this.setFabricsTypesAndColors();
         });
