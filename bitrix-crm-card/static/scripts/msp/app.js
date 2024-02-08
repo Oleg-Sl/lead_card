@@ -19,11 +19,12 @@ export class App {
 
     initHandlers() {
         // product-btn-save
+        console.log("button save = ", document.querySelector(`.product-btn-save`));
         document.querySelector(`.product-btn-save`).addEventListener('click', async () => {
-            const changedData = dataRenderer.getChangedData();
-            const changedFabric = fabricRenderer.getChangedData();
+            const changedData = this.dataRenderer.getChangedData();
+            const changedFabric = this.fabricRenderer.getChangedData();
             console.log("changedData = ", changedData);
-            console.log("changedFabric = ", chanchangedFabricgedData);
+            console.log("changedFabric = ", changedFabric);
         })
     }
 

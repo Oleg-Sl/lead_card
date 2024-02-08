@@ -5,6 +5,8 @@ export class PhotoRenderer {
         this.data = data;
         this.portalUrl = portalUrl;
 
+        this.cropperInstances = {};
+
         this.photoFields = [
             { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
             { field: FIELD_MSP.photo_1,   id: 'previewImage1' },
@@ -52,14 +54,16 @@ export class PhotoRenderer {
             if (!input) {
                 return;
             }
-            input.addEventListener('change', function(event) {
+            input.addEventListener('change', (event) => {
                 const imagePreview = input.parentElement.querySelector("img");
                 const file = event.target.files[0];
                 const reader = new FileReader();
+                console.log("imagePreview = ", imagePreview);
+                console.log("file = ", file);
                 
                 reader.onload = function(e) {
                     imagePreview.src = e.target.result;
-                    const existingCropper = cropperInstances[imagePreview.id]?.cropper;
+                    const existingCropper = this.cropperInstances[imagePreview.id]?.cropper;
                     if (existingCropper) {
                         existingCropper.destroy();
                     }
@@ -74,7 +78,7 @@ export class PhotoRenderer {
                         minCropBoxHeight: 0, // Разрешить уменьшение высоты области обрезки до нуля
                     });
 
-                    cropperInstances[imagePreview.id] = {
+                    this.cropperInstances[imagePreview.id] = {
                         cropper: cropper,
                         fileName: file.name // Сохраняем имя файла
                     };
