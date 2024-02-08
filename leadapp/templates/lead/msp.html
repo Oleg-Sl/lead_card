@@ -26,25 +26,25 @@
             <div class="col d-flex align-items-start flex-column mb-3" style="max-width: 350px;">
                 <div class="input-group input-group-sm mb-3 product-date-create-container">
                     <span class="input-group-text" id="dateCreate">Дата создания</span>
-                    <input type="date" class="form-control product-date-create-input" aria-label="Sizing example input" aria-describedby="dateCreate" disabled>
+                    <input type="date" id="createdTime" class="form-control product-date-create-input" aria-label="Sizing example input" aria-describedby="dateCreate" disabled>
                 </div>
                 <div class="input-group input-group-sm product-date-cheanged-container">
                     <span class="input-group-text" id="dateChanged">Дата изменения</span>
-                    <input type="date" class="form-control product-date-cheanged-input" aria-label="Sizing example input" aria-describedby="dateChanged" disabled>
+                    <input type="date" id="updatedTime" class="form-control product-date-cheanged-input" aria-label="Sizing example input" aria-describedby="dateChanged" disabled>
                 </div>
             </div>
 
             <div class="col d-flex align-items-start flex-column mb-3 responsible-container" style="max-width: 650px;">
                 <div class="d-flex flex-row mb-3 input-group-sm responsible-created">
-                    <label for="userCreated" class="input-group-text me-2 responsible-created-label">Кто заполнил</label>
+                    <label for="createdBy" class="input-group-text me-2 responsible-created-label">Кто заполнил</label>
                     <div class="col">
-                        <a href="#" id="userCreated" class="responsible-created-url link-primary"></a>
+                        <a href="#" id="createdBy" class="responsible-created-url link-primary"></a>
                     </div>
                 </div>
                 <div class="d-flex flex-row mb-3 input-group-sm responsible-changed">
-                    <label for="userUpdated" class="input-group-text me-2 responsible-changed-label">Кто изменил</label>
+                    <label for="updatedBy" class="input-group-text me-2 responsible-changed-label">Кто изменил</label>
                     <div class="col">
-                        <a href="#" id="userUpdated" class="responsible-changed-url link-primary"></a>
+                        <a href="#" id="updatedBy" class="responsible-changed-url link-primary"></a>
                     </div>
                 </div>
             </div>

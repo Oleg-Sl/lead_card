@@ -12,20 +12,25 @@ export class DataRenderer {
     renderData() {
         const elemCreatedBy = document.querySelector(`#${FIELD_MSP.createdBy}`);
         const elemUpdatedBy = document.querySelector(`#${FIELD_MSP.updatedBy}`);
-        elemCreatedBy.value = this.getUserName(this.createdUser);
-        elemUpdatedBy.value = this.getUserName(this.updatedUser);
+        elemCreatedBy.contentHTML = this.getUserName(this.createdUser);
+        elemUpdatedBy.contentHTML = this.getUserName(this.updatedUser);
+        elemCreatedBy.dataset.link = this.getUserLink(this.createdUser);
+        elemUpdatedBy.dataset.link = this.getUserLink(this.updatedUser);
 
         for (const [key, value] of Object.entries(FIELD_MSP)) {
             const elem = document.querySelector(`#${key}`);
             const fieldName = FIELD_MSP[key];
             const fieldDataBx24 = this.fields?.[fieldName];
-            // console.log(fieldDataBx24);
             this.outputData(elem, fieldName, fieldDataBx24);
         }
     }
 
     getUserName(user) {
         return `${user?.LAST_NAME} ${user?.NAME}`;
+    }
+
+    getUserLink(user) {
+        return `/company/personal/user/${user?.ID}/`;
     }
 
     outputData(elem, fieldName, fieldDataBx24) {

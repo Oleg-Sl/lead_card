@@ -13,6 +13,7 @@ export class App {
         this.bx24 = bx24;
         this.portalUrl = portalUrl;
         this.currentUserId = null;
+        
     }
 
     async init() {
@@ -57,6 +58,25 @@ export class App {
 //        photoRenderer.renderPhotos();
         dataRenderer.renderData();
         fabricRenderer.renderFabrics();
+
+        this.initHandlers();
+    }
+
+    initHandlers() {
+        document.querySelector(`#${FIELD_MSP.createdBy}`).adddEventListener('click', (event) => {
+            const target = event.target;
+            const link = target.dataset.link;
+            if (link) {
+                this.bx24.openPath(link);
+            }
+        });
+        document.querySelector(`#${FIELD_MSP.updatedBy}`).adddEventListener('click', (event) => {
+            const target = event.target;
+            const link = target.dataset.link;
+            if (link) {
+                this.bx24.openPath(link);
+            }
+        });
     }
 
     async getAllFabrics(total) {
