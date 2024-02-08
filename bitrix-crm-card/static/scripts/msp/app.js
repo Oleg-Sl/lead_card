@@ -13,7 +13,18 @@ export class App {
         this.bx24 = bx24;
         this.portalUrl = portalUrl;
         this.currentUserId = null;
-        
+
+        this.initHandlers();
+    }
+
+    initHandlers() {
+        // product-btn-save
+        document.querySelector(`.product-btn-save`).addEventListener('click', async () => {
+            const changedData = dataRenderer.getChangedData();
+            const changedFabric = fabricRenderer.getChangedData();
+            console.log("changedData = ", changedData);
+            console.log("changedFabric = ", chanchangedFabricgedData);
+        })
     }
 
     async init() {
@@ -46,10 +57,6 @@ export class App {
             console.error(`Error get data or user from server for smart processId=${this.smartId}, entityId=${this.entityId}: `, data);
             return;
         }
-
-        // console.log("data = ", this.data);
-        // console.log("user = ", this.user);
-        // console.log("fields = ", this.fields);
 
         const photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
         const dataRenderer = new DataRenderer(this.bx24, this.data, this.fields, this.createdUser, this.updatedUser);
@@ -103,4 +110,6 @@ export class App {
 
         return allItems;
     }
+
+    
 }

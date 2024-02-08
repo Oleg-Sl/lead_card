@@ -1,8 +1,6 @@
 import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
 
 
-// /            { field: FIELD_MSP.mainPhoto, id: 'previewImageFabric' },
-
 export class FabricRenderer {
     constructor(bx24, data, smartFabricList, portalUrl) {
         this.bx24 = bx24;
@@ -22,6 +20,14 @@ export class FabricRenderer {
         this.smartFabricList = smartFabricList;
     }
 
+    getChangedData() {
+        return {
+            [FIELD_MSP.upholsteryFabricCollection]: this.elemChoiceFabric_1.value,
+            [FIELD_MSP.upholsteryFabricCollection_1]: this.elemChoiceFabric_2.value,
+            [FIELD_MSP.upholsteryFabricCollection_2]: this.elemChoiceFabric_3.value
+        };
+    }
+
     renderFabrics() {
         const contentHTML = this.getFabricsOptionsSelectHTML();
 
@@ -37,20 +43,15 @@ export class FabricRenderer {
 
         // инициализация chosen
         $(this.elemChoiceFabric_1).chosen().change((event) => {
-            // this.fabricId_1 = $(this).val();
             this.fabricId_1 = event.target.value;
             this.renderImage();
             this.setFabricsTypesAndColors();
         });
-
-        $(`#upholsteryFabricCollection_1`).chosen().change((event) => {
-            // this.fabricId_2 =$(this).val();
+        $(this.elemChoiceFabric_2).chosen().change((event) => {
             this.fabricId_2 = event.target.value;
             this.setFabricsTypesAndColors();
         });
-
-        $(`#upholsteryFabricCollection_2`).chosen().change((event) => {
-            // this.fabricId_2 =$(this).val();
+        $(this.elemChoiceFabric_3).chosen().change((event) => {
             this.fabricId_3 = event.target.value;
             this.setFabricsTypesAndColors();
         });

@@ -4,9 +4,10 @@ export class PhotoRenderer {
     constructor(data, portalUrl) {
         this.data = data;
         this.portalUrl = portalUrl;
+
+        this.initHandlers();
     }
     
-    // /            { field: FIELD_MSP.mainPhoto, id: 'previewImageFabric' },
     renderPhotos() {
         const photoFields = [
             { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
@@ -42,4 +43,52 @@ export class PhotoRenderer {
             elemImg.src = filePhoto;
         }
     }
+
+    initHandlers() {
+        const imageInputs = photoFields.map(({ id }) => document.querySelector(`#${id}`));
+        console.log("imageInputs = ", imageInputs);
+        
+        imageInputs.forEach(function(input) {
+            input.addEventListener('change', function(event) {
+                const imagePreview = input.parentElement.querySelector("img");
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result;
+                    const existingCropper = cropperInstances[imagePreview.id]?.cropper;
+                    if (existingCropper) {
+                        existingCropper.destroy();
+                    }
+
+                    const cropper = new Cropper(imagePreview, {
+                        aspectRatio: NaN, // Убрать фиксированное соотношение сторон
+                        autoCropArea: 1, // Заполнить область обрезки на всю доступную площадь
+                        viewMode: 3, // Показывать только область обрезки
+                        cropBoxResizable: false, // Запретить изменение размеров области обрезки
+                        zoomable: true, // Разрешить изменение масштаба изображения
+                        minCropBoxWidth: 0, // Разрешить уменьшение ширины области обрезки до нуля
+                        minCropBoxHeight: 0, // Разрешить уменьшение высоты области обрезки до нуля
+                    });
+
+                    cropperInstances[imagePreview.id] = {
+                        cropper: cropper,
+                        fileName: file.name // Сохраняем имя файла
+                    };
+                };
+                
+                if (file) {
+                    reader.readAsDataURL(file); // Чтение изображения
+                }
+            });
+
+            const imagePreview = input.parentElement.querySelector("img");
+
+            imagePreview.addEventListener('click', function() {
+                input.value = '';
+                imagePreview.src = '';
+                input.style.display = 'block';
+            });
+        });
+}
 }
