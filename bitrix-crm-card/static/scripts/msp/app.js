@@ -65,14 +65,14 @@ export class App {
     initHandlers() {
         console.log("FIELD_MSP.createdBy = ", FIELD_MSP.createdBy);
         console.log("document.querySelector(FIELD_MSP.createdBy) = ", document.querySelector(`#${FIELD_MSP.createdBy}`));
-        document.querySelector(`#${FIELD_MSP.createdBy}`).adddEventListener('click', (event) => {
+        document.querySelector(`#${FIELD_MSP.createdBy}`).addEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
             if (link) {
                 this.bx24.openPath(link);
             }
         });
-        document.querySelector(`#${FIELD_MSP.updatedBy}`).adddEventListener('click', (event) => {
+        document.querySelector(`#${FIELD_MSP.updatedBy}`).addEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
             if (link) {

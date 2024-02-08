@@ -12,8 +12,8 @@ export class DataRenderer {
     renderData() {
         const elemCreatedBy = document.querySelector(`#${FIELD_MSP.createdBy}`);
         const elemUpdatedBy = document.querySelector(`#${FIELD_MSP.updatedBy}`);
-        elemCreatedBy.contentHTML = this.getUserName(this.createdUser);
-        elemUpdatedBy.contentHTML = this.getUserName(this.updatedUser);
+        elemCreatedBy.innerHTML = this.getUserName(this.createdUser);
+        elemUpdatedBy.innerHTML = this.getUserName(this.updatedUser);
         elemCreatedBy.dataset.link = this.getUserLink(this.createdUser);
         elemUpdatedBy.dataset.link = this.getUserLink(this.updatedUser);
 
