@@ -13,19 +13,8 @@ export class App {
         this.bx24 = bx24;
         this.portalUrl = portalUrl;
         this.currentUserId = null;
-        console.log("________________________________+++++++++++++++++++___________________________");
-        this.initHandlers();
     }
 
-    initHandlers() {
-        console.log("button save = ", document.querySelector(`.product-btn-save`));
-        document.querySelector(`.product-btn-save`).addEventListener('click', async () => {
-            const changedData = this.dataRenderer.getChangedData();
-            const changedFabric = this.fabricRenderer.getChangedData();
-            console.log("changedData = ", changedData);
-            console.log("changedFabric = ", changedFabric);
-        })
-    }
 
     async init() {
         const data = await this.bx24.batch.getData({
@@ -85,6 +74,13 @@ export class App {
                 this.bx24.openPath(link);
             }
         });
+
+        document.querySelector(`.product-btn-save`).addEventListener('click', async () => {
+            const changedData = this.dataRenderer.getChangedData();
+            const changedFabric = this.fabricRenderer.getChangedData();
+            console.log("changedData = ", changedData);
+            console.log("changedFabric = ", changedFabric);
+        })
     }
 
     changeFabric() {
