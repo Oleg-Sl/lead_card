@@ -51,11 +51,11 @@ export class App {
         // console.log("user = ", this.user);
         // console.log("fields = ", this.fields);
 
-//        const photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
+        const photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
         const dataRenderer = new DataRenderer(this.bx24, this.data, this.fields, this.createdUser, this.updatedUser);
         const fabricRenderer = new FabricRenderer(this.bx24, this.data, this.smartFabricList);
 
-//        photoRenderer.renderPhotos();
+        photoRenderer.renderPhotos();
         dataRenderer.renderData();
         fabricRenderer.renderFabrics();
 
