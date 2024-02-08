@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 //         this.renderData();
 //         this.renderFabrics();
 //         this.renderPhotos();
-     }
+//   }
 
 //     initHandler() {
 
