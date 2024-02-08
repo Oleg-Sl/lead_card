@@ -6,10 +6,10 @@ import { FabricRenderer } from './fabric.js';
 
 
 export class App {
-    constructor(productId, bx24, portalUrl) {
+    constructor(entityId, bx24, portalUrl) {
         this.smartId = 172;
         this.smartFabricsId = 149;
-        this.productId = productId;
+        this.entityId = entityId;
         this.bx24 = bx24;
         this.portalUrl = portalUrl;
         this.currentUserId = null;
@@ -18,7 +18,7 @@ export class App {
     async init() {
         const data = await this.bx24.batch.getData({
             user: 'user.current',
-            smartProcess: `crm.item.get?entityTypeId=${this.smartId}&id=${this.productId}`,
+            smartProcess: `crm.item.get?entityTypeId=${this.smartId}&id=${this.entityId}`,
             smartFabricList: `crm.item.list?entityTypeId=${this.smartFabricsId}&select[]=id&select[]=title&select[]=${FIELD_FABRIC.name}&select[]=${FIELD_FABRIC.photo}&select[]=${FIELD_FABRIC.type}&select[]=${FIELD_FABRIC.color}&order[id]=ASC`,
             smartFabric: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
             smartFabric_1: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection_1}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
@@ -42,7 +42,7 @@ export class App {
         this.fields = data?.result?.fields?.fields;
 
         if (!this.data || !this.user) {
-            console.error(`Error get data or user from server for smart processId=${this.smartId}, productId=${this.productId}: `, data);
+            console.error(`Error get data or user from server for smart processId=${this.smartId}, entityId=${this.entityId}: `, data);
             return;
         }
 
@@ -50,11 +50,11 @@ export class App {
         // console.log("user = ", this.user);
         // console.log("fields = ", this.fields);
 
-        const photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
+//        const photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
         const dataRenderer = new DataRenderer(this.data, this.fields, this.createdUser, this.updatedUser);
         const fabricRenderer = new FabricRenderer(this.data, this.smartFabricList);
 
-        photoRenderer.renderPhotos();
+//        photoRenderer.renderPhotos();
         dataRenderer.renderData();
         fabricRenderer.renderFabrics();
     }
