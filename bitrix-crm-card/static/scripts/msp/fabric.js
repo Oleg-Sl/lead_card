@@ -26,18 +26,20 @@ export class FabricRenderer {
 
     initHandlers() {
         this.elemChoiceFabric_1.addEventListener('change', (event) => {
+            console.log("elemChoiceFabric_1 change");
             this.fabricId_1 = event.target.value;
+            console.log(fabricId_1);
             this.renderImage();
             this.setFabricsTypesAndColors();
         });
         this.elemChoiceFabric_2.addEventListener('change', (event) => {
             this.fabricId_2 = event.target.value;
-            this.renderImage();
+            // this.renderImage();
             this.setFabricsTypesAndColors();
         })
         this.elemChoiceFabric_3.addEventListener('change', (event) => {
             this.fabricId_3 = event.target.value;
-            this.renderImage();
+            // this.renderImage();
             this.setFabricsTypesAndColors();
         })
         // this.elemChoiceFabric_2.addEventListener('change', this.onChangeFabric_2.bind(this));
@@ -69,7 +71,7 @@ export class FabricRenderer {
     setFabricsTypesAndColors() {
         const fabricTypesIds = ['#upholsteryFabricType', '#upholsteryFabricType_1', '#upholsteryFabricType_2'];
         const fabricColorsIds = ['#upholsteryFabricColor', '#upholsteryFabricColor_1', '#upholsteryFabricColor_2'];
-        [this.data?.[FIELD_MSP.upholsteryFabricCollection], this.data?.[FIELD_MSP.upholsteryFabricCollection_1], this.data?.[FIELD_MSP.upholsteryFabricCollection_2]].forEach((fabricId, index) => {
+        [this.fabricId_1, this.fabricId_2, this.fabricId_3].forEach((fabricId, index) => {
             const fabric = this.smartFabricList.find(item => item.id == fabricId);
             document.querySelector(fabricTypesIds[index]).value = fabric?.[FIELD_FABRIC.type];
             document.querySelector(fabricColorsIds[index]).value = fabric?.[FIELD_FABRIC.color];
