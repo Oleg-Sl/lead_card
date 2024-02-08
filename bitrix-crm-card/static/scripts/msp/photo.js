@@ -8,7 +8,7 @@ export class PhotoRenderer {
         this.cropperInstances = {};
 
         this.photoFields = [
-            { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
+            // { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
             { field: FIELD_MSP.photo_1,   id: 'previewImage1' },
             { field: FIELD_MSP.photo_2,   id: 'previewImage2' },
             { field: FIELD_MSP.photo_3,   id: 'previewImage3' },

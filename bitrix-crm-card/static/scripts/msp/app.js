@@ -13,12 +13,11 @@ export class App {
         this.bx24 = bx24;
         this.portalUrl = portalUrl;
         this.currentUserId = null;
-
+        console.log("________________________________+++++++++++++++++++___________________________");
         this.initHandlers();
     }
 
     initHandlers() {
-        // product-btn-save
         console.log("button save = ", document.querySelector(`.product-btn-save`));
         document.querySelector(`.product-btn-save`).addEventListener('click', async () => {
             const changedData = this.dataRenderer.getChangedData();
