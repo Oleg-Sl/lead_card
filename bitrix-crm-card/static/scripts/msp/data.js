@@ -11,12 +11,7 @@ export class DataRenderer {
     }
 
     renderData() {
-        const elemCreatedBy = document.querySelector(`#${FIELD_MSP.createdBy}`);
-        const elemUpdatedBy = document.querySelector(`#${FIELD_MSP.updatedBy}`);
-        elemCreatedBy.innerHTML = this.getUserName(this.createdUser);
-        elemUpdatedBy.innerHTML = this.getUserName(this.updatedUser);
-        elemCreatedBy.dataset.link = this.getUserLink(this.createdUser);
-        elemUpdatedBy.dataset.link = this.getUserLink(this.updatedUser);
+        this.renderUser();
 
         for (const [key, value] of Object.entries(FIELD_MSP)) {
             const elem = document.querySelector(`#${key}`);
@@ -24,6 +19,15 @@ export class DataRenderer {
             const fieldDataBx24 = this.fields?.[fieldName];
             this.outputData(elem, fieldName, fieldDataBx24);
         }
+    }
+
+    renderUser() {
+        const elemCreatedBy = document.querySelector(`#${FIELD_MSP.createdBy}`);
+        const elemUpdatedBy = document.querySelector(`#${FIELD_MSP.updatedBy}`);
+        elemCreatedBy.innerHTML = this.getUserName(this.createdUser);
+        elemUpdatedBy.innerHTML = this.getUserName(this.updatedUser);
+        elemCreatedBy.dataset.link = this.getUserLink(this.createdUser);
+        elemUpdatedBy.dataset.link = this.getUserLink(this.updatedUser);
     }
 
     getUserName(user) {
@@ -44,13 +48,13 @@ export class DataRenderer {
             this.checkOption(elem, this.data?.[fieldName]);
         } else if (fieldDataBx24.type === 'string') {
             elem.value = this.data?.[fieldName];
-        } else if (fieldDataBx24.type === 'double') {
+        } else if (fieldDataBx24.type === 'double' || fieldDataBx24.type === 'integer') {
             elem.value = this.data?.[fieldName];
         } else if (fieldDataBx24.type === 'date' || fieldDataBx24.type === 'datetime') {
             elem.value = this.formatDate(this.data?.[fieldName]);
         } else if (fieldDataBx24.type === 'boolean') {
             elem.checked = this.data?.[fieldName] == 'Y' ? true : false;
-        }    
+        }
     }
 
     getOptionsSelectHTML(items) {
