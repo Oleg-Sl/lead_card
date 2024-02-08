@@ -25,25 +25,20 @@ export class FabricRenderer {
     }
 
     initHandlers() {
-        this.elemChoiceFabric_1.addEventListener('change', (event) => {
-            console.log("elemChoiceFabric_1 change");
+        this.elemChoiceFabric_1.addEventListener('chosen:change', (event) => {
             this.fabricId_1 = event.target.value;
             console.log(this.fabricId_1);
             this.renderImage();
             this.setFabricsTypesAndColors();
         });
-        this.elemChoiceFabric_2.addEventListener('change', (event) => {
+        this.elemChoiceFabric_2.addEventListener('chosen:change', (event) => {
             this.fabricId_2 = event.target.value;
-            // this.renderImage();
             this.setFabricsTypesAndColors();
         })
-        this.elemChoiceFabric_3.addEventListener('change', (event) => {
+        this.elemChoiceFabric_3.addEventListener('chosen:change', (event) => {
             this.fabricId_3 = event.target.value;
-            // this.renderImage();
             this.setFabricsTypesAndColors();
         })
-        // this.elemChoiceFabric_2.addEventListener('change', this.onChangeFabric_2.bind(this));
-        // this.elemChoiceFabric_3.addEventListener('change', this.onChangeFabric_3.bind(this));
     }
 
     renderFabrics() {
@@ -60,7 +55,7 @@ export class FabricRenderer {
         this.checkOption(this.elemChoiceFabric_3, this.fabricId_3);
 
         // инициализация chosen
-        // $(`#upholsteryFabricCollection`).chosen();
+        $(`#upholsteryFabricCollection`).chosen();
         $(`#upholsteryFabricCollection_1`).chosen();
         $(`#upholsteryFabricCollection_2`).chosen();
 
