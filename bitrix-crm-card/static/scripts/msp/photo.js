@@ -49,6 +49,9 @@ export class PhotoRenderer {
         console.log("imageInputs = ", imageInputs);
         
         imageInputs.forEach(function(input) {
+            if (!input) {
+                return;
+            }
             input.addEventListener('change', function(event) {
                 const imagePreview = input.parentElement.querySelector("img");
                 const file = event.target.files[0];
