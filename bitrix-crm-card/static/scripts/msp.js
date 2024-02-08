@@ -3,16 +3,20 @@ import FakeBitrixService from './bx24/fake_api.js';
 import { FIELD_MSP, FIELD_FABRIC } from './parameters/params_msp.js';
 import { App } from './msp/app.js'
 
-// class App {
-//     constructor(productId, bx24) {
-//         this.smartId = 172;
-//         this.smartFabricsId = 149;
-//         this.productId = productId;
-//         this.bx24 = bx24;
-//         this.currentUserId = null;
-//     }
+ class App {
+     constructor(elemSmartId, bx24, portalUrl) {
+         this.smartProcessId = 172;
+         this.smartFabricsId = 149;
+         this.elemSmartId = elemSmartId;
+         this.portalUrl = portalUrl;
+         this.bx24 = bx24;
+         this.currentUserId = null;
+     }
 
-//     async init() {
+     async init() {
+        console.log("this.elemSmartId = ", this.elemSmartId);
+        console.log("this.portalUrl = ", this.portalUrl);
+        console.log("this.bx24 = ", this.bx24);
 //         const data = await this.bx24.batch.getData({
 //             user: 'user.current',
 //             smartProcess: `crm.item.get?entityTypeId=${this.smartId}&id=${this.productId}`,
@@ -51,7 +55,7 @@ import { App } from './msp/app.js'
 //         this.renderData();
 //         this.renderFabrics();
 //         this.renderPhotos();
-//     }
+     }
 
 //     initHandler() {
 
@@ -212,15 +216,13 @@ import { App } from './msp/app.js'
         
 //         return outputString;
 //     }
-// }
+ }
 
 
 
 async function main() {
-    // console.log("Ready!!!");
-    // let bx24 = new BitrixService();
-    let bx24 = new FakeBitrixService();
-    let app = new App(1, bx24, portalUrl);
+    let bx24 = new BitrixService();
+    let app = new App(smartProcessId, bx24, portalUrl);
     await app.init();
 }
 
@@ -231,6 +233,20 @@ document.addEventListener("DOMContentLoaded", async function() {
         BX24.fitWindow();
      });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
