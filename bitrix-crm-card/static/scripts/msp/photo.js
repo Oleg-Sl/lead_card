@@ -9,7 +9,7 @@ export class PhotoRenderer {
     }
     
     renderPhotos() {
-        const photoFields = [
+        this.photoFields = [
             { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
             { field: FIELD_MSP.photo_1,   id: 'previewImage1' },
             { field: FIELD_MSP.photo_2,   id: 'previewImage2' },
@@ -21,7 +21,7 @@ export class PhotoRenderer {
         ];
 
         // Получаем все места вставки фотографий и устанавливаем ссылки на них
-        photoFields.forEach(({ field, id }) => {
+        this.photoFields.forEach(({ field, id }) => {
             const photoUrl = this.data?.[field]?.urlMachine;
             const elemImg = document.querySelector(`#${id}`);
             this.renderPhoto(photoUrl, elemImg);
@@ -45,7 +45,7 @@ export class PhotoRenderer {
     }
 
     initHandlers() {
-        const imageInputs = photoFields.map(({ id }) => document.querySelector(`#${id}`));
+        const imageInputs = this.photoFields.map(({ id }) => document.querySelector(`#${id}`));
         console.log("imageInputs = ", imageInputs);
         
         imageInputs.forEach(function(input) {
