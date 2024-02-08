@@ -50,7 +50,7 @@ export class PhotoRenderer {
         const imageInputs = document.querySelectorAll(".preview-image-input");
         console.log("imageInputs = ", imageInputs);
         
-        imageInputs.forEach(function(input) {
+        imageInputs.forEach((input) => { // Используем стрелочную функцию здесь
             if (!input) {
                 return;
             }
@@ -67,35 +67,89 @@ export class PhotoRenderer {
                     if (existingCropper) {
                         existingCropper.destroy();
                     }
-
+    
                     const cropper = new Cropper(imagePreview, {
-                        aspectRatio: NaN, // Убрать фиксированное соотношение сторон
-                        autoCropArea: 1, // Заполнить область обрезки на всю доступную площадь
-                        viewMode: 3, // Показывать только область обрезки
-                        cropBoxResizable: false, // Запретить изменение размеров области обрезки
-                        zoomable: true, // Разрешить изменение масштаба изображения
-                        minCropBoxWidth: 0, // Разрешить уменьшение ширины области обрезки до нуля
-                        minCropBoxHeight: 0, // Разрешить уменьшение высоты области обрезки до нуля
+                        aspectRatio: NaN,
+                        autoCropArea: 1,
+                        viewMode: 3,
+                        cropBoxResizable: false,
+                        zoomable: true,
+                        minCropBoxWidth: 0,
+                        minCropBoxHeight: 0,
                     });
-
+    
                     this.cropperInstances[imagePreview.id] = {
                         cropper: cropper,
-                        fileName: file.name // Сохраняем имя файла
+                        fileName: file.name
                     };
                 };
                 
                 if (file) {
-                    reader.readAsDataURL(file); // Чтение изображения
+                    reader.readAsDataURL(file);
                 }
             });
-
+    
             const imagePreview = input.parentElement.querySelector("img");
-
-            imagePreview.addEventListener('click', function() {
+    
+            imagePreview.addEventListener('click', () => { // Используем стрелочную функцию здесь
                 input.value = '';
                 imagePreview.src = '';
                 input.style.display = 'block';
             });
         });
-}
+    }
+
+    
+//     initHandlers() {
+//         const imageInputs = document.querySelectorAll(".preview-image-input");
+//         console.log("imageInputs = ", imageInputs);
+        
+//         imageInputs.forEach(function(input) {
+//             if (!input) {
+//                 return;
+//             }
+//             input.addEventListener('change', (event) => {
+//                 const imagePreview = input.parentElement.querySelector("img");
+//                 const file = event.target.files[0];
+//                 const reader = new FileReader();
+//                 console.log("imagePreview = ", imagePreview);
+//                 console.log("file = ", file);
+                
+//                 reader.onload = (e) => {
+//                     imagePreview.src = e.target.result;
+//                     const existingCropper = this.cropperInstances[imagePreview.id]?.cropper;
+//                     if (existingCropper) {
+//                         existingCropper.destroy();
+//                     }
+
+//                     const cropper = new Cropper(imagePreview, {
+//                         aspectRatio: NaN, // Убрать фиксированное соотношение сторон
+//                         autoCropArea: 1, // Заполнить область обрезки на всю доступную площадь
+//                         viewMode: 3, // Показывать только область обрезки
+//                         cropBoxResizable: false, // Запретить изменение размеров области обрезки
+//                         zoomable: true, // Разрешить изменение масштаба изображения
+//                         minCropBoxWidth: 0, // Разрешить уменьшение ширины области обрезки до нуля
+//                         minCropBoxHeight: 0, // Разрешить уменьшение высоты области обрезки до нуля
+//                     });
+
+//                     this.cropperInstances[imagePreview.id] = {
+//                         cropper: cropper,
+//                         fileName: file.name // Сохраняем имя файла
+//                     };
+//                 };
+                
+//                 if (file) {
+//                     reader.readAsDataURL(file); // Чтение изображения
+//                 }
+//             });
+
+//             const imagePreview = input.parentElement.querySelector("img");
+
+//             imagePreview.addEventListener('click', function() {
+//                 input.value = '';
+//                 imagePreview.src = '';
+//                 input.style.display = 'block';
+//             });
+//         });
+// }
 }
