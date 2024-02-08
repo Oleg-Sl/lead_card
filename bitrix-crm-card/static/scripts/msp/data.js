@@ -8,6 +8,24 @@ export class DataRenderer {
         this.fields = fields;
         this.createdUser = createdUser;
         this.updatedUser = updatedUser;
+
+        this.changedData = {}; // Свойство для хранения измененных данных
+    }
+
+    initHandlers() {
+        document.addEventListener('change', (event) => {
+            const target = event.target;
+            if (target.dataset.track) {
+                const fieldName = target.dataset.track;
+                const fieldNameBx24 = this.fields?.[fieldName]
+                this.updateChangedData(fieldNameBx24, target.value);
+                console.log(this.changedData);
+            }
+        })
+    }
+
+    updateChangedData(fieldName, value) {
+        this.changedData[fieldName] = value;
     }
 
     renderData() {
@@ -37,25 +55,6 @@ export class DataRenderer {
     getUserLink(user) {
         return `/company/personal/user/${user?.ID}/`;
     }
-
-    // outputData(elem, fieldName, fieldDataBx24) {
-    //     if (!elem) {
-    //         return;
-    //     }
-
-    //     if (fieldDataBx24.type ==='enumeration') {
-    //         elem.innerHTML = this.getOptionsSelectHTML(fieldDataBx24.items);
-    //         this.checkOption(elem, this.data?.[fieldName]);
-    //     } else if (fieldDataBx24.type === 'string') {
-    //         elem.value = this.data?.[fieldName];
-    //     } else if (fieldDataBx24.type === 'double' || fieldDataBx24.type === 'integer') {
-    //         elem.value = this.data?.[fieldName];
-    //     } else if (fieldDataBx24.type === 'date' || fieldDataBx24.type === 'datetime') {
-    //         elem.value = this.formatDate(this.data?.[fieldName]);
-    //     } else if (fieldDataBx24.type === 'boolean') {
-    //         elem.checked = this.data?.[fieldName] == 'Y' ? true : false;
-    //     }
-    // }
 
     outputData(elem, fieldName, { type, items }) {
         if (!elem) {
