@@ -47,13 +47,13 @@ export class App {
             return;
         }
 
-        const photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
-        const dataRenderer = new DataRenderer(this.bx24, this.data, this.fields, this.createdUser, this.updatedUser);
-        const fabricRenderer = new FabricRenderer(this.bx24, this.data, this.smartFabricList, this.portalUrl);
+        this.photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
+        this.dataRenderer = new DataRenderer(this.bx24, this.data, this.fields, this.createdUser, this.updatedUser);
+        this.fabricRenderer = new FabricRenderer(this.bx24, this.data, this.smartFabricList, this.portalUrl);
 
-        photoRenderer.renderPhotos();
-        dataRenderer.renderData();
-        fabricRenderer.renderFabrics();
+        this.photoRenderer.renderPhotos();
+        this.dataRenderer.renderData();
+        this.fabricRenderer.renderFabrics();
 
         this.initHandlers();
     }
