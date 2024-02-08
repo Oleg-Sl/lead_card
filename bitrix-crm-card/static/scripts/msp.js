@@ -1,5 +1,4 @@
-// import BitrixService from './bx24/api.js';
-import FakeBitrixService from './bx24/fake_api.js';
+import BitrixService from './bx24/api.js';
 import { FIELD_MSP, FIELD_FABRIC } from './parameters/params_msp.js';
 import { App } from './msp/app.js'
 
