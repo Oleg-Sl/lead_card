@@ -55,8 +55,14 @@ export class FabricRenderer {
         this.checkOption(this.elemChoiceFabric_3, this.fabricId_3);
 
         // инициализация chosen
-        $(this.elemChoiceFabric_1).chosen();
-        $(`#upholsteryFabricCollection_1`).chosen();
+        $(this.elemChoiceFabric_1).chosen().change(function() {
+            alert(+$(this).val());
+            //$('#' + $(this).val()).show();
+        });;
+        $(`#upholsteryFabricCollection_1`).chosen().change(function() {
+            alert(+$(this).val());
+            //$('#' + $(this).val()).show();
+        });;
         $(`#upholsteryFabricCollection_2`).chosen();
 
         this.setFabricsTypesAndColors();
