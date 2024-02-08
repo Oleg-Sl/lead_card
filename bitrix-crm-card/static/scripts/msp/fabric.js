@@ -21,25 +21,22 @@ export class FabricRenderer {
         // список всех тканей
         this.smartFabricList = smartFabricList;
 
-        this.initHandlers();
+        // this.initHandlers();
     }
 
-    initHandlers() {
-        this.elemChoiceFabric_1.addEventListener('chosen:change', (event) => {
-            this.fabricId_1 = event.target.value;
-            console.log(this.fabricId_1);
-            this.renderImage();
-            this.setFabricsTypesAndColors();
-        });
-        this.elemChoiceFabric_2.addEventListener('chosen:change', (event) => {
-            this.fabricId_2 = event.target.value;
-            this.setFabricsTypesAndColors();
-        })
-        this.elemChoiceFabric_3.addEventListener('chosen:change', (event) => {
-            this.fabricId_3 = event.target.value;
-            this.setFabricsTypesAndColors();
-        })
-    }
+    // initHandlers() {
+    //     this.elemChoiceFabric_1.addEventListener('chosen:change', (event) => {
+            
+    //     });
+    //     this.elemChoiceFabric_2.addEventListener('chosen:change', (event) => {
+    //         this.fabricId_2 = event.target.value;
+    //         this.setFabricsTypesAndColors();
+    //     })
+    //     this.elemChoiceFabric_3.addEventListener('chosen:change', (event) => {
+    //         this.fabricId_3 = event.target.value;
+    //         this.setFabricsTypesAndColors();
+    //     })
+    // }
 
     renderFabrics() {
         const contentHTML = this.getFabricsOptionsSelectHTML();
@@ -56,14 +53,20 @@ export class FabricRenderer {
 
         // инициализация chosen
         $(this.elemChoiceFabric_1).chosen().change(function() {
-            alert(+$(this).val());
-            //$('#' + $(this).val()).show();
-        });;
+            this.fabricId_1 =$(this).val();
+            this.renderImage();
+            this.setFabricsTypesAndColors();
+        });
+
         $(`#upholsteryFabricCollection_1`).chosen().change(function() {
-            alert(+$(this).val());
-            //$('#' + $(this).val()).show();
-        });;
-        $(`#upholsteryFabricCollection_2`).chosen();
+            this.fabricId_2 =$(this).val();
+            this.setFabricsTypesAndColors();
+        });
+
+        $(`#upholsteryFabricCollection_2`).chosen().change(function() {
+            this.fabricId_2 =$(this).val();
+            this.setFabricsTypesAndColors();
+        });
 
         this.setFabricsTypesAndColors();
         this.renderImage();
