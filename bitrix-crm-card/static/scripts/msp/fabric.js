@@ -55,7 +55,7 @@ export class FabricRenderer {
         this.checkOption(this.elemChoiceFabric_3, this.fabricId_3);
 
         // инициализация chosen
-        $(`#upholsteryFabricCollection`).chosen();
+        $(this.elemChoiceFabric_1).chosen();
         $(`#upholsteryFabricCollection_1`).chosen();
         $(`#upholsteryFabricCollection_2`).chosen();
 
