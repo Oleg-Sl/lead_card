@@ -63,6 +63,8 @@ export class App {
     }
 
     initHandlers() {
+        console.log("FIELD_MSP.createdBy = ", FIELD_MSP.createdBy);
+        console.log("document.querySelector(FIELD_MSP.createdBy) = ", document.querySelector(`#${FIELD_MSP.createdBy}`));
         document.querySelector(`#${FIELD_MSP.createdBy}`).adddEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
