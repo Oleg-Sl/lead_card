@@ -5,7 +5,8 @@ export class PhotoRenderer {
         this.data = data;
         this.portalUrl = portalUrl;
     }
-
+    
+    // /            { field: FIELD_MSP.mainPhoto, id: 'previewImageFabric' },
     renderPhotos() {
         const photoFields = [
             { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },

@@ -70,6 +70,7 @@ export class App {
                 this.bx24.openPath(link);
             }
         });
+
         document.querySelector(`#${FIELD_MSP.updatedBy}`).addEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
@@ -77,6 +78,11 @@ export class App {
                 this.bx24.openPath(link);
             }
         });
+    }
+
+    changeFabric() {
+        
+
     }
 
     async getAllFabrics(total) {

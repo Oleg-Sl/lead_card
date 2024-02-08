@@ -2,7 +2,7 @@
 export const FIELD_FABRIC = {
     id: "id",
     name: "ufCrm17_1705390515",
-    photo: "ufCrm17_1705828938",
+    image: "ufCrm17_1705828938",
     type: "ufCrm17_1705391192",
     color: "ufCrm17_1705399722",
 };

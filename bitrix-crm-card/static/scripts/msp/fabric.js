@@ -1,23 +1,49 @@
 import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
 
 
+// /            { field: FIELD_MSP.mainPhoto, id: 'previewImageFabric' },
+
 export class FabricRenderer {
     constructor(bx24, data, smartFabricList) {
         this.bx24 = bx24;
-        this.data = data;
+
+        // элементы выбора ткани
+        this.elemChoiceFabric_1 = document.querySelector(`#upholsteryFabricCollection`);
+        this.elemChoiceFabric_2 = document.querySelector(`#upholsteryFabricCollection_1`);
+        this.elemChoiceFabric_3 = document.querySelector(`#upholsteryFabricCollection_2`);
+
+        //  текущие знчения выбранных тканей
+        this.fabricId_1 = data?.[FIELD_MSP.upholsteryFabricCollection];
+        this.fabricId_2 = data?.[FIELD_MSP.upholsteryFabricCollection_1];
+        this.fabricId_3 = data?.[FIELD_MSP.upholsteryFabricCollection_2];
+
+        // список всех тканей
         this.smartFabricList = smartFabricList;
     }
 
     renderFabrics() {
         const contentHTML = this.getFabricsOptionsSelectHTML();
-        const fabricCollectionIds = ['upholsteryFabricCollection', 'upholsteryFabricCollection_1', 'upholsteryFabricCollection_2'];
-        fabricCollectionIds.forEach((fabricId, index) => {
-            const element = document.querySelector(`#${fabricId}`);
-            element.innerHTML = contentHTML;
-            this.checkOption(element, this.data?.[FIELD_MSP[fabricId]]);
-            $(`#${fabricId}`).chosen();
-        });
 
+        // добавление всех тканей в список select
+        this.elemChoiceFabric_1.innerHTML = contentHTML;
+        this.elemChoiceFabric_2.innerHTML = contentHTML;
+        this.elemChoiceFabric_3.innerHTML = contentHTML;
+
+        // установка текущей ткани
+        this.checkOption(this.elemChoiceFabric_1, this.fabricId_1);
+        this.checkOption(this.elemChoiceFabric_2, this.fabricId_2);
+        this.checkOption(this.elemChoiceFabric_3, this.fabricId_3);
+
+        // инициализация chosen
+        $(`#upholsteryFabricCollection`).chosen();
+        $(`#upholsteryFabricCollection_1`).chosen();
+        $(`#upholsteryFabricCollection_2`).chosen();
+
+        this.setFabricsTypesAndColors();
+        this.renderImage();
+    }
+
+    setFabricsTypesAndColors() {
         const fabricTypesIds = ['#upholsteryFabricType', '#upholsteryFabricType_1', '#upholsteryFabricType_2'];
         const fabricColorsIds = ['#upholsteryFabricColor', '#upholsteryFabricColor_1', '#upholsteryFabricColor_2'];
         [this.data?.[FIELD_MSP.upholsteryFabricCollection], this.data?.[FIELD_MSP.upholsteryFabricCollection_1], this.data?.[FIELD_MSP.upholsteryFabricCollection_2]].forEach((fabricId, index) => {
@@ -43,6 +69,13 @@ export class FabricRenderer {
                 option.selected = true;
                 break;
             }
+        }
+    }
+
+    renderImage() {
+        const fabric = this.smartFabricList.find(item => item.id == this.fabricId_1);
+        if (fabric) {
+            document.querySelector('#previewImageFabric').src = fabric?.[FIELD_FABRIC.image];
         }
     }
 
