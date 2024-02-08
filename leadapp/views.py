@@ -25,7 +25,7 @@ class IndexApiView(views.APIView):
         #     return render(request, 'lead/index.html', context=data)
         # else:
         data = {
-            "id": -111,
+            "id": 1,
             "portal_url": "https://app.bits-company.ru/bitrix-crm-card/leadapp"
         }
 

@@ -25,23 +25,27 @@
         <div class="row d-flex justify-content-between align-items-start">
             <div class="col d-flex align-items-start flex-column mb-3" style="max-width: 350px;">
                 <div class="input-group input-group-sm mb-3 product-date-create-container">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Дата создания</span>
-                    <input type="date" class="form-control product-date-create-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <span class="input-group-text" id="dateCreate">Дата создания</span>
+                    <input type="date" class="form-control product-date-create-input" aria-label="Sizing example input" aria-describedby="dateCreate" disabled>
                 </div>
                 <div class="input-group input-group-sm product-date-cheanged-container">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Дата изменения</span>
-                    <input type="date" class="form-control product-date-cheanged-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <span class="input-group-text" id="dateChanged">Дата изменения</span>
+                    <input type="date" class="form-control product-date-cheanged-input" aria-label="Sizing example input" aria-describedby="dateChanged" disabled>
                 </div>
             </div>
 
-            <div class="col d-flex align-items-start flex-column mb-3" style="max-width: 650px;">
-                <div class="input-group input-group-sm mb-3 product-responsible-input-container">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Кто заполнил</span>
-                    <input type="text" class="form-control product-responsible-input-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <div class="col d-flex align-items-start flex-column mb-3 responsible-container" style="max-width: 650px;">
+                <div class="d-flex flex-row mb-3 input-group-sm responsible-created">
+                    <label for="userCreated" class="input-group-text me-2 responsible-created-label">Кто заполнил</label>
+                    <div class="col">
+                        <a href="#" id="userCreated" class="responsible-created-url link-primary"></a>
+                    </div>
                 </div>
-                <div class="input-group input-group-sm product-responsible-changed-container">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Кто изменил</span>
-                    <input type="text" class="form-control product-responsible-changed-input" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                <div class="d-flex flex-row mb-3 input-group-sm responsible-changed">
+                    <label for="userUpdated" class="input-group-text me-2 responsible-changed-label">Кто изменил</label>
+                    <div class="col">
+                        <a href="#" id="userUpdated" class="responsible-changed-url link-primary"></a>
+                    </div>
                 </div>
             </div>
 
