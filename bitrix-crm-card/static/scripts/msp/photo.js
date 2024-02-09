@@ -149,12 +149,11 @@ export class PhotoRenderer {
                     uploadText.style.display = 'none';
                     previewImage.style.display = 'block';
                     const reader = new FileReader();
-                    reader.onload = function (e) {
+                    reader.onload = (e) => {
                         previewImage.src = e.target.result;
                         const fileName = file.name; // Получаем название файла
                         const base64Data = e.target.result.split(',')[1]; // Получаем данные файла в формате base64
                         this.mainPhotoFile = [fileName, base64Data];
-                        console.log("this.mainPhotoFile = ", this.mainPhotoFile);
                     };
                     
                     reader.readAsDataURL(file);
