@@ -41,7 +41,7 @@ class App {
                     'bx24_title': 'МСП',
                     'parameters': {
                         'productType': 'msp',
-                        'productId': this.leadId,
+                        'productId': 1  // this.leadId,
                     }
                 },
                 function()
