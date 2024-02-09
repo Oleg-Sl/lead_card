@@ -20,7 +20,7 @@ export class App {
         const data = await this.bx24.batch.getData({
             user: 'user.current',
             smartProcess: `crm.item.get?entityTypeId=${this.smartId}&id=${this.entityId}`,
-            smartFabricList: `crm.item.list?entityTypeId=${this.smartFabricsId}&select[]=id&select[]=title&select[]=${FIELD_FABRIC.name}&select[]=${FIELD_FABRIC.photo}&select[]=${FIELD_FABRIC.type}&select[]=${FIELD_FABRIC.color}&order[id]=ASC`,
+            smartFabricList: `crm.item.list?entityTypeId=${this.smartFabricsId}&select[]=id&select[]=title&select[]=${FIELD_FABRIC.name}&select[]=${FIELD_FABRIC.image}&select[]=${FIELD_FABRIC.type}&select[]=${FIELD_FABRIC.color}&order[id]=ASC`,
             smartFabric: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
             smartFabric_1: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection_1}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
             smartFabric_2: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection_2}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
@@ -79,9 +79,6 @@ export class App {
             const changedData = this.dataRenderer.getChangedData();
             const changedFabric = this.fabricRenderer.getChangedData();
             const changedPhoto = this.photoRenderer.getChangedData();
-            console.log("changedData = ", changedData);
-            console.log("changedFabric = ", changedFabric);
-            console.log("changedPhoto = ", changedPhoto);
             const resData = {...changedData, ...changedFabric, ...changedPhoto};
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
         })

@@ -7,15 +7,14 @@ export default class SmartProcessMethods {
     }
 
     async update(smartNumber, entityId, data) {
-
         let result = await this.bx24.callMethod("crm.item.update", {
             "entityTypeId": smartNumber,
             id: entityId,
             fields: data
         });
-        console.log("result update smart = ", result);
-        return result;
-
+    
+        console.log("result update smart = ", result?.item);
+        return result?.item;
     }
 
     async updateBatch(smartNumber, data) {
