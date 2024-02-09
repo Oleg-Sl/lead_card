@@ -82,6 +82,8 @@ export class App {
             console.log("changedData = ", changedData);
             console.log("changedFabric = ", changedFabric);
             console.log("changedPhoto = ", changedPhoto);
+            const resData = {...this.data, ...changedData, ...changedPhoto};
+            await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
         })
     }
 

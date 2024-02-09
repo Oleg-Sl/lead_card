@@ -4,7 +4,7 @@ import BatchMethods from './api_batch.js';
 // import BzProcessMethods from './api_bz_process.js';
 // import ContactMethods from './api_contact.js'
 // import DealMethods from './api_deal.js'
-// import SmartProcessMethods from './api_smart_process.js'
+import SmartProcessMethods from './api_smart_process.js'
 // import TaskMethods from './api_task.js'
 import UserMethods from './api_user.js'
 
@@ -17,7 +17,7 @@ export default class BitrixService {
         // this.bz = new BzProcessMethods(this.bx24);
         // this.contact = new ContactMethods(this.bx24);
         // this.deal = new DealMethods(this.bx24);
-        // this.smartProcess = new SmartProcessMethods(this.bx24);
+        this.smartProcess = new SmartProcessMethods(this.bx24);
         // this.task = new TaskMethods(this.bx24);
         this.user = new UserMethods(this.bx24);
 

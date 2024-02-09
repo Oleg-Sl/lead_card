@@ -8,7 +8,6 @@ export class PhotoRenderer {
         this.mainPhotoFile = null;
         this.cropperInstances = {};
 
-
         this.photoFields = [
             { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
             { field: FIELD_MSP.photo_1,   id: 'previewImage1' },
@@ -24,24 +23,21 @@ export class PhotoRenderer {
     }
 
     getChangedData() {
-        const croppedFiles = [];
+        const croppedFiles = {};
+
         for (const id in this.cropperInstances) {
+            const fieldData =  this.photoFields.find(field => field.id === id);
             const cropperInstance = this.cropperInstances[id];
             const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
             const fileName = cropperInstance.fileName;
 
-            // Получаем данные изображения в формате base64
             const dataURL = croppedCanvas.toDataURL('image/jpeg'); // Можно выбрать нужный формат изображения
-
-            // Отделяем префикс "data:image/jpeg;base64," от данных
             const base64Data = dataURL.split(',')[1];
-
-            // Добавляем название файла и его данные в массив
-            croppedFiles.push([fileName, base64Data]);
+            croppedFiles[fieldData?.[field]] = [fileName, base64Data];
         }
 
         if (this.mainPhotoFile) {
-            croppedFiles.push(this.mainPhotoFile);
+            croppedFiles[FIELD_MSP.mainPhoto] = this.mainPhotoFile;
         }
 
         return croppedFiles;
@@ -95,7 +91,7 @@ export class PhotoRenderer {
                 const imagePreview = input.parentElement.querySelector("img");
                 const file = event.target.files[0];
                 const reader = new FileReader();
-                
+
                 reader.onload = (e) => {
                     imagePreview.src = e.target.result;
                     const existingCropper = this.cropperInstances[imagePreview.id]?.cropper;
