@@ -78,6 +78,7 @@ export class App {
         document.querySelector(`.product-btn-save`).addEventListener('click', async () => {
             const changedData = this.dataRenderer.getChangedData();
             const changedFabric = this.fabricRenderer.getChangedData();
+            const changedPhoto = this.photoRenderer.getChangedData();
             console.log("changedData = ", changedData);
             console.log("changedFabric = ", changedFabric);
         })

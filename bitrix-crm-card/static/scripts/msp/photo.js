@@ -5,7 +5,9 @@ export class PhotoRenderer {
         this.data = data;
         this.portalUrl = portalUrl;
 
+        this.mainPhotoFile = null;
         this.cropperInstances = {};
+
 
         this.photoFields = [
             { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
@@ -20,6 +22,38 @@ export class PhotoRenderer {
 
         this.initHandlers();
     }
+
+    getChangedData() {
+        const croppedFiles = [];
+        for (const id in this.cropperInstances) {
+            const cropperInstance = this.cropperInstances[id];
+            const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
+            const fileName = cropperInstance.fileName;
+    
+            // Получаем данные изображения в формате base64
+            const dataURL = croppedCanvas.toDataURL('image/jpeg'); // Можно выбрать нужный формат изображения
+    
+            // Отделяем префикс "data:image/jpeg;base64," от данных
+            const base64Data = dataURL.split(',')[1];
+    
+            // Добавляем название файла и его данные в массив
+            croppedFiles.push([fileName, base64Data]);
+        }
+
+        return croppedFiles;
+    }
+    
+    // getCroppedFiles() {
+    //     const croppedFiles = {};
+    //     for (const id in this.cropperInstances) {
+    //         const cropperInstance = this.cropperInstances[id];
+    //         const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
+    //         croppedCanvas.toBlob((blob) => {
+    //             croppedFiles[cropperInstance.fileName] = blob;
+    //         });
+    //     }
+    //     return croppedFiles;
+    // }
     
     renderPhotos() {
         // Получаем все места вставки фотографий и устанавливаем ссылки на них
@@ -48,8 +82,6 @@ export class PhotoRenderer {
 
     initHandlers() {
         const imageInputs = document.querySelectorAll(".preview-image-input");
-        console.log("imageInputs = ", imageInputs);
-        
         imageInputs.forEach((input) => { // Используем стрелочную функцию здесь
             if (!input) {
                 return;
@@ -58,8 +90,6 @@ export class PhotoRenderer {
                 const imagePreview = input.parentElement.querySelector("img");
                 const file = event.target.files[0];
                 const reader = new FileReader();
-                console.log("imagePreview = ", imagePreview);
-                console.log("file = ", file);
                 
                 reader.onload = (e) => {
                     imagePreview.src = e.target.result;
@@ -97,59 +127,39 @@ export class PhotoRenderer {
                 input.style.display = 'block';
             });
         });
+
+        const elemInputMainPhoto = document.querySelector(`.main-photo-upload-input`);
+        elemInputMainPhoto.addEventListener('change', (event) => {
+            if (event.target.classList.contains('file-upload-input')) {
+                const parent = event.target.parentNode;
+                const fileInput = event.target;
+                this.mainPhotoFile = fileInput.files[0];
+
+                if (this.mainPhotoFile) {
+                    const uploadIcon = parent.querySelector('.upload-icon');
+                    const uploadText = parent.querySelector('.upload-text');
+                    const previewImage = parent.querySelector('.preview-image');
+
+                    uploadIcon.style.display = 'none';
+                    uploadText.style.display = 'none';
+                    previewImage.style.display = 'block';
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewImage.src = e.target.result;
+                    };
+                    reader.readAsDataURL(this.mainPhotoFile);
+                }
+            }
+        });
+
+        document.querySelector('.file-upload-label').addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#f0f0f0';
+        });
+
+        document.querySelector('.file-upload-label').addEventListener('mouseout', function() {
+            this.style.backgroundColor = 'transparent';
+        });
     }
 
     
-//     initHandlers() {
-//         const imageInputs = document.querySelectorAll(".preview-image-input");
-//         console.log("imageInputs = ", imageInputs);
-        
-//         imageInputs.forEach(function(input) {
-//             if (!input) {
-//                 return;
-//             }
-//             input.addEventListener('change', (event) => {
-//                 const imagePreview = input.parentElement.querySelector("img");
-//                 const file = event.target.files[0];
-//                 const reader = new FileReader();
-//                 console.log("imagePreview = ", imagePreview);
-//                 console.log("file = ", file);
-                
-//                 reader.onload = (e) => {
-//                     imagePreview.src = e.target.result;
-//                     const existingCropper = this.cropperInstances[imagePreview.id]?.cropper;
-//                     if (existingCropper) {
-//                         existingCropper.destroy();
-//                     }
-
-//                     const cropper = new Cropper(imagePreview, {
-//                         aspectRatio: NaN, // Убрать фиксированное соотношение сторон
-//                         autoCropArea: 1, // Заполнить область обрезки на всю доступную площадь
-//                         viewMode: 3, // Показывать только область обрезки
-//                         cropBoxResizable: false, // Запретить изменение размеров области обрезки
-//                         zoomable: true, // Разрешить изменение масштаба изображения
-//                         minCropBoxWidth: 0, // Разрешить уменьшение ширины области обрезки до нуля
-//                         minCropBoxHeight: 0, // Разрешить уменьшение высоты области обрезки до нуля
-//                     });
-
-//                     this.cropperInstances[imagePreview.id] = {
-//                         cropper: cropper,
-//                         fileName: file.name // Сохраняем имя файла
-//                     };
-//                 };
-                
-//                 if (file) {
-//                     reader.readAsDataURL(file); // Чтение изображения
-//                 }
-//             });
-
-//             const imagePreview = input.parentElement.querySelector("img");
-
-//             imagePreview.addEventListener('click', function() {
-//                 input.value = '';
-//                 imagePreview.src = '';
-//                 input.style.display = 'block';
-//             });
-//         });
-// }
 }
