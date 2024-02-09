@@ -6,6 +6,7 @@ from django.http import HttpResponse
 import requests
 import re
 import json
+import logging
 
 
 class InstallApiView(views.APIView):
@@ -17,9 +18,15 @@ class InstallApiView(views.APIView):
 class IndexApiView(views.APIView):
     @xframe_options_exempt
     def post(self, request):
+        logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
         placement = request.data.get("PLACEMENT", [])
         placement_option = request.data.get("PLACEMENT_OPTIONS", [])
         entity_id = re.search(r'\d+', placement_option)[0]
+
+        logging.info(f"Received post request with data: {request.data}")
+        logging.info(f"Placement: {placement}")
+        logging.info(f"Placement Options: {placement_option}")
 
         template = 'lead/index.html'
         if placement and placement[0] == 'DEFAULT':
