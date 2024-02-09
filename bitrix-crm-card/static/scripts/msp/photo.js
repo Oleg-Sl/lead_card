@@ -40,7 +40,9 @@ export class PhotoRenderer {
             croppedFiles.push([fileName, base64Data]);
         }
 
-        croppedFiles.push(this.mainPhotoFile);
+        if (this.mainPhotoFile) {
+            croppedFiles.push(this.mainPhotoFile);
+        }
 
         return croppedFiles;
 
@@ -136,9 +138,9 @@ export class PhotoRenderer {
             if (event.target.classList.contains('file-upload-input')) {
                 const parent = event.target.parentNode;
                 const fileInput = event.target;
-                this.mainPhotoFile = fileInput.files[0];
+                const file = fileInput.files[0];
 
-                if (this.mainPhotoFile) {
+                if (file) {
                     const uploadIcon = parent.querySelector('.upload-icon');
                     const uploadText = parent.querySelector('.upload-text');
                     const previewImage = parent.querySelector('.preview-image');
@@ -149,8 +151,12 @@ export class PhotoRenderer {
                     const reader = new FileReader();
                     reader.onload = function (e) {
                         previewImage.src = e.target.result;
+                        const fileName = file.name; // Получаем название файла
+                        const base64Data = e.target.result.split(',')[1]; // Получаем данные файла в формате base64
+                        this.mainPhotoFile = [fileName, base64Data];
                     };
-                    reader.readAsDataURL(this.mainPhotoFile);
+                    
+                    reader.readAsDataURL(file);
                 }
             }
         });
