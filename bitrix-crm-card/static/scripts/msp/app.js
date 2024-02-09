@@ -81,6 +81,7 @@ export class App {
             const changedPhoto = this.photoRenderer.getChangedData();
             console.log("changedData = ", changedData);
             console.log("changedFabric = ", changedFabric);
+            console.log("changedPhoto = ", changedPhoto);
         })
     }
 

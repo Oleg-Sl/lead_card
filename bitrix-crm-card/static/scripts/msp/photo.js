@@ -29,18 +29,21 @@ export class PhotoRenderer {
             const cropperInstance = this.cropperInstances[id];
             const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
             const fileName = cropperInstance.fileName;
-    
+
             // Получаем данные изображения в формате base64
             const dataURL = croppedCanvas.toDataURL('image/jpeg'); // Можно выбрать нужный формат изображения
-    
+
             // Отделяем префикс "data:image/jpeg;base64," от данных
             const base64Data = dataURL.split(',')[1];
-    
+
             // Добавляем название файла и его данные в массив
             croppedFiles.push([fileName, base64Data]);
         }
 
+        croppedFiles.push(this.mainPhotoFile);
+
         return croppedFiles;
+
     }
     
     // getCroppedFiles() {
