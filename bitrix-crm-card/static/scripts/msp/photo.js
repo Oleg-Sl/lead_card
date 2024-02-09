@@ -122,48 +122,48 @@ export class PhotoRenderer {
     
             const imagePreview = input.parentElement.querySelector("img");
     
-            imagePreview.addEventListener('click', () => { // Используем стрелочную функцию здесь
-                input.value = '';
-                imagePreview.src = '';
-                input.style.display = 'block';
-            });
+            // imagePreview.addEventListener('click', () => { // Используем стрелочную функцию здесь
+            //     input.value = '';
+            //     imagePreview.src = '';
+            //     input.style.display = 'block';
+            // });
         });
 
-        // const elemInputMainPhoto = document.querySelector(`.main-photo-upload-input`);
-        // elemInputMainPhoto.addEventListener('change', (event) => {
-        //     if (event.target.classList.contains('file-upload-input')) {
-        //         const parent = event.target.parentNode;
-        //         const fileInput = event.target;
-        //         const file = fileInput.files[0];
+        const elemInputMainPhoto = document.querySelector(`.main-photo-upload-input`);
+        elemInputMainPhoto.addEventListener('change', (event) => {
+            if (event.target.classList.contains('file-upload-input')) {
+                const parent = event.target.parentNode;
+                const fileInput = event.target;
+                const file = fileInput.files[0];
 
-        //         if (file) {
-        //             const uploadIcon = parent.querySelector('.upload-icon');
-        //             const uploadText = parent.querySelector('.upload-text');
-        //             const previewImage = parent.querySelector('.preview-image');
+                if (file) {
+                    const uploadIcon = parent.querySelector('.upload-icon');
+                    const uploadText = parent.querySelector('.upload-text');
+                    const previewImage = parent.querySelector('.preview-image');
 
-        //             uploadIcon.style.display = 'none';
-        //             uploadText.style.display = 'none';
-        //             previewImage.style.display = 'block';
-        //             const reader = new FileReader();
-        //             reader.onload = (e) => {
-        //                 previewImage.src = e.target.result;
-        //                 const fileName = file.name; // Получаем название файла
-        //                 const base64Data = e.target.result.split(',')[1]; // Получаем данные файла в формате base64
-        //                 this.mainPhotoFile = [fileName, base64Data];
-        //             };
+                    uploadIcon.style.display = 'none';
+                    uploadText.style.display = 'none';
+                    previewImage.style.display = 'block';
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        previewImage.src = e.target.result;
+                        const fileName = file.name; // Получаем название файла
+                        const base64Data = e.target.result.split(',')[1]; // Получаем данные файла в формате base64
+                        this.mainPhotoFile = [fileName, base64Data];
+                    };
                     
-        //             reader.readAsDataURL(file);
-        //         }
-        //     }
-        // });
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
 
-        // document.querySelector('.file-upload-label').addEventListener('mouseover', function() {
-        //     this.style.backgroundColor = '#f0f0f0';
-        // });
+        document.querySelector('.file-upload-label').addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#f0f0f0';
+        });
 
-        // document.querySelector('.file-upload-label').addEventListener('mouseout', function() {
-        //     this.style.backgroundColor = 'transparent';
-        // });
+        document.querySelector('.file-upload-label').addEventListener('mouseout', function() {
+            this.style.backgroundColor = 'transparent';
+        });
     }
 
     
