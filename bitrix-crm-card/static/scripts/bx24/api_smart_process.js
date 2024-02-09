@@ -13,7 +13,6 @@ export default class SmartProcessMethods {
             fields: data
         });
     
-        console.log("result update smart = ", result?.item);
         return result?.item;
     }
 

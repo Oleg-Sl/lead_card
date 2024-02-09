@@ -341,45 +341,12 @@
     <script type="module" src="{% static 'scripts/libs/chosen_v1.8.7/chosen.jquery.min.js' %}"></script>
     <script type="module" src="{% static 'scripts/msp.js' %}"></script>
 
-<!--    <script>-->
-<!--        document.addEventListener('change', function(event) {-->
-<!--            if (event.target.classList.contains('file-upload-input')) {-->
-<!--                const parent = event.target.parentNode;-->
-<!--                const fileInput = event.target;-->
-<!--                const file = fileInput.files[0];-->
-
-<!--                if (file) {-->
-<!--                    const uploadIcon = parent.querySelector('.upload-icon');-->
-<!--                    const uploadText = parent.querySelector('.upload-text');-->
-<!--                    const previewImage = parent.querySelector('.preview-image');-->
-
-<!--                    uploadIcon.style.display = 'none';-->
-<!--                    uploadText.style.display = 'none';-->
-<!--                    previewImage.style.display = 'block';-->
-<!--                    const reader = new FileReader();-->
-<!--                    reader.onload = function (e) {-->
-<!--                        previewImage.src = e.target.result;-->
-<!--                    };-->
-<!--                    reader.readAsDataURL(file);-->
-<!--                }-->
-<!--            }-->
-<!--        });-->
-
-<!--        document.querySelector('.file-upload-label').addEventListener('mouseover', function() {-->
-<!--            this.style.backgroundColor = '#f0f0f0';-->
-<!--        });-->
-
-<!--        document.querySelector('.file-upload-label').addEventListener('mouseout', function() {-->
-<!--            this.style.backgroundColor = 'transparent';-->
-<!--        });-->
-<!--    </script>-->
-
     <script>
         function updateParentHeight() {
             const parent = document.querySelector('.photos-parent');
             const parentWidth = parent.clientWidth;
             const coefficient = Math.SQRT2;
-            console.log(parentWidth, parentWidth / coefficient);
+            <!-- console.log(parentWidth, parentWidth / coefficient); -->
             parent.style.height = (parentWidth / coefficient) + 'px';
         }
 

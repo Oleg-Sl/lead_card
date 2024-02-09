@@ -17,19 +17,22 @@ class InstallApiView(views.APIView):
 class IndexApiView(views.APIView):
     @xframe_options_exempt
     def post(self, request):
-        # print(request.data)
-        # if request.data.get("PLACEMENT", []) and request.data['PLACEMENT'][0] == 'CRM_LEAD_DETAIL_TAB':
-        #     r = request.data.get("PLACEMENT_OPTIONS", [])
-        #     id_deal = re.search(r'\d+', r)[0]
-        #     data = {"id": id_deal, }
-        #     return render(request, 'lead/index.html', context=data)
-        # else:
+        placement = request.data.get("PLACEMENT", [])
+        placement_option = request.data.get("PLACEMENT_OPTIONS", [])
+        entity_id = re.search(r'\d+', placement_option)[0]
+
+        template = 'lead/index.html'
+        if placement and placement[0] == 'DEFAULT':
+            template = 'lead/msp.html'
+
         data = {
-            "id": 1,
+            "id": entity_id,
             "portal_url": "https://app.bits-company.ru/bitrix-crm-card/leadapp"
         }
+        return render(request, template, context=data)
 
-        return render(request, 'lead/msp.html', context=data)
+# {'PLACEMENT': ['DEFAULT'],             'PLACEMENT_OPTIONS': ['{"opened":"true","parameters":{"A":"177"}}']}
+# {'PLACEMENT': ['CRM_LEAD_DETAIL_TAB'], 'PLACEMENT_OPTIONS': ['{"ID":"20671"}']}
 
 
     # @xframe_options_exempt
