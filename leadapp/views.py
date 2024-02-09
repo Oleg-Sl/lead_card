@@ -20,16 +20,16 @@ class IndexApiView(views.APIView):
     def post(self, request):
         logging.basicConfig(filename='app.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-        placement = request.data.get("PLACEMENT", [])
-        placement_option = request.data.get("PLACEMENT_OPTIONS", [])
+        placement = request.data.get("PLACEMENT")
+        placement_option = request.data.get("PLACEMENT_OPTIONS", "")
         entity_id = re.search(r'\d+', placement_option)[0]
 
-        logging.info(f"Received post request with data: {request.data}")
+        # logging.info(f"Received post request with data: {request.data}")
         logging.info(f"Placement: {placement}")
         logging.info(f"Placement Options: {placement_option}")
 
         template = 'lead/index.html'
-        if placement and placement[0] == 'DEFAULT':
+        if placement and placement == 'DEFAULT':
             template = 'lead/msp.html'
 
         data = {
