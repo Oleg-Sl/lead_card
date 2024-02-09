@@ -7,6 +7,10 @@ export default class SmartProcessMethods {
     }
 
     async update(smartNumber, entityId, data) {
+        console.log("smartNumber = ", smartNumber);
+        console.log("entityId = ", entityId);
+        console.log("data = ", data);
+
         let result = await this.bx24.callMethod("crm.item.update", {
             "entityTypeId": smartNumber,
             id: entityId,
@@ -14,25 +18,7 @@ export default class SmartProcessMethods {
         });
         console.log("result update smart = ", result);
         return result;
-        // if (data.length === 0) {
-        //     return;
-        // }
 
-        // let reqPackage = {};
-        // for (const item of data) {
-        //     const { id, ...fields } = item;
-        //     reqPackage[id] = [
-        //         "crm.item.update",
-        //         {
-        //             entityTypeId: smartNumber,
-        //             id: id,
-        //             fields: fields
-        //         }
-        //     ];
-        // }
-
-        // const response = await this.bx24.batchMethod(reqPackage);
-        // return response;
     }
 
     async updateBatch(smartNumber, data) {

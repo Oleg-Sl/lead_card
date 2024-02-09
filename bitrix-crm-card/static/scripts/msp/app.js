@@ -83,13 +83,13 @@ export class App {
             console.log("changedFabric = ", changedFabric);
             console.log("changedPhoto = ", changedPhoto);
             const resData = {...this.data, ...changedData, ...changedPhoto};
+            console.log("resData = ", resData);
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
         })
     }
 
     changeFabric() {
         
-
     }
 
     async getAllFabrics(total) {
