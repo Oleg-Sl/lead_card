@@ -33,7 +33,7 @@ export class PhotoRenderer {
 
             const dataURL = croppedCanvas.toDataURL('image/jpeg'); // Можно выбрать нужный формат изображения
             const base64Data = dataURL.split(',')[1];
-            croppedFiles[fieldData?.[field]] = [fileName, base64Data];
+            croppedFiles[fieldData?.field] = [fileName, base64Data];
         }
 
         if (this.mainPhotoFile) {

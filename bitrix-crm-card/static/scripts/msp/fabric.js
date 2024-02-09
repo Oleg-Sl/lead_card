@@ -91,6 +91,7 @@ export class FabricRenderer {
 
     renderImage() {
         const fabric = this.smartFabricList.find(item => item.id == this.fabricId_1);
+        console.log(fabric);
         if (fabric) {
             const filePhoto = this.portalUrl + '/get-image/?url=' + encodeURIComponent(fabric?.[FIELD_FABRIC.image]?.urlMachine);
             document.querySelector('#previewImageFabric').src = filePhoto;
