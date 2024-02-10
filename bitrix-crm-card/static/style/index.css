@@ -74,8 +74,8 @@
 }
 .lead-container .lead-products .lead-button-add-product > a {
   line-height: 16px;
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: #198754;
+  border-color: #198754;
   border-radius: 5px;
   color: #ffffff;
   padding: 12px;
@@ -84,8 +84,8 @@
   content: none;
 }
 .lead-container .lead-products .lead-button-add-product > a:hover {
-  background-color: #bb2d3b;
-  border-color: #b02a37;
+  background-color: #157347;
+  border-color: #146c43;
 }
 .lead-container .lead-products .lead-products-cards {
   margin: 0 10px;
