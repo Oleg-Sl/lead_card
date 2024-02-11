@@ -77,6 +77,34 @@ class App {
                 }
             );
         });
+
+        document.querySelector('.lead-products-cards').addEventListener('click', (event) => {
+            const target = event.target;
+            if (target.closest('[data-id]')) {
+                const productId = target.closest('[data-id]').dataset.id;
+                console.log("productId = ", productId);
+                BX24.openApplication(
+                    {
+                        'opened': true,
+                        'bx24_leftBoundary': 100,
+                        'bx24_label': {
+                            'bgColor':'pink',
+                            'text': 'my task',
+                            'color': '#07ff0e',
+                        },
+                        'bx24_title': 'МСП',
+                        'parameters': {
+                            'productType': 'msp',
+                            'productId': productId  // this.leadId,
+                        }
+                    },
+                    function()
+                    {
+                        console.log('Application closed!')
+                    }
+                );
+            }
+        })
  
     }
 
@@ -102,7 +130,7 @@ class App {
                         </div>
 
                         <div class="card-footer">
-                            <small class="text-body-secondary">Размеры: ${product.commonDimensions}</small>
+                            <small class="text-body-secondary">Размеры: ${product.ufCrm23_1706603192}</small>
                         </div>
                     </div>
                 </div>
