@@ -3,28 +3,30 @@ import BitrixService from './bx24/api.js';
 
 const USERS_ACCESS = ['11789', '1'];
 
+
 class App {
-    constructor(leadId, bx24) {
+    constructor(leadId, bx24, portalUrl) {
         this.smartNumber = 172;
+
         this.leadId = leadId;
         this.bx24 = bx24;
+        this.portalUrl = portalUrl;
+
         this.currentUserId = null;
 
     }
 
     async init() {
         const currentUser = await this.bx24.user.getCurrent();
-        // console.log("currentUser = ", currentUser);
         this.currentUserId = currentUser?.ID;
         const isAccess = this.restrictUserAccess();
         if (!isAccess) {
             this.secureData();
             return;
         }
-        // parentId1
-        const data = await this.getDataFromBx24();
-        // const data = await this.bx24.batch.getDataForStart(this.leadId);
-        // console.log("data = ", data);
+        await this.getDataFromBx24();
+
+        this.renderProducts();
 
         this.initHandler();
     }
@@ -38,21 +40,8 @@ class App {
             fieldsProductData: `crm.item.fields?entityTypeId=${this.smartNumber}`,
             productsData: `crm.item.list?entityTypeId=${this.smartNumber}&filter[parentId1]=${this.leadId}`,
             responsible: `user.get?id=$result[leadData][ASSIGNED_BY_ID]`,
-
-            // user: 'user.current',
-            // smartProcess: `crm.item.get?entityTypeId=${this.smartId}&id=${this.entityId}`,
-            // smartFabricList: `crm.item.list?entityTypeId=${this.smartFabricsId}&select[]=id&select[]=title&select[]=${FIELD_FABRIC.name}&select[]=${FIELD_FABRIC.image}&select[]=${FIELD_FABRIC.type}&select[]=${FIELD_FABRIC.color}&order[id]=ASC`,
-            // smartFabric: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
-            // smartFabric_1: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection_1}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
-            // smartFabric_2: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection_2}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
-            // fields: `crm.item.fields?entityTypeId=${this.smartId}`,
-            // createdBy: `user.get?id=$result[smartProcess][item][${FIELD_MSP.createdBy}]`,
-            // updatedBy: `user.get?id=$result[smartProcess][item][${FIELD_MSP.createdBy}]`,
         });
 
-        console.log("data = ", data);
-
-        // this.user = data?.result?.user;
         this.fieldsLeadData = data?.result?.fieldsLeadData;
         this.leadData = data?.result?.leadData;
         this.fieldsProductData = data?.result?.fieldsProductData?.fields;
@@ -63,14 +52,6 @@ class App {
         console.log("this.fieldsProductData = ", this.fieldsProductData);
         console.log("this.productsData = ", this.productsData);
         console.log("this.responsible = ", this.responsible);
-        // const total = data?.result_total?.smartFabricList;
-        // let allFabrics = await this.getAllFabrics(total);
-        // this.smartFabricList = this.smartFabricList.concat(allFabrics);
-        // this.smartFabric = data?.result?.smartFabric?.item;
-        // this.smartFabric_1 = data?.result?.smartFabric_1?.item;
-        // this.smartFabric_2 = data?.result?.smartFabric_2?.item;
-        // this.fields = data?.result?.fields?.fields;
-
     }
 
     initHandler() {
@@ -97,6 +78,37 @@ class App {
             );
         });
  
+    }
+
+    renderProducts() {
+        let contentHTML = '';
+        for (const product of this.productsData) {
+            const urlPhoto = this.portalUrl + '/get-image/?url=' + encodeURIComponent(product?.ufCrm23_1706606863?.urlMachine);
+            contentHTML += `
+                <div class="col lead-product-card" data-id="${product.id}">
+                    <div class="card h-100" data-bs-toggle="modal" data-bs-target="#productModal">
+                        <div class="card-header">
+                            <div class="text-truncate d-flex align-items-center">
+                                <div class="card-header-title text-truncate align-middle">${product.title}</div>
+                            </div>
+                            <div class="card-header-status">📐</div>
+                            <div class="card-header-status">✅</div>
+                        </div>
+                        <div class="card-body">
+                            <img src="${urlPhoto}" class="card-img-top" alt="...">
+                        </div>
+                        <div class="border-light card-header">
+                            <p class="card-text">${product?.ufCrm23_1707374226}</p>
+                        </div>
+
+                        <div class="card-footer">
+                            <small class="text-body-secondary">Размеры: ${product.commonDimensions}</small>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        document.querySelector('.lead-products-cards').innerHTML = contentHTML;
     }
 
     restrictUserAccess() {
@@ -131,7 +143,7 @@ async function main() {
     // let seretKeyYandex = await BX24.appOption.get(SETTINGS__SECRETS_KEY);
     let bx24   = new BitrixService();
     // let yaDisk = new YandexDisk(seretKeyYandex);
-    let app = new App(dealId, bx24);
+    let app = new App(dealId, bx24, portalUrl);
     await app.init();
 }
 
