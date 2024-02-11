@@ -28,6 +28,10 @@ export class DataRenderer {
         this.changedData[fieldName] = value;
     }
 
+    getFields() {
+        return this.data;
+    }
+
     getChangedData() {
         return this.changedData;
     }

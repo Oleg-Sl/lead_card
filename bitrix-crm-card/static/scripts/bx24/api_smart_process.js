@@ -6,9 +6,28 @@ export default class SmartProcessMethods {
         this.bx24 = bx24;
     }
 
+    async add(smartNumber, data) {
+        let result = await this.bx24.callMethod("crm.item.add", {
+            entityTypeId: smartNumber,
+            fields: data
+        });
+    
+        return result;
+    }
+
+    // async addCopy(smartNumber, entityId, data) {
+    //     // crm.item.get({entityTypeId: number, id: number})
+    //     let result = await this.bx24.batchMethod("crm.item.add", {
+    //         "entityTypeId": smartNumber,
+    //         fields: data
+    //     });
+    
+    //     return result?.item;
+    // }
+
     async update(smartNumber, entityId, data) {
         let result = await this.bx24.callMethod("crm.item.update", {
-            "entityTypeId": smartNumber,
+            entityTypeId: smartNumber,
             id: entityId,
             fields: data
         });

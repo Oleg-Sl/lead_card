@@ -126,7 +126,7 @@ class App {
                             <img src="${urlPhoto}" class="card-img-top" alt="...">
                         </div>
                         <div class="product-card-body-freetitle">
-                            <p class="card-text">${product?.ufCrm23_1707374226}</p>
+                            <p class="card-text">${product?.ufCrm23_1707374226 || "-"}</p>
                         </div>
                         <div class="product-card-body-footer">
                             <small class="text-body-secondary">Размеры: ${product?.ufCrm23_1706603192}</small>

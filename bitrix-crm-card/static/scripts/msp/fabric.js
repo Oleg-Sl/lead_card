@@ -20,7 +20,18 @@ export class FabricRenderer {
         this.smartFabricList = smartFabricList;
     }
 
+    getFields() {
+        return {
+            [FIELD_MSP.upholsteryFabricCollection]: this.fabricId_1,
+            [FIELD_MSP.upholsteryFabricCollection_1]: this.fabricId_2,
+            [FIELD_MSP.upholsteryFabricCollection_2]: this.fabricId_3
+        };
+    }
+
     getChangedData() {
+        this.fabricId_1 = this.elemChoiceFabric_1.value;
+        this.fabricId_2 = this.elemChoiceFabric_2.value;
+        this.fabricId_3 = this.elemChoiceFabric_3.value;
         return {
             [FIELD_MSP.upholsteryFabricCollection]: this.elemChoiceFabric_1.value,
             [FIELD_MSP.upholsteryFabricCollection_1]: this.elemChoiceFabric_2.value,

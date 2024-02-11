@@ -28,6 +28,11 @@ export default class BitrixService {
         this.domain = await this.bx24.getDomain();
     }
 
+    async callMethod(method, body) {
+        const result = await this.bx24.callMethod(method, body);
+        return result;
+    }
+
     makeCall(phoneNumber) {
         this.bx24.makeCall(phoneNumber);
     }

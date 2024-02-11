@@ -22,6 +22,10 @@ export class PhotoRenderer {
         this.initHandlers();
     }
 
+    getFields() {
+       return this.data; 
+    }
+
     getChangedData() {
         const croppedFiles = {};
 

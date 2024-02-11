@@ -15,7 +15,6 @@ export class App {
         this.currentUserId = null;
     }
 
-
     async init() {
         const data = await this.bx24.batch.getData({
             user: 'user.current',
@@ -75,6 +74,7 @@ export class App {
             }
         });
 
+        // Сохраняем изменения товара
         document.querySelector(`.product-btn-save`).addEventListener('click', async () => {
             const changedData = this.dataRenderer.getChangedData();
             const changedFabric = this.fabricRenderer.getChangedData();
@@ -82,10 +82,44 @@ export class App {
             const resData = {...changedData, ...changedFabric, ...changedPhoto};
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
         })
+
+        // Создаем копию товара
+        document.querySelector(`#btnCreateCopyProduct`).addEventListener('click', async () => {
+            const changedData = this.dataRenderer.getFields();
+            const changedFabric = this.fabricRenderer.getFields();
+            const changedPhoto = this.photoRenderer.getFields();
+            const resData = {...changedData, ...changedFabric, ...changedPhoto};
+            const result = await this.bx24.smartProcess.add(this.smartId, resData);
+            console.log(`result: `, result);
+        })
+
+        // Открываем директорию с файлами
+        document.querySelector(`#btnOpenDiskFolder`).addEventListener('click', async () => {
+            if (!this.data?.folderId) {
+                console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}`);
+                return;
+            }
+            const data = await this.bx24.callMethod("disk.folder.get", {
+                id: this.data?.folderId
+            });
+            const link = data?.answer?.result?.DETAIL_URL;
+        })
+
+        // Загружаем файлы в директорию на Bitrix24
+        document.querySelector(`#btnDownloadFiles`).addEventListener('click', async () => {
+            // const changedData = this.dataRenderer.getChangedData();
+            // const changedFabric = this.fabricRenderer.getChangedData();
+            // const changedPhoto = this.photoRenderer.getChangedData();
+            // const resData = {...changedData, ...changedFabric, ...changedPhoto};
+            // await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
+        })
     }
 
     changeFabric() {
-        
+        // getFields
+        // const data = this.dataRenderer.getFields();
+        // const fabrics = this.fabricRenderer.getFields();
+        // const photos = this.photoRenderer.getFields();
     }
 
     async getAllFabrics(total) {
