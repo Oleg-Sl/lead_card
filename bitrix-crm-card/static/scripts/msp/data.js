@@ -18,8 +18,8 @@ export class DataRenderer {
     initData(data) {
         this.data = {};
         for (const key in FIELD_MSP_DATA) {
-            if (data.hasOwnProperty(FIELD_MSP_DATA[key])) {
-                this.data[key] = data[FIELD_MSP_DATA[key]];
+            if (data.hasOwnProperty(key)) {
+                this.data[FIELD_MSP_DATA[key]] = data[FIELD_MSP_DATA[key]];
             }
         }
     }

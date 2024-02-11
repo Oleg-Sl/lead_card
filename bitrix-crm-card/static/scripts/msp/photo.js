@@ -26,8 +26,8 @@ export class PhotoRenderer {
     initData(data) {
         this.data = {};
         for (const key in FIELD_MSP_PHOTOS) {
-            if (data.hasOwnProperty(FIELD_MSP_PHOTOS[key])) {
-                this.data[key] = data[FIELD_MSP_PHOTOS[key]];
+            if (data.hasOwnProperty(key)) {
+                this.data[FIELD_MSP_PHOTOS[key]] = data[FIELD_MSP_PHOTOS[key]];
             }
         }
     }
