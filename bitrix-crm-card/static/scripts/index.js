@@ -113,27 +113,26 @@ class App {
         for (const product of this.productsData) {
             const urlPhoto = this.portalUrl + '/get-image/?url=' + encodeURIComponent(product?.ufCrm23_1706606863?.urlMachine);
             contentHTML += `
-                <div class="col lead-product-card" data-id="${product.id}">
-                    <div class="card h-100" data-bs-toggle="modal" data-bs-target="#productModal">
-                        <div class="card-header">
-                            <div class="text-truncate d-flex align-items-center">
-                                <div class="card-header-title text-truncate align-middle">${product.title}</div>
+                <div class="lead-products-card-container" data-id="${product.id}">
+                    <div class="col lead-product-card">
+                        <div class="product-card-header">
+                            <div class="product-card-header-title text-truncate d-flex align-items-center">
+                                <div class="text-truncate align-middle">${product.title}</div>
                             </div>
-                            <div class="card-header-status">📐</div>
-                            <div class="card-header-status">✅</div>
+                            <div class="product-card-header-measure">📐</div>
+                            <div class="product-card-header-active">❌</div>
                         </div>
-                        <div class="card-body">
+                        <div class="product-card-body-img">
                             <img src="${urlPhoto}" class="card-img-top" alt="...">
                         </div>
-                        <div class="border-light card-header">
+                        <div class="product-card-body-freetitle">
                             <p class="card-text">${product?.ufCrm23_1707374226}</p>
                         </div>
-
-                        <div class="card-footer">
-                            <small class="text-body-secondary">Размеры: ${product.ufCrm23_1706603192}</small>
+                        <div class="product-card-body-footer">
+                            <small class="text-body-secondary">Размеры: ${product?.ufCrm23_1706603192}</small>
                         </div>
                     </div>
-                </div>
+                </div>s
             `;
         }
         document.querySelector('.lead-products-cards').innerHTML = contentHTML;

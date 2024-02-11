@@ -1,6 +1,6 @@
-@media (max-width: 1400px) {
-  .lead-product-card {
-    height: 250px !important;
+@media (min-width: 1920px) {
+  .lead-product-card .product-card-body-img img {
+    height: 300px !important;
   }
 }
 body {
@@ -91,34 +91,6 @@ body {
 .lead-container .lead-products .lead-button-add-product > a:hover {
   background-color: #157347;
   border-color: #146c43;
-}
-.lead-container .lead-products .lead-products-cards {
-  margin: 0 10px;
-  overflow: auto;
-}
-.lead-container .lead-products .lead-products-cards > div:nth-child(-n+5) {
-  margin-top: 0;
-}
-.lead-container .lead-products .lead-products-cards img {
-  border-radius: 0;
-}
-.lead-container .lead-products .lead-products-cards .lead-product-card {
-  height: 350px;
-}
-.lead-container .lead-products .lead-products-cards .lead-product-card .card-header {
-  display: flex;
-  justify-content: space-between;
-}
-.lead-container .lead-products .lead-products-cards .lead-product-card .card-header .card-header-status {
-  font-size: 24px;
-  cursor: pointer;
-}
-.lead-container .lead-products .lead-products-cards .lead-product-card .card-body {
-  padding: 0;
-}
-.lead-container .lead-products .lead-products-cards .lead-product-card .card-body img {
-  height: 100%;
-  width: 100%;
 }
 .lead-container .lead-products .lead-response-calc button {
   background-color: #198754;
