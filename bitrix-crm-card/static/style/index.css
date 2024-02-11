@@ -3,6 +3,11 @@
     height: 250px !important;
   }
 }
+body {
+  height: 105%;
+  overflow: hidden;
+}
+
 .header-size {
   font-size: 16px !important;
 }
