@@ -132,7 +132,7 @@ class App {
                             <small class="text-body-secondary">Размеры: ${product?.ufCrm23_1706603192}</small>
                         </div>
                     </div>
-                </div>s
+                </div>
             `;
         }
         document.querySelector('.lead-products-cards').innerHTML = contentHTML;
