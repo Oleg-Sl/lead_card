@@ -33,7 +33,7 @@ class App {
             // currentUser: 'user.current',
             // departments: 'department.get',
             fieldsLeadData: 'crm.lead.fields',
-            leadData: `crm.lead.get?id=${leadId}`,
+            leadData: `crm.lead.get?id=${this.leadId}`,
             fieldsProductData: `crm.item.fields?entityTypeId=${this.smartNumber}`,
             productsData: `crm.item.list?entityTypeId=${this.smartNumber}`,
             responsible: `user.get?id=$result[leadData][ASSIGNED_BY_ID]`,
