@@ -21,6 +21,7 @@ class App {
             this.secureData();
             return;
         }
+        // parentId1
         const data = await this.getDataFromBx24();
         // const data = await this.bx24.batch.getDataForStart(this.leadId);
         // console.log("data = ", data);
@@ -35,7 +36,7 @@ class App {
             fieldsLeadData: 'crm.lead.fields',
             leadData: `crm.lead.get?id=${this.leadId}`,
             fieldsProductData: `crm.item.fields?entityTypeId=${this.smartNumber}`,
-            productsData: `crm.item.list?entityTypeId=${this.smartNumber}`,
+            productsData: `crm.item.list?entityTypeId=${this.smartNumber}&filter[parentId1]=${this.leadId}`,
             responsible: `user.get?id=$result[leadData][ASSIGNED_BY_ID]`,
 
             // user: 'user.current',
@@ -52,10 +53,16 @@ class App {
         console.log("data = ", data);
 
         // this.user = data?.result?.user;
-        // this.createdUser = data?.result?.createdBy[0];
-        // this.updatedUser = data?.result?.updatedBy[0];
-        // this.data = data?.result?.smartProcess?.item;
-        // this.smartFabricList = data?.result?.smartFabricList?.items;
+        this.fieldsLeadData = data?.result?.fieldsLeadData;
+        this.leadData = data?.result?.leadData;
+        this.fieldsProductData = data?.result?.fieldsProductData?.fields;
+        this.productsData = data?.result?.productsData?.items;
+        this.responsible = data?.result?.responsible?.[0];
+        console.log("this.fieldsLeadData = ", this.fieldsLeadData);
+        console.log("this.leadData = ", this.leadData);
+        console.log("this.fieldsProductData = ", this.fieldsProductData);
+        console.log("this.productsData = ", this.productsData);
+        console.log("this.responsible = ", this.responsible);
         // const total = data?.result_total?.smartFabricList;
         // let allFabrics = await this.getAllFabrics(total);
         // this.smartFabricList = this.smartFabricList.concat(allFabrics);
