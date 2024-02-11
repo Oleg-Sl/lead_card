@@ -1,16 +1,27 @@
-import { FIELD_MSP_DATA, FIELD_FABRIC } from '../parameters/params_msp.js';
+import { FIELD_MSP_DATA } from '../parameters/params_msp.js';
 
 
 export class DataRenderer {
     constructor(bx24, data, fields, createdUser, updatedUser) {
         this.bx24 = bx24;
-        this.data = data;
+        this.data = {};
         this.fields = fields;
         this.createdUser = createdUser;
         this.updatedUser = updatedUser;
 
-        this.changedData = {}; // Свойство для хранения измененных данных
+        this.changedData = {};
+
+        this.initData(data);
         this.initHandlers();
+    }
+
+    initData(data) {
+        this.data = {};
+        for (const key in FIELD_MSP_DATA) {
+            if (data.hasOwnProperty(FIELD_MSP_DATA[key])) {
+                this.data[key] = data[FIELD_MSP_DATA[key]];
+            }
+        }
     }
 
     initHandlers() {

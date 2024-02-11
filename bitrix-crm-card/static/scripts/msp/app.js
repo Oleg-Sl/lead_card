@@ -89,6 +89,7 @@ export class App {
             const changedFabric = this.fabricRenderer.getFields();
             const changedPhoto = this.photoRenderer.getFields();
             const resData = {...changedData, ...changedFabric, ...changedPhoto};
+            console.log("resData = ", resData);
             const result = await this.bx24.smartProcess.add(this.smartId, resData);
             console.log(`result: `, result);
         })

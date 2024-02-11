@@ -20,6 +20,15 @@ export class FabricRenderer {
         this.smartFabricList = smartFabricList;
     }
 
+    // initData(data) {
+    //     this.data = {};
+    //     for (const key in FIELD_MSP_FABRICS) {
+    //         if (data.hasOwnProperty(FIELD_MSP_FABRICS[key])) {
+    //             this.data[key] = data[FIELD_MSP_FABRICS[key]];
+    //         }
+    //     }
+    // }
+
     getFields() {
         return {
             [FIELD_MSP_FABRICS.upholsteryFabricCollection]: this.fabricId_1,

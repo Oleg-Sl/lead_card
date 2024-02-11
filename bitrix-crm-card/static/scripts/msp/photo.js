@@ -2,7 +2,7 @@ import { FIELD_MSP_PHOTOS } from '../parameters/params_msp.js';
 
 export class PhotoRenderer {
     constructor(data, portalUrl) {
-        this.data = data;
+        this.data = {};
         this.portalUrl = portalUrl;
 
         this.mainPhotoFile = null;
@@ -19,7 +19,17 @@ export class PhotoRenderer {
             { field: FIELD_MSP_PHOTOS.photo_7,   id: 'previewImage7' },
         ];
 
+        this.initData(data);
         this.initHandlers();
+    }
+
+    initData(data) {
+        this.data = {};
+        for (const key in FIELD_MSP_PHOTOS) {
+            if (data.hasOwnProperty(FIELD_MSP_PHOTOS[key])) {
+                this.data[key] = data[FIELD_MSP_PHOTOS[key]];
+            }
+        }
     }
 
     getFields() {
