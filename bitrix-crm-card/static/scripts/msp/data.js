@@ -18,8 +18,7 @@ export class DataRenderer {
     initData(data) {
         this.data = {};
         for (const key in FIELD_MSP_DATA) {
-            console.log("key = ", key);
-            if (data.hasOwnProperty(key)) {
+            if (data.hasOwnProperty(FIELD_MSP_DATA[key])) {
                 this.data[FIELD_MSP_DATA[key]] = data[FIELD_MSP_DATA[key]];
             }
         }
