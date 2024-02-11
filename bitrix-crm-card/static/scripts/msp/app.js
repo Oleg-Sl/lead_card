@@ -88,7 +88,7 @@ export class App {
             const changedData = this.dataRenderer.getFields();
             const changedFabric = this.fabricRenderer.getFields();
             const changedPhoto = this.photoRenderer.getFields();
-            const resData = {...changedData, ...changedFabric, ...changedPhoto};
+            const resData = {parentId1: this.data?.parentId1, ...changedData, ...changedFabric, ...changedPhoto};
             console.log("resData = ", resData);
             const result = await this.bx24.smartProcess.add(this.smartId, resData);
             console.log(`result: `, result);
