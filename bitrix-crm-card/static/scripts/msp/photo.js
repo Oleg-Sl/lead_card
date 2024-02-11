@@ -1,4 +1,4 @@
-import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
+import { FIELD_MSP_PHOTOS, FIELD_FABRIC } from '../parameters/params_msp.js';
 
 export class PhotoRenderer {
     constructor(data, portalUrl) {
@@ -9,14 +9,14 @@ export class PhotoRenderer {
         this.cropperInstances = {};
 
         this.photoFields = [
-            { field: FIELD_MSP.mainPhoto, id: 'imgMainPhoto' },
-            { field: FIELD_MSP.photo_1,   id: 'previewImage1' },
-            { field: FIELD_MSP.photo_2,   id: 'previewImage2' },
-            { field: FIELD_MSP.photo_3,   id: 'previewImage3' },
-            { field: FIELD_MSP.photo_4,   id: 'previewImage4' },
-            { field: FIELD_MSP.photo_5,   id: 'previewImage5' },
-            { field: FIELD_MSP.photo_6,   id: 'previewImage6' },
-            { field: FIELD_MSP.photo_7,   id: 'previewImage7' },
+            { field: FIELD_MSP_PHOTOS.mainPhoto, id: 'imgMainPhoto' },
+            { field: FIELD_MSP_PHOTOS.photo_1,   id: 'previewImage1' },
+            { field: FIELD_MSP_PHOTOS.photo_2,   id: 'previewImage2' },
+            { field: FIELD_MSP_PHOTOS.photo_3,   id: 'previewImage3' },
+            { field: FIELD_MSP_PHOTOS.photo_4,   id: 'previewImage4' },
+            { field: FIELD_MSP_PHOTOS.photo_5,   id: 'previewImage5' },
+            { field: FIELD_MSP_PHOTOS.photo_6,   id: 'previewImage6' },
+            { field: FIELD_MSP_PHOTOS.photo_7,   id: 'previewImage7' },
         ];
 
         this.initHandlers();
@@ -35,13 +35,13 @@ export class PhotoRenderer {
             const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
             const fileName = cropperInstance.fileName;
 
-            const dataURL = croppedCanvas.toDataURL('image/jpeg'); // Можно выбрать нужный формат изображения
+            const dataURL = croppedCanvas.toDataURL('image/jpeg');
             const base64Data = dataURL.split(',')[1];
             croppedFiles[fieldData?.field] = [fileName, base64Data];
         }
 
         if (this.mainPhotoFile) {
-            croppedFiles[FIELD_MSP.mainPhoto] = this.mainPhotoFile;
+            croppedFiles[FIELD_MSP_PHOTOS.mainPhoto] = this.mainPhotoFile;
         }
 
         return croppedFiles;

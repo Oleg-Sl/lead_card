@@ -1,4 +1,4 @@
-import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
+import { FIELD_MSP_FABRICS, FIELD_FABRIC } from '../parameters/params_msp.js';
 
 
 export class FabricRenderer {
@@ -12,9 +12,9 @@ export class FabricRenderer {
         this.elemChoiceFabric_3 = document.querySelector(`#upholsteryFabricCollection_2`);
 
         //  текущие знчения выбранных тканей
-        this.fabricId_1 = data?.[FIELD_MSP.upholsteryFabricCollection];
-        this.fabricId_2 = data?.[FIELD_MSP.upholsteryFabricCollection_1];
-        this.fabricId_3 = data?.[FIELD_MSP.upholsteryFabricCollection_2];
+        this.fabricId_1 = data?.[FIELD_MSP_FABRICS.upholsteryFabricCollection];
+        this.fabricId_2 = data?.[FIELD_MSP_FABRICS.upholsteryFabricCollection_1];
+        this.fabricId_3 = data?.[FIELD_MSP_FABRICS.upholsteryFabricCollection_2];
 
         // список всех тканей
         this.smartFabricList = smartFabricList;
@@ -22,9 +22,9 @@ export class FabricRenderer {
 
     getFields() {
         return {
-            [FIELD_MSP.upholsteryFabricCollection]: this.fabricId_1,
-            [FIELD_MSP.upholsteryFabricCollection_1]: this.fabricId_2,
-            [FIELD_MSP.upholsteryFabricCollection_2]: this.fabricId_3
+            [FIELD_MSP_FABRICS.upholsteryFabricCollection]: this.fabricId_1,
+            [FIELD_MSP_FABRICS.upholsteryFabricCollection_1]: this.fabricId_2,
+            [FIELD_MSP_FABRICS.upholsteryFabricCollection_2]: this.fabricId_3
         };
     }
 
@@ -33,9 +33,9 @@ export class FabricRenderer {
         this.fabricId_2 = this.elemChoiceFabric_2.value;
         this.fabricId_3 = this.elemChoiceFabric_3.value;
         return {
-            [FIELD_MSP.upholsteryFabricCollection]: this.elemChoiceFabric_1.value,
-            [FIELD_MSP.upholsteryFabricCollection_1]: this.elemChoiceFabric_2.value,
-            [FIELD_MSP.upholsteryFabricCollection_2]: this.elemChoiceFabric_3.value
+            [FIELD_MSP_FABRICS.upholsteryFabricCollection]: this.elemChoiceFabric_1.value,
+            [FIELD_MSP_FABRICS.upholsteryFabricCollection_1]: this.elemChoiceFabric_2.value,
+            [FIELD_MSP_FABRICS.upholsteryFabricCollection_2]: this.elemChoiceFabric_3.value
         };
     }
 
