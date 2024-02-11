@@ -1,4 +1,4 @@
-import { FIELD_MSP_PHOTOS, FIELD_FABRIC } from '../parameters/params_msp.js';
+import { FIELD_MSP_PHOTOS } from '../parameters/params_msp.js';
 
 export class PhotoRenderer {
     constructor(data, portalUrl) {

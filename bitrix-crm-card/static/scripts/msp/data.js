@@ -1,4 +1,4 @@
-import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
+import { FIELD_MSP_DATA, FIELD_FABRIC } from '../parameters/params_msp.js';
 
 
 export class DataRenderer {
@@ -18,7 +18,7 @@ export class DataRenderer {
             const target = event.target;
             if (target.dataset.track && target.dataset.field) {
                 const fieldName = target.dataset.field;
-                const fieldNameBx24 = FIELD_MSP?.[fieldName];
+                const fieldNameBx24 = FIELD_MSP_DATA?.[fieldName];
                 this.updateChangedData(fieldNameBx24, target.value);
             }
         })
@@ -39,17 +39,17 @@ export class DataRenderer {
     renderData() {
         this.renderUser();
 
-        for (const [key, value] of Object.entries(FIELD_MSP)) {
+        for (const [key, value] of Object.entries(FIELD_MSP_DATA)) {
             const elem = document.querySelector(`#${key}`);
-            const fieldName = FIELD_MSP[key];
+            const fieldName = FIELD_MSP_DATA[key];
             const fieldDataBx24 = this.fields?.[fieldName];
             this.outputData(elem, fieldName, fieldDataBx24);
         }
     }
 
     renderUser() {
-        const elemCreatedBy = document.querySelector(`#${FIELD_MSP.createdBy}`);
-        const elemUpdatedBy = document.querySelector(`#${FIELD_MSP.updatedBy}`);
+        const elemCreatedBy = document.querySelector(`#${FIELD_MSP_DATA.createdBy}`);
+        const elemUpdatedBy = document.querySelector(`#${FIELD_MSP_DATA.updatedBy}`);
         elemCreatedBy.innerHTML = this.getUserName(this.createdUser);
         elemUpdatedBy.innerHTML = this.getUserName(this.updatedUser);
         elemCreatedBy.dataset.link = this.getUserLink(this.createdUser);
