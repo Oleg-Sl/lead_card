@@ -34,23 +34,29 @@ export class PhotoRenderer {
 
     async getFields() {
         let data = {};
-        for (const photoField of this.photoFields) {
-            const elemImg = document.querySelector(`#${photoField.id}`);
-            if (elemImg) {
-                const fieldData = await this.getImageData(elemImg);
-                console.log("fieldData = ", fieldData);
-                data[photoField.field] = ["img.jpeg", fieldData.data];
-            }
-        }
+
         for (const id in this.cropperInstances) {
             const fieldData =  this.photoFields.find(field => field.id === id);
             const cropperInstance = this.cropperInstances[id];
             const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
             const fileName = cropperInstance.fileName;
-
             const base64Data = croppedCanvas.toDataURL('image/jpeg').split(',')[1];
-            data[fieldData?.field] = ["img.jpeg", base64Data];
+            data[fieldData?.field] = [fileName, base64Data];
         }
+
+        for (const photoField of this.photoFields) {
+            if (photoField.field in data) {
+                continue;
+            }
+            const elemImg = document.querySelector(`#${photoField.id}`);
+            if (elemImg && elemImg.src) {
+                const fieldData = await this.loadFileAsBase64(elemImg.src);
+                // const
+                console.log("fieldData = ", fieldData);
+                data[photoField.field] = ["img.jpeg", fieldData.data];
+            }
+        }
+
         console.log(data);
         return data;
     }
@@ -215,62 +221,55 @@ export class PhotoRenderer {
         });
     }
 
-    async getImageData(imgSrc) {
-        return new Promise(async (resolve, reject) => {
-            try {
-                const imgElement = new Image();
-                imgElement.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-    
-                    canvas.width = imgElement.naturalWidth; // Устанавливаем размеры canvas такие же, как у исходного изображения
-                    canvas.height = imgElement.naturalHeight;
-    
-                    ctx.drawImage(imgElement, 0, 0);
-    
-                    const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
-    
-                    const fileName = imgSrc.split('/').pop();
-    
-                    resolve({
-                        data: imageData,
-                        name: fileName
-                    });
-                };
-                imgElement.onerror = (error) => {
-                    reject(error);
-                };
-                imgElement.src = imgSrc;
-            } catch (error) {
-                reject(error);
+    async loadFileAsBase64(url) {
+        try {
+            const response = await fetch(url);
+            
+            if (!response.ok) {
+                throw new Error('Ошибка загрузки файла');
             }
-        });
+            
+            const buffer = await response.arrayBuffer();
+            
+            const base64String = btoa(new Uint8Array(buffer).reduce((data, byte) => {
+                return data + String.fromCharCode(byte);
+            }, ''));
+            
+            return base64String;
+        } catch (error) {
+            console.error('Произошла ошибка:', error);
+        }
     }
-    
 
     // async getImageData(imgSrc) {
-    //     return new Promise((resolve, reject) => {
-    //         const imgElement = new Image();
-    //         imgElement.onload = () => {
-    //             const canvas = document.createElement('canvas');
-    //             const ctx = canvas.getContext('2d');
-
-    //             canvas.width = imgElement.naturalWidth; // Устанавливаем размеры canvas такие же, как у исходного изображения
-    //             canvas.height = imgElement.naturalHeight;
-
-    //             ctx.drawImage(imgElement, 0, 0);
-    //             const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
-    //             const fileName = imgSrc.split('/').pop();
-
-    //             resolve({
-    //                 data: imageData,
-    //                 name: fileName
-    //             });
-    //         };
-    //         imgElement.onerror = (error) => {
+    //     return new Promise(async (resolve, reject) => {
+    //         try {
+    //             const imgElement = new Image();
+    //             imgElement.onload = () => {
+    //                 const canvas = document.createElement('canvas');
+    //                 const ctx = canvas.getContext('2d');
+    
+    //                 canvas.width = imgElement.naturalWidth; // Устанавливаем размеры canvas такие же, как у исходного изображения
+    //                 canvas.height = imgElement.naturalHeight;
+    
+    //                 ctx.drawImage(imgElement, 0, 0);
+    
+    //                 const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
+    
+    //                 const fileName = imgSrc.split('/').pop();
+    
+    //                 resolve({
+    //                     data: imageData,
+    //                     name: fileName
+    //                 });
+    //             };
+    //             imgElement.onerror = (error) => {
+    //                 reject(error);
+    //             };
+    //             imgElement.src = imgSrc;
+    //         } catch (error) {
     //             reject(error);
-    //         };
-    //         imgElement.src = imgSrc;
+    //         }
     //     });
     // }
 
@@ -282,9 +281,7 @@ export class PhotoRenderer {
     //     canvas.height = imgElement.height;
 
     //     ctx.drawImage(imgElement, 0, 0);
-    
     //     const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
-    
     //     const fileName = imgElement.src.split('/').pop();
     
     //     return {
