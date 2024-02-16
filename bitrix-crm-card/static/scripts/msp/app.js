@@ -15,6 +15,8 @@ export class App {
         this.currentUserId = null;
 
         this.completedUploads = 0
+        this.elemWaitingLoader = document.querySelector("#elemWaitingLoader");
+        this.containerProduct = document.querySelector("#containerProduct");
     }
 
     async init() {
@@ -57,6 +59,8 @@ export class App {
         this.fabricRenderer.renderFabrics();
 
         this.initHandlers();
+        this.elemWaitingLoader.classList.add("d-none");
+        this.containerProduct.classList.remove("d-none");
     }
 
     initHandlers() {
@@ -97,11 +101,9 @@ export class App {
             const changedFabric = this.fabricRenderer.getFields();
             const changedPhoto = await this.photoRenderer.getFields();
             const resData = {parentId1: this.data?.parentId1, ...changedData, ...changedFabric, ...changedPhoto};
-            console.log("resData = ", resData);
             spinner.style.display = 'inline-block';
             const result = await this.bx24.smartProcess.add(this.smartId, resData);
             spinner.style.display = 'none';
-            console.log(`result: `, result);
         })
 
         // Удаляем товар

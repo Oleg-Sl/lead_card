@@ -30,10 +30,7 @@ export class DataRenderer {
             if (target.dataset.track && target.dataset.field) {
                 const fieldName = target.dataset.field;
                 const fieldNameBx24 = FIELD_MSP_DATA?.[fieldName];
-                // console.log("fieldNameBx24 = ", fieldNameBx24);
-                // console.log("target.value = ", target.value);
                 this.updateChangedData(fieldNameBx24, target);
-                // this.updateChangedData(fieldNameBx24, target.value);
             }
         })
     }
@@ -53,7 +50,6 @@ export class DataRenderer {
     }
 
     getChangedData() {
-        console.log("this.changedData = ", this.changedData);
         return this.changedData;
     }
 
