@@ -76,7 +76,7 @@ class App {
                         'productId': 1  // this.leadId,
                     }
                 },
-                this.handleProductCardClose
+                this.handleProductCardClose.bind(this)
                 // function()
                 // {
                 //     console.log('Application closed!')
@@ -104,7 +104,7 @@ class App {
                             'productId': productId  // this.leadId,
                         }
                     },
-                    this.handleProductCardClose
+                    this.handleProductCardClose.bind(this)
                     // function()
                     // {
                     //     console.log('Application closed!')
