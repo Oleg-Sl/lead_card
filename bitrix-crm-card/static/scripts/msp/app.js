@@ -134,7 +134,7 @@ export class App {
                 spinner.style.display = 'inline-block';
                 this.completedUploads++;
                 for (let i = 0; i < files.length; i++) {
-                    this.bx24.disk.uploadFile(this.data?.[FIELD_MSP_DATA.folderId], files[i]);
+                    await this.bx24.disk.uploadFile(this.data?.[FIELD_MSP_DATA.folderId], files[i]);
                 }
                 this.completedUploads--;
                 if (this.completedUploads === 0) {
