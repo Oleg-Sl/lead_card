@@ -60,6 +60,7 @@ export class App {
     }
 
     initHandlers() {
+        // Открываем профиль пользователя
         document.querySelector(`#${FIELD_MSP_DATA.createdBy}`).addEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
@@ -68,6 +69,7 @@ export class App {
             }
         });
 
+        // Открываем профиль пользователя
         document.querySelector(`#${FIELD_MSP_DATA.updatedBy}`).addEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
@@ -77,22 +79,37 @@ export class App {
         });
 
         // Сохраняем изменения товара
-        document.querySelector(`.product-btn-save`).addEventListener('click', async () => {
+        document.querySelector(`.product-btn-save`).addEventListener('click', async (event) => {
+            const spinner = event.target.querySelector('div');
             const changedData = this.dataRenderer.getChangedData();
             const changedFabric = this.fabricRenderer.getChangedData();
             const changedPhoto = this.photoRenderer.getChangedData();
             const resData = {...changedData, ...changedFabric, ...changedPhoto};
+            spinner.style.display = 'inline-block';
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
+            spinner.style.display = 'none';
         })
 
         // Создаем копию товара
-        document.querySelector(`#btnCreateCopyProduct`).addEventListener('click', async () => {
+        document.querySelector(`#btnCreateCopyProduct`).addEventListener('click', async (event) => {
+            const spinner = event.target.querySelector('div');
             const changedData = this.dataRenderer.getFields();
             const changedFabric = this.fabricRenderer.getFields();
             const changedPhoto = this.photoRenderer.getFields();
             const resData = {parentId1: this.data?.parentId1, ...changedData, ...changedFabric, ...changedPhoto};
             console.log("resData = ", resData);
+            spinner.style.display = 'inline-block';
             const result = await this.bx24.smartProcess.add(this.smartId, resData);
+            spinner.style.display = 'none';
+            console.log(`result: `, result);
+        })
+
+        // Удаляем товар
+        document.querySelector(`#btnDeleteProduct`).addEventListener('click', async (event) => {
+            const spinner = event.target.querySelector('div');
+            spinner.style.display = 'inline-block';
+            const result = await this.bx24.smartProcess.delete(this.smartId, this.entityId);
+            spinner.style.display = 'none';
             console.log(`result: `, result);
         })
 
@@ -113,7 +130,7 @@ export class App {
             window.open(link, '_blank');
         })
 
-        // Загружаем файлы в директорию на Bitrix24
+        // Открыть интерфейс для загрузки файлов на диск в Bitrix24
         document.querySelector(`#btnDownloadFiles`).addEventListener('click', async () => {
             if (!this.data?.[FIELD_MSP_DATA.folderId]) {
                 console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
@@ -122,6 +139,7 @@ export class App {
             document.querySelector('#inputDownloadFiles').click();
         })
 
+        // Загрузка файлов на диск в Bitrix24
         document.querySelector('#inputDownloadFiles').addEventListener('change', async (event) => {
             if (!this.data?.[FIELD_MSP_DATA.folderId]) {
                 console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);

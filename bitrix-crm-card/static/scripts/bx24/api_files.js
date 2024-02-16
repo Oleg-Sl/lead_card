@@ -16,7 +16,7 @@ export default class FilesMethods {
                 fileContent: base64Data,
                 generateUniqueName: true
             });
-            console.log("File adding result = ", result);
+            // console.log("File adding result = ", result);
             return result;
         } catch (error) {
             console.error('Error uploading file: ', error);

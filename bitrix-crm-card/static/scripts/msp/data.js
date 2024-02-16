@@ -22,8 +22,6 @@ export class DataRenderer {
                 this.data[FIELD_MSP_DATA[key]] = data[FIELD_MSP_DATA[key]];
             }
         }
-        console.log("this.data = ", this.data);
-
     }
 
     initHandlers() {
