@@ -41,7 +41,7 @@ export class DataRenderer {
     updateChangedData(fieldName, target) {
         let value = '';
         if (target.type === 'checkbox') {
-            value = target.checked ? '1' : '0';
+            value = target.checked ? 'Y' : 'N';
         } else {
             value = target.value;
         }
