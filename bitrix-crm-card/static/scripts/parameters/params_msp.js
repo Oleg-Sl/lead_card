@@ -124,7 +124,7 @@ export const FIELD_MSP_FABRICS = {
     upholsteryFabricCollection_1: "ufCrm23_1706605986", // МСП - Коллекция и цвет обивочной ткани - 1
 
      // Блок - Отличительные панели (ОТМЕЧАЮТСЯ НА ОСНОВНОМ ЭСКИЗЕ)
-     upholsteryFabricCollection_2: "ufCrm23_1706606339",    // МСП - Коллекция и цвет обивочной ткани - 2 
+    upholsteryFabricCollection_2: "ufCrm23_1706606339",    // МСП - Коллекция и цвет обивочной ткани - 2 
 };
 
 export const FIELD_MSP_PHOTOS = {

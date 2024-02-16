@@ -1,5 +1,5 @@
 
-import { FIELD_MSP, FIELD_FABRIC } from '../parameters/params_msp.js';
+import { FIELD_MSP_DATA, FIELD_MSP_FABRICS, FIELD_FABRIC } from '../parameters/params_msp.js';
 import { PhotoRenderer } from './photo.js';
 import { DataRenderer } from './data.js';
 import { FabricRenderer } from './fabric.js';
@@ -20,12 +20,12 @@ export class App {
             user: 'user.current',
             smartProcess: `crm.item.get?entityTypeId=${this.smartId}&id=${this.entityId}`,
             smartFabricList: `crm.item.list?entityTypeId=${this.smartFabricsId}&select[]=id&select[]=title&select[]=${FIELD_FABRIC.name}&select[]=${FIELD_FABRIC.image}&select[]=${FIELD_FABRIC.type}&select[]=${FIELD_FABRIC.color}&order[id]=ASC`,
-            smartFabric: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
-            smartFabric_1: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection_1}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
-            smartFabric_2: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP.upholsteryFabricCollection_2}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
+            smartFabric: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP_FABRICS.upholsteryFabricCollection}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
+            smartFabric_1: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP_FABRICS.upholsteryFabricCollection_1}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
+            smartFabric_2: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP_FABRICS.upholsteryFabricCollection_2}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
             fields: `crm.item.fields?entityTypeId=${this.smartId}`,
-            createdBy: `user.get?id=$result[smartProcess][item][${FIELD_MSP.createdBy}]`,
-            updatedBy: `user.get?id=$result[smartProcess][item][${FIELD_MSP.createdBy}]`,
+            createdBy: `user.get?id=$result[smartProcess][item][${FIELD_MSP_DATA.createdBy}]`,
+            updatedBy: `user.get?id=$result[smartProcess][item][${FIELD_MSP_DATA.createdBy}]`,
         });
 
         this.user = data?.result?.user;
@@ -58,7 +58,7 @@ export class App {
     }
 
     initHandlers() {
-        document.querySelector(`#${FIELD_MSP.createdBy}`).addEventListener('click', (event) => {
+        document.querySelector(`#${FIELD_MSP_DATA.createdBy}`).addEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
             if (link) {
@@ -66,7 +66,7 @@ export class App {
             }
         });
 
-        document.querySelector(`#${FIELD_MSP.updatedBy}`).addEventListener('click', (event) => {
+        document.querySelector(`#${FIELD_MSP_DATA.updatedBy}`).addEventListener('click', (event) => {
             const target = event.target;
             const link = target.dataset.link;
             if (link) {
@@ -96,12 +96,14 @@ export class App {
 
         // Открываем директорию с файлами
         document.querySelector(`#btnOpenDiskFolder`).addEventListener('click', async () => {
-            if (!this.data?.[this.fields?.folderId]) {
-                console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${this.fields?.folderId}`);
+            console.log("FIELD_MSP_DATA.folderId = ", FIELD_MSP_DATA.folderId);
+            console.log("this.data?.[FIELD_MSP_DATA.folderId] = ", this.data?.[FIELD_MSP_DATA.folderId]);
+            if (!this.data?.[FIELD_MSP_DATA.folderId]) {
+                console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
                 return;
             }
             const data = await this.bx24.callMethod("disk.folder.get", {
-                id: this.data?.[this.fields?.folderId]
+                id: this.data?.[FIELD_MSP_DATA.folderId]
             });
             console.log(data);
             const link = data?.answer?.result?.DETAIL_URL;
