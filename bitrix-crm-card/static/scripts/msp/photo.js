@@ -50,10 +50,11 @@ export class PhotoRenderer {
             }
             const elemImg = document.querySelector(`#${photoField.id}`);
             if (elemImg && elemImg.src) {
+                console.log("elemImg.src = ", elemImg.src);
                 const fieldData = await this.loadFileAsBase64(elemImg.src);
                 console.log("fieldData = ", fieldData);
                 if (fieldData) {
-                    data[photoField.field] = ["img.jpeg", fieldData.data];
+                    data[photoField.field] = ["img.jpeg", fieldData];
                 }
             }
         }
