@@ -33,7 +33,22 @@ export class PhotoRenderer {
     }
 
     getFields() {
-       return this.data; 
+        let data = {};
+        for (const photoField of this.photoFields) {
+            const elemImg = document.querySelector(`#${photoField.id}`);
+            data[photoField.field] = this.getImageData(elemImg);
+        }
+
+        // this.photoFields.forEach(({ field, id }) => {
+        //     // const photoUrl = this.data?.[field]?.urlMachine;
+        //     const elemImg = document.querySelector(`#${id}`);
+        //     const {data, name} = this.getImageData(elemImg);
+        //     data[field] =  [name, data];
+        //     // this.renderPhoto(photoUrl, elemImg);
+        // });
+        console.log(data);
+        // this.getImageData();
+        return this.data;
     }
 
     getChangedData() {
@@ -178,6 +193,25 @@ export class PhotoRenderer {
         document.querySelector('.file-upload-label').addEventListener('mouseout', function() {
             this.style.backgroundColor = 'transparent';
         });
+    }
+
+    getImageData(imgElement) {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+    
+        canvas.width = imgElement.width;
+        canvas.height = imgElement.height;
+
+        ctx.drawImage(imgElement, 0, 0);
+    
+        const imageData = canvas.toDataURL('image/jpeg');
+    
+        const fileName = imgElement.src.split('/').pop();
+    
+        return {
+            data: imageData,
+            name: fileName
+        };
     }
 
     
