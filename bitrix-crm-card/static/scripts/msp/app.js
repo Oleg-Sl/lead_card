@@ -106,7 +106,7 @@ export class App {
                 id: this.data?.[FIELD_MSP_DATA.folderId]
             });
             console.log(data);
-            const link = data?.result?.DETAIL_URL;
+            const link = data?.DETAIL_URL;
             if (!link) {
                 console.error(`Error get link from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
                 return;
