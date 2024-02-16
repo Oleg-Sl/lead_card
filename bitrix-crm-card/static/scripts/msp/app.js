@@ -133,6 +133,8 @@ export class App {
                 // }
                 for (let i = 0; i < files.length; i++) {
                     const file = files[i];
+                    console.log(`file.name: `, file.name);
+                    console.log(`file: `, file);
                     const result = await this.bx24.callMethod("disk.folder.uploadfile", {
                         id: this.data?.[FIELD_MSP_DATA.folderId],
                         data: {
