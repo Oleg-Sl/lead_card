@@ -1,5 +1,6 @@
 import { FIELD_MSP_PHOTOS } from '../parameters/params_msp.js';
 
+
 export class PhotoRenderer {
     constructor(data, portalUrl) {
         this.data = {};
@@ -50,16 +51,13 @@ export class PhotoRenderer {
             }
             const elemImg = document.querySelector(`#${photoField.id}`);
             if (elemImg && elemImg.hasAttribute('src') && elemImg.src) {
-                console.log("elemImg.src = ", elemImg.src);
                 const fieldData = await this.loadFileAsBase64(elemImg.src);
-                console.log("fieldData = ", fieldData);
                 if (fieldData) {
                     data[photoField.field] = ["img.jpeg", fieldData];
                 }
             }
         }
 
-        console.log(data);
         return data;
     }
 
@@ -84,34 +82,6 @@ export class PhotoRenderer {
 
         return croppedFiles;
     }
-
-    // getDataFromCropperInstances(id, cropperInstances, photoFields) {
-    //     const croppedFiles = {};
-    
-    //     if (id in cropperInstances) {
-    //         const fieldData = photoFields.find(field => field.id === id);
-    //         const cropperInstance = cropperInstances[id];
-    //         const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
-    //         const fileName = cropperInstance.fileName;
-    
-    //         const base64Data = croppedCanvas.toDataURL('image/jpeg').split(',')[1];
-    //         croppedFiles[fieldData?.field] = [fileName, base64Data];
-    //     }
-    
-    //     return croppedFiles;
-    // }
-    
-    // getCroppedFiles() {
-    //     const croppedFiles = {};
-    //     for (const id in this.cropperInstances) {
-    //         const cropperInstance = this.cropperInstances[id];
-    //         const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
-    //         croppedCanvas.toBlob((blob) => {
-    //             croppedFiles[cropperInstance.fileName] = blob;
-    //         });
-    //     }
-    //     return croppedFiles;
-    // }
     
     renderPhotos() {
         // Получаем все места вставки фотографий и устанавливаем ссылки на них
@@ -243,55 +213,5 @@ export class PhotoRenderer {
             console.error('Произошла ошибка:', error);
         }
     }
-
-    // async getImageData(imgSrc) {
-    //     return new Promise(async (resolve, reject) => {
-    //         try {
-    //             const imgElement = new Image();
-    //             imgElement.onload = () => {
-    //                 const canvas = document.createElement('canvas');
-    //                 const ctx = canvas.getContext('2d');
-    
-    //                 canvas.width = imgElement.naturalWidth; // Устанавливаем размеры canvas такие же, как у исходного изображения
-    //                 canvas.height = imgElement.naturalHeight;
-    
-    //                 ctx.drawImage(imgElement, 0, 0);
-    
-    //                 const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
-    
-    //                 const fileName = imgSrc.split('/').pop();
-    
-    //                 resolve({
-    //                     data: imageData,
-    //                     name: fileName
-    //                 });
-    //             };
-    //             imgElement.onerror = (error) => {
-    //                 reject(error);
-    //             };
-    //             imgElement.src = imgSrc;
-    //         } catch (error) {
-    //             reject(error);
-    //         }
-    //     });
-    // }
-
-    // getImageData(imgElement) {
-    //     const canvas = document.createElement('canvas');
-    //     const ctx = canvas.getContext('2d');
-    
-    //     canvas.width = imgElement.width;
-    //     canvas.height = imgElement.height;
-
-    //     ctx.drawImage(imgElement, 0, 0);
-    //     const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
-    //     const fileName = imgElement.src.split('/').pop();
-    
-    //     return {
-    //         data: imageData,
-    //         name: fileName
-    //     };
-    // }
-
     
 }
