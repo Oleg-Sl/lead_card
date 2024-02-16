@@ -13,6 +13,8 @@ export class App {
         this.bx24 = bx24;
         this.portalUrl = portalUrl;
         this.currentUserId = null;
+
+        this.completedUploads = 0
     }
 
     async init() {
@@ -125,51 +127,19 @@ export class App {
                 console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
                 return;
             }
-            const files = event.target.files;
+            const target = event.target;
+            const spinner = target.parentNode.querySelector('div');
+            const files = target.files;
             if (files.length > 0) {
-                // const formData = new FormData();
-                // for (let i = 0; i < files.length; i++) {
-                //     formData.append('files[]', files[i]);
-                // }
+                spinner.style.display = 'block';
+                completedUploads++;
                 for (let i = 0; i < files.length; i++) {
-                    const file = files[i];
-                    console.log(`file.name: `, file.name);
-                    console.log(`file: `, file);
-                    this.bx24.disk.uploadFile(this.data?.[FIELD_MSP_DATA.folderId], file);
-                    // const result = await this.bx24.callMethod("disk.folder.uploadfile", {
-                    //     id: this.data?.[FIELD_MSP_DATA.folderId],
-                    //     data: {
-                    //         NAME: file.name
-                    //     },
-                    //     fileContent: file,
-                    //     generateUniqueName: true,
-                    // });
-                    // console.log(`result: `, result);
+                    this.bx24.disk.uploadFile(this.data?.[FIELD_MSP_DATA.folderId], files[i]);
                 }
-                // this.bx24.callMethod("disk.folder.uploadfile", {
-                //     id: this.data?.[FIELD_MSP_DATA.folderId],
-                //     data: {
-                //         NAME: "avatar.jpg"
-                //     },
-                //     fileContent: document.getElementById('test_file_input'),
-                //     generateUniqueName: true,
-                // });
-                // // Выполнение AJAX-запроса для отправки файлов на сервер
-                // fetch('upload.php', {
-                //     method: 'POST',
-                //     body: formData
-                // })
-                // .then(response => {
-                //     if (response.ok) {
-                //         console.log('Файлы успешно загружены на сервер');
-                //         // Дополнительные действия после успешной загрузки файлов
-                //     } else {
-                //         console.error('Произошла ошибка при загрузке файлов');
-                //     }
-                // })
-                // .catch(error => {
-                //     console.error('Произошла ошибка:', error);
-                // });
+                completedUploads--;
+                if (completedUploads === 0) {
+                    spinner.style.display = 'none';
+                }
             } else {
                 console.log('Выберите файлы для загрузки');
             }
