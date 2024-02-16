@@ -111,6 +111,7 @@ export class App {
             const result = await this.bx24.smartProcess.delete(this.smartId, this.entityId);
             spinner.style.display = 'none';
             console.log(`result: `, result);
+            BX24.closeApplication();
         })
 
         // Открываем директорию с файлами
