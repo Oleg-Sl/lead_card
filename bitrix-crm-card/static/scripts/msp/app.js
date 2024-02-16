@@ -120,12 +120,12 @@ export class App {
             document.querySelector('#inputDownloadFiles').click();
         })
 
-        document.querySelector('#inputDownloadFiles').addEventListener('change', async () => {
+        document.querySelector('#inputDownloadFiles').addEventListener('change', async (event) => {
             if (!this.data?.[FIELD_MSP_DATA.folderId]) {
                 console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
                 return;
             }
-            const files = this.files;
+            const files = event.target.files;
             if (files.length > 0) {
                 // const formData = new FormData();
                 // for (let i = 0; i < files.length; i++) {
