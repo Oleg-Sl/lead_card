@@ -224,6 +224,7 @@ export class PhotoRenderer {
     async loadFileAsBase64(url) {
         try {
             const response = await fetch(url);
+            console.log("response = ", response);
             
             if (!response.ok) {
                 throw new Error('Ошибка загрузки файла');
