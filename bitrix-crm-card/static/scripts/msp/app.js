@@ -96,8 +96,8 @@ export class App {
 
         // Открываем директорию с файлами
         document.querySelector(`#btnOpenDiskFolder`).addEventListener('click', async () => {
-            console.log("FIELD_MSP_DATA.folderId = ", FIELD_MSP_DATA.folderId);
-            console.log("this.data?.[FIELD_MSP_DATA.folderId] = ", this.data?.[FIELD_MSP_DATA.folderId]);
+            // console.log("FIELD_MSP_DATA.folderId = ", FIELD_MSP_DATA.folderId);
+            // console.log("this.data?.[FIELD_MSP_DATA.folderId] = ", this.data?.[FIELD_MSP_DATA.folderId]);
             if (!this.data?.[FIELD_MSP_DATA.folderId]) {
                 console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
                 return;
@@ -105,8 +105,12 @@ export class App {
             const data = await this.bx24.callMethod("disk.folder.get", {
                 id: this.data?.[FIELD_MSP_DATA.folderId]
             });
-            console.log(data);
             const link = data?.answer?.result?.DETAIL_URL;
+            if (!link) {
+                console.error(`Error get link from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
+                return;
+            }
+            window.open(link, '_blank');
         })
 
         // Загружаем файлы в директорию на Bitrix24
