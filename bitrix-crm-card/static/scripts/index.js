@@ -54,6 +54,11 @@ class App {
         console.log("this.responsible = ", this.responsible);
     }
 
+    handleProductCardClose() {
+        console.log('Application closed!');
+        console.log("this.smartNumber = ", this.smartNumber);
+    }
+
     initHandler() {
         document.querySelector('#openMspWindow').addEventListener('click', (event) => {
             BX24.openApplication(
@@ -71,10 +76,11 @@ class App {
                         'productId': 1  // this.leadId,
                     }
                 },
-                function()
-                {
-                    console.log('Application closed!')
-                }
+                this.handleProductCardClose
+                // function()
+                // {
+                //     console.log('Application closed!')
+                // }
             );
         });
 
@@ -98,10 +104,11 @@ class App {
                             'productId': productId  // this.leadId,
                         }
                     },
-                    function()
-                    {
-                        console.log('Application closed!')
-                    }
+                    this.handleProductCardClose
+                    // function()
+                    // {
+                    //     console.log('Application closed!')
+                    // }
                 );
             }
         })

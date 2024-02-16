@@ -8,7 +8,6 @@ export const FIELD_FABRIC = {
 };
 
 
-
 export const FIELD_MSP = {
     productType: "ufCrm23_1706606771",  // Тип товара
     freeTitle: "ufCrm23_1707374226",    // Свободное название изделия
@@ -69,6 +68,7 @@ export const FIELD_MSP = {
  
 };
 
+
 export const FIELD_MSP_DATA = {
     productType: "ufCrm23_1706606771",  // Тип товара
     freeTitle: "ufCrm23_1707374226",    // Свободное название изделия
@@ -116,6 +116,7 @@ export const FIELD_MSP_DATA = {
      decorationDescription_2: "ufCrm23_1706606454",         // МСП - Описание декора и комментарии - 2 
 };
 
+
 export const FIELD_MSP_FABRICS = {
     // Блок - ОБЩИЕ ДАННЫЕ
     upholsteryFabricCollection: "ufCrm23_1706605768",   // МСП - Коллекция и цвет обивочной ткани
@@ -126,6 +127,7 @@ export const FIELD_MSP_FABRICS = {
      // Блок - Отличительные панели (ОТМЕЧАЮТСЯ НА ОСНОВНОМ ЭСКИЗЕ)
     upholsteryFabricCollection_2: "ufCrm23_1706606339",    // МСП - Коллекция и цвет обивочной ткани - 2 
 };
+
 
 export const FIELD_MSP_PHOTOS = {
     // Фотографии товара
@@ -139,3 +141,4 @@ export const FIELD_MSP_PHOTOS = {
     photo_7: "ufCrm23_1707374082",    // Фото изделия - 7
  
 };
+
