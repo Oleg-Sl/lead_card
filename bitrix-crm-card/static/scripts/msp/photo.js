@@ -32,12 +32,12 @@ export class PhotoRenderer {
         }
     }
 
-    getFields() {
+    async getFields() {
         let data = {};
         for (const photoField of this.photoFields) {
             const elemImg = document.querySelector(`#${photoField.id}`);
             if (elemImg) {
-                const fieldData = this.getImageData(elemImg);
+                const fieldData = await this.getImageData(elemImg);
                 console.log("fieldData = ", fieldData);
                 data[photoField.field] = ["img.jpeg", fieldData.data];
             }

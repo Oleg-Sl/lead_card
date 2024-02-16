@@ -95,7 +95,7 @@ export class App {
             const spinner = event.target.querySelector('div');
             const changedData = this.dataRenderer.getFields();
             const changedFabric = this.fabricRenderer.getFields();
-            const changedPhoto = this.photoRenderer.getFields();
+            const changedPhoto = await this.photoRenderer.getFields();
             const resData = {parentId1: this.data?.parentId1, ...changedData, ...changedFabric, ...changedPhoto};
             console.log("resData = ", resData);
             spinner.style.display = 'inline-block';
