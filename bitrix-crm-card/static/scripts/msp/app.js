@@ -96,8 +96,6 @@ export class App {
 
         // Открываем директорию с файлами
         document.querySelector(`#btnOpenDiskFolder`).addEventListener('click', async () => {
-            // console.log("FIELD_MSP_DATA.folderId = ", FIELD_MSP_DATA.folderId);
-            // console.log("this.data?.[FIELD_MSP_DATA.folderId] = ", this.data?.[FIELD_MSP_DATA.folderId]);
             if (!this.data?.[FIELD_MSP_DATA.folderId]) {
                 console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
                 return;
@@ -105,7 +103,6 @@ export class App {
             const data = await this.bx24.callMethod("disk.folder.get", {
                 id: this.data?.[FIELD_MSP_DATA.folderId]
             });
-            console.log(data);
             const link = data?.DETAIL_URL;
             if (!link) {
                 console.error(`Error get link from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
@@ -116,12 +113,65 @@ export class App {
 
         // Загружаем файлы в директорию на Bitrix24
         document.querySelector(`#btnDownloadFiles`).addEventListener('click', async () => {
-            // const changedData = this.dataRenderer.getChangedData();
-            // const changedFabric = this.fabricRenderer.getChangedData();
-            // const changedPhoto = this.photoRenderer.getChangedData();
-            // const resData = {...changedData, ...changedFabric, ...changedPhoto};
-            // await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
+            if (!this.data?.[FIELD_MSP_DATA.folderId]) {
+                console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
+                return;
+            }
+            document.querySelector('#inputDownloadFiles').click();
         })
+
+        document.querySelector('#inputDownloadFiles').addEventListener('change', async () => {
+            if (!this.data?.[FIELD_MSP_DATA.folderId]) {
+                console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
+                return;
+            }
+            const files = this.files;
+            if (files.length > 0) {
+                // const formData = new FormData();
+                // for (let i = 0; i < files.length; i++) {
+                //     formData.append('files[]', files[i]);
+                // }
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const result = await this.bx24.callMethod("disk.folder.uploadfile", {
+                        id: this.data?.[FIELD_MSP_DATA.folderId],
+                        data: {
+                            NAME: file.name
+                        },
+                        fileContent: file,
+                        generateUniqueName: true,
+                    });
+                    console.log(`result: `, result);
+                }
+                // this.bx24.callMethod("disk.folder.uploadfile", {
+                //     id: this.data?.[FIELD_MSP_DATA.folderId],
+                //     data: {
+                //         NAME: "avatar.jpg"
+                //     },
+                //     fileContent: document.getElementById('test_file_input'),
+                //     generateUniqueName: true,
+                // });
+                // // Выполнение AJAX-запроса для отправки файлов на сервер
+                // fetch('upload.php', {
+                //     method: 'POST',
+                //     body: formData
+                // })
+                // .then(response => {
+                //     if (response.ok) {
+                //         console.log('Файлы успешно загружены на сервер');
+                //         // Дополнительные действия после успешной загрузки файлов
+                //     } else {
+                //         console.error('Произошла ошибка при загрузке файлов');
+                //     }
+                // })
+                // .catch(error => {
+                //     console.error('Произошла ошибка:', error);
+                // });
+            } else {
+                console.log('Выберите файлы для загрузки');
+            }
+        });
+        
     }
 
     changeFabric() {
