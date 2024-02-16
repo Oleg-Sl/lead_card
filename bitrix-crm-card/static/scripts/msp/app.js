@@ -1,6 +1,6 @@
 
 import { FIELD_MSP_DATA, FIELD_MSP_FABRICS, FIELD_FABRIC } from '../parameters/params_msp.js';
-import { PhotoRenderer } from './PhotoRenderer.js';
+import { PhotoRenderer } from './photo.js';
 import { DataRenderer } from './data.js';
 import { FabricRenderer } from './fabric.js';
 
