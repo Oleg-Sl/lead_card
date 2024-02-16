@@ -59,4 +59,8 @@
 
 body {
   height: 105%;
+}
+
+.chosen-container {
+  width: 100% !important;
 }/*# sourceMappingURL=msp.css.map */
