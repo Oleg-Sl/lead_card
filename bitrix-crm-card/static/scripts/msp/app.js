@@ -96,13 +96,14 @@ export class App {
 
         // Открываем директорию с файлами
         document.querySelector(`#btnOpenDiskFolder`).addEventListener('click', async () => {
-            if (!this.data?.folderId) {
-                console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}`);
+            if (!this.data?.[this.fields?.folderId]) {
+                console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${this.fields?.folderId}`);
                 return;
             }
             const data = await this.bx24.callMethod("disk.folder.get", {
-                id: this.data?.folderId
+                id: this.data?.[this.fields?.folderId]
             });
+            console.log(data);
             const link = data?.answer?.result?.DETAIL_URL;
         })
 

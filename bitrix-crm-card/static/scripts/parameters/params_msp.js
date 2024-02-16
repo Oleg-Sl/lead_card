@@ -7,6 +7,8 @@ export const FIELD_FABRIC = {
     color: "ufCrm17_1705399722",
 };
 
+
+
 export const FIELD_MSP = {
     productType: "ufCrm23_1706606771",  // Тип товара
     freeTitle: "ufCrm23_1707374226",    // Свободное название изделия
@@ -78,6 +80,7 @@ export const FIELD_MSP_DATA = {
     updatedBy: "updatedBy",             // Кем обновлён
     isMeasured: "ufCrm23_1706958069",   // Замер нужен
     isActive: "ufCrm23_1706958090",     // Товар активен
+    folderId: "ufCrm23_1708053083",     // Папка с файлами изделия
 
     // Комментарии
     generalResponsibilityComments: "ufCrm23_1706606516",    // ОБЩИЕ КОММЕНТАРИИ ОТВЕТСТВЕННОГО
