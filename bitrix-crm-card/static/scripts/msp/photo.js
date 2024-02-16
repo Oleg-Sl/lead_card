@@ -40,17 +40,17 @@ export class PhotoRenderer {
                 data[photoField.field] = this.getImageData(elemImg);
             }
         }
+        for (const id in this.cropperInstances) {
+            const fieldData =  this.photoFields.find(field => field.id === id);
+            const cropperInstance = this.cropperInstances[id];
+            const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
+            const fileName = cropperInstance.fileName;
 
-        // this.photoFields.forEach(({ field, id }) => {
-        //     // const photoUrl = this.data?.[field]?.urlMachine;
-        //     const elemImg = document.querySelector(`#${id}`);
-        //     const {data, name} = this.getImageData(elemImg);
-        //     data[field] =  [name, data];
-        //     // this.renderPhoto(photoUrl, elemImg);
-        // });
+            const base64Data = croppedCanvas.toDataURL('image/jpeg').split(',')[1];
+            data[fieldData?.field] = [fileName, base64Data];
+        }
         console.log(data);
-        // this.getImageData();
-        return this.data;
+        return data;
     }
 
     getChangedData() {
@@ -62,8 +62,9 @@ export class PhotoRenderer {
             const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
             const fileName = cropperInstance.fileName;
 
-            const dataURL = croppedCanvas.toDataURL('image/jpeg');
-            const base64Data = dataURL.split(',')[1];
+            const base64Data = croppedCanvas.toDataURL('image/jpeg').split(',')[1];
+            // const dataURL = croppedCanvas.toDataURL('image/jpeg');
+            // const base64Data = dataURL.split(',')[1];
             croppedFiles[fieldData?.field] = [fileName, base64Data];
         }
 
@@ -72,8 +73,23 @@ export class PhotoRenderer {
         }
 
         return croppedFiles;
-
     }
+
+    // getDataFromCropperInstances(id, cropperInstances, photoFields) {
+    //     const croppedFiles = {};
+    
+    //     if (id in cropperInstances) {
+    //         const fieldData = photoFields.find(field => field.id === id);
+    //         const cropperInstance = cropperInstances[id];
+    //         const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
+    //         const fileName = cropperInstance.fileName;
+    
+    //         const base64Data = croppedCanvas.toDataURL('image/jpeg').split(',')[1];
+    //         croppedFiles[fieldData?.field] = [fileName, base64Data];
+    //     }
+    
+    //     return croppedFiles;
+    // }
     
     // getCroppedFiles() {
     //     const croppedFiles = {};
