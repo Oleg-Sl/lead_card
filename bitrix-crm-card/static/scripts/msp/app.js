@@ -137,7 +137,7 @@ export class App {
                     this.bx24.disk.uploadFile(this.data?.[FIELD_MSP_DATA.folderId], files[i]);
                 }
                 this.completedUploads--;
-                if (completedUploads === 0) {
+                if (this.completedUploads === 0) {
                     spinner.style.display = 'none';
                 }
             } else {
