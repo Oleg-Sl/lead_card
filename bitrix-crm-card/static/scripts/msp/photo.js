@@ -36,7 +36,9 @@ export class PhotoRenderer {
         let data = {};
         for (const photoField of this.photoFields) {
             const elemImg = document.querySelector(`#${photoField.id}`);
-            data[photoField.field] = this.getImageData(elemImg);
+            if (elemImg) {
+                data[photoField.field] = this.getImageData(elemImg);
+            }
         }
 
         // this.photoFields.forEach(({ field, id }) => {
