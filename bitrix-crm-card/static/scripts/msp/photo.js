@@ -37,7 +37,8 @@ export class PhotoRenderer {
         for (const photoField of this.photoFields) {
             const elemImg = document.querySelector(`#${photoField.id}`);
             if (elemImg) {
-                data[photoField.field] = this.getImageData(elemImg);
+                const {name, data} = this.getImageData(elemImg)
+                data[photoField.field] = [name, data];
             }
         }
         for (const id in this.cropperInstances) {
