@@ -135,15 +135,16 @@ export class App {
                     const file = files[i];
                     console.log(`file.name: `, file.name);
                     console.log(`file: `, file);
-                    const result = await this.bx24.callMethod("disk.folder.uploadfile", {
-                        id: this.data?.[FIELD_MSP_DATA.folderId],
-                        data: {
-                            NAME: file.name
-                        },
-                        fileContent: file,
-                        generateUniqueName: true,
-                    });
-                    console.log(`result: `, result);
+                    this.bx24.disk.uploadFile(this.data?.[FIELD_MSP_DATA.folderId], file);
+                    // const result = await this.bx24.callMethod("disk.folder.uploadfile", {
+                    //     id: this.data?.[FIELD_MSP_DATA.folderId],
+                    //     data: {
+                    //         NAME: file.name
+                    //     },
+                    //     fileContent: file,
+                    //     generateUniqueName: true,
+                    // });
+                    // console.log(`result: `, result);
                 }
                 // this.bx24.callMethod("disk.folder.uploadfile", {
                 //     id: this.data?.[FIELD_MSP_DATA.folderId],

@@ -7,6 +7,7 @@ import BatchMethods from './api_batch.js';
 import SmartProcessMethods from './api_smart_process.js'
 // import TaskMethods from './api_task.js'
 import UserMethods from './api_user.js'
+import FilesMethods from './api_files.js'
 
 
 export default class BitrixService {
@@ -20,6 +21,7 @@ export default class BitrixService {
         this.smartProcess = new SmartProcessMethods(this.bx24);
         // this.task = new TaskMethods(this.bx24);
         this.user = new UserMethods(this.bx24);
+        this.disk = new FilesMethods(this.bx24);
 
         this.domain = null;
     }
