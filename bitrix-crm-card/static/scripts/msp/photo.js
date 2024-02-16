@@ -224,7 +224,7 @@ export class PhotoRenderer {
 
         ctx.drawImage(imgElement, 0, 0);
     
-        const imageData = canvas.toDataURL('image/jpeg');
+        const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
     
         const fileName = imgElement.src.split('/').pop();
     
