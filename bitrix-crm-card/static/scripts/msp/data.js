@@ -30,14 +30,21 @@ export class DataRenderer {
             if (target.dataset.track && target.dataset.field) {
                 const fieldName = target.dataset.field;
                 const fieldNameBx24 = FIELD_MSP_DATA?.[fieldName];
-                console.log("fieldNameBx24 = ", fieldNameBx24);
-                console.log("target.value = ", target.value);
-                this.updateChangedData(fieldNameBx24, target.value);
+                // console.log("fieldNameBx24 = ", fieldNameBx24);
+                // console.log("target.value = ", target.value);
+                this.updateChangedData(fieldNameBx24, target);
+                // this.updateChangedData(fieldNameBx24, target.value);
             }
         })
     }
 
-    updateChangedData(fieldName, value) {
+    updateChangedData(fieldName, target) {
+        let value = '';
+        if (target.type === 'checkbox') {
+            value = target.checked ? '1' : '0';
+        } else {
+            value = target.value;
+        }
         this.changedData[fieldName] = value;
     }
 
