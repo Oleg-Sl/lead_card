@@ -131,12 +131,12 @@ export class App {
             const spinner = target.parentNode.querySelector('div');
             const files = target.files;
             if (files.length > 0) {
-                spinner.style.display = 'block';
-                completedUploads++;
+                spinner.style.display = 'inline-block';
+                this.completedUploads++;
                 for (let i = 0; i < files.length; i++) {
                     this.bx24.disk.uploadFile(this.data?.[FIELD_MSP_DATA.folderId], files[i]);
                 }
-                completedUploads--;
+                this.completedUploads--;
                 if (completedUploads === 0) {
                     spinner.style.display = 'none';
                 }
