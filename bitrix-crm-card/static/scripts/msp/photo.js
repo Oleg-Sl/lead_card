@@ -215,24 +215,50 @@ export class PhotoRenderer {
         });
     }
 
-    getImageData(imgElement) {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-    
-        canvas.width = imgElement.width;
-        canvas.height = imgElement.height;
+    async getImageData(imgSrc) {
+        return new Promise((resolve, reject) => {
+            const imgElement = new Image();
+            imgElement.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
 
-        ctx.drawImage(imgElement, 0, 0);
-    
-        const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
-    
-        const fileName = imgElement.src.split('/').pop();
-    
-        return {
-            data: imageData,
-            name: fileName
-        };
+                canvas.width = imgElement.naturalWidth; // Устанавливаем размеры canvas такие же, как у исходного изображения
+                canvas.height = imgElement.naturalHeight;
+
+                ctx.drawImage(imgElement, 0, 0);
+                const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
+                const fileName = imgSrc.split('/').pop();
+
+                resolve({
+                    data: imageData,
+                    name: fileName
+                });
+            };
+            imgElement.onerror = (error) => {
+                reject(error);
+            };
+            imgElement.src = imgSrc;
+        });
     }
+
+    // getImageData(imgElement) {
+    //     const canvas = document.createElement('canvas');
+    //     const ctx = canvas.getContext('2d');
+    
+    //     canvas.width = imgElement.width;
+    //     canvas.height = imgElement.height;
+
+    //     ctx.drawImage(imgElement, 0, 0);
+    
+    //     const imageData = canvas.toDataURL('image/jpeg').split(',')[1];
+    
+    //     const fileName = imgElement.src.split('/').pop();
+    
+    //     return {
+    //         data: imageData,
+    //         name: fileName
+    //     };
+    // }
 
     
 }
