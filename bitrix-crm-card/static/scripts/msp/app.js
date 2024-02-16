@@ -105,7 +105,8 @@ export class App {
             const data = await this.bx24.callMethod("disk.folder.get", {
                 id: this.data?.[FIELD_MSP_DATA.folderId]
             });
-            const link = data?.answer?.result?.DETAIL_URL;
+            console.log(data);
+            const link = data?.result?.DETAIL_URL;
             if (!link) {
                 console.error(`Error get link from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
                 return;
