@@ -39,7 +39,7 @@ export class PhotoRenderer {
             if (elemImg) {
                 const fieldData = this.getImageData(elemImg);
                 console.log("fieldData = ", fieldData);
-                data[photoField.field] = [fieldData.name, fieldData.data];
+                data[photoField.field] = ["fieldData.name", fieldData.data];
             }
         }
         for (const id in this.cropperInstances) {
@@ -49,7 +49,7 @@ export class PhotoRenderer {
             const fileName = cropperInstance.fileName;
 
             const base64Data = croppedCanvas.toDataURL('image/jpeg').split(',')[1];
-            data[fieldData?.field] = [fileName, base64Data];
+            data[fieldData?.field] = ["fileName", base64Data];
         }
         console.log(data);
         return data;
@@ -132,7 +132,7 @@ export class PhotoRenderer {
 
     initHandlers() {
         const imageInputs = document.querySelectorAll(".preview-image-input");
-        imageInputs.forEach((input) => { // Используем стрелочную функцию здесь
+        imageInputs.forEach((input) => {
             if (!input) {
                 return;
             }
