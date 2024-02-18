@@ -59,9 +59,9 @@ export class App {
         this.fabricRenderer.renderFabrics();
 
         this.initHandlers();
-        this.updateParentHeight();
         this.elemWaitingLoader.classList.add("d-none");
         this.containerProduct.classList.remove("d-none");
+        this.updateParentHeight();
     }
 
     initHandlers() {
