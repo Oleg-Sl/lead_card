@@ -64,6 +64,4 @@ export class App {
         let elem = document.querySelector('body');
         elem.innerHTML = '<h1> Доступ запрещен </h1>';
     }
-
-    
 }

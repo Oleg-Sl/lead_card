@@ -1,4 +1,6 @@
 
+import { FIELD_PRODUCT } from '../parameters/params_lead.js';
+
 
 export class ProductCard {
     constructor(bx24, leadId, smartNumber, portalUrl) {
@@ -69,8 +71,9 @@ export class ProductCard {
     }
 
     async renderProducts() {
-        this.products = await this.getDataFromBx24();
         let contentHTML = '';
+        this.products = await this.getDataFromBx24();
+
         for (const product of this.products) {
             contentHTML += this.getProductHTML(product);
         }
@@ -94,8 +97,8 @@ export class ProductCard {
                         <div class="product-card-header-title text-truncate d-flex align-items-center">
                             <div class="text-truncate align-middle">${product.title}</div>
                         </div>
-                        <div class="product-card-header-measure">📐</div>
-                        <div class="product-card-header-active">❌</div>
+                        <div class="product-card-header-measure">${this.getMarkerIsActive(product[FIELD_PRODUCT.isActive])}📐</div>
+                        <div class="product-card-header-active">${this.getMarkerIsActive(product[FIELD_PRODUCT.isActive])}</div>
                     </div>
                     <div class="product-card-body-img">
                         <img src="${urlPhoto}" class="card-img-top" alt="...">
@@ -109,5 +112,20 @@ export class ProductCard {
                 </div>
             </div>
         `;
+    }
+
+    getMarkerIsActive(isActive) {
+        if (isActive == 'Y') {
+            return '✅';
+        }
+        return '❌';        
+    }
+
+    getMarkerIsMeasured(isMeasured) {
+        if (isActive == 'Y') {
+            return '📐';
+        }
+        return '🚫';
+        
     }
 }

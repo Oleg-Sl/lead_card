@@ -13,3 +13,9 @@ export const FIELD_LEAD = {
     commentForWorkshop: 'UF_CRM_1707634724',    // Информация для цеха
     commentForLogistics: 'UF_CRM_1707634807',    // Информация для логистики
 };
+
+
+export const FIELD_PRODUCT = {
+    isActive: "ufCrm23_1706958090",     // Товар активен
+    folderId: "ufCrm23_1708053083",     // Папка с файлами изделия
+}
