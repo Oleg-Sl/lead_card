@@ -18,7 +18,7 @@ export class ProductCard {
     
     initHandler() {
         document.querySelector('#openMspWindow').addEventListener('click', async (event) => {
-            await this.addProduct();
+            const product = await this.addProduct();
             BX24.openApplication(
                 {
                     'opened': true,
@@ -31,7 +31,7 @@ export class ProductCard {
                     'bx24_title': 'МСП',
                     'parameters': {
                         'productType': 'msp',
-                        'productId': 1  // this.leadId,
+                        'productId': product?.id,
                     }
                 },
                 this.handleProductCardClose.bind(this)
@@ -74,8 +74,7 @@ export class ProductCard {
                 }
             }
         )
-        
-        console.log("====== response ======= ", response);
+        return response?.item;
     }
 
     async getDataFromBx24() {
