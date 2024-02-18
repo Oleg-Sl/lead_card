@@ -50,7 +50,7 @@ export class App {
 
         this.elemWaiting.classList.add("d-none");
         this.elemApp.classList.remove("d-none");
-        updateParentHeight();
+        this.updateParentHeight();
     }
 
     initHandler() {
@@ -64,5 +64,14 @@ export class App {
     secureData() {
         let elem = document.querySelector('body');
         elem.innerHTML = '<h1> Доступ запрещен </h1>';
+    }
+
+    updateParentHeight() {
+        const parent = document.querySelector('.photos-parent');
+        console.log("parent = ", parent);
+        const parentWidth = parent.clientWidth;
+        console.log("parentWidth = ", parentWidth);
+        const coefficient = Math.SQRT2;
+        parent.style.height = (parentWidth / coefficient) + 'px';
     }
 }
