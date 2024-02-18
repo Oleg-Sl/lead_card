@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link href="style/index.css" rel="stylesheet">
+
+    <!-- <script src="//api.bitrix24.com/api/v1/"></script> -->
+    <script>
+        let dealId = 19647;
+        let portalUrl = "https://app.bits-company.ru/bitrix-crm-card/leadapp";
+        const BX24 = {
+            init: async function(cb) {cb()},
+            fitWindow: function() {},
+        };
+    </script>
+
+    <title>Лид</title>
+</head>
+<body class="">
+    <div id="elemWaitingLoader" class="mt-5 d-flex justify-content-center">
+        <p class="fs-2">Загрузка приложения ...</p>
+        <div class="ms-3 spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div id="elemLeadData" class="lead-container text-center h-100 d-none">
+        <div class="row">
+            <div class="col lead-responsible">
+                <div class="mb-3">
+                    <label for="ASSIGNED_BY_ID" class="form-label text-start w-100">Ответственный</label>
+                    <div class="d-flex flex-row">
+                        <a href="#" id="ASSIGNED_BY_ID" class="responsible-created-url link-primary"></a>
+                    </div>
+                    <!-- <input class="form-control form-control-sm" id="leadResponsible" type="text" placeholder="Ответственный" value="Константин Константинопольский" aria-label=".form-control-sm example" readonly> -->
+                </div>
+            </div>
+            <div class="col lead-title">
+                <div class="mb-3">
+                    <label for="leadTitle" class="form-label text-start w-100">Название лида</label>
+                    <input class="form-control form-control-sm" id="leadTitle" type="text" placeholder="Название лида" value="" aria-label=".form-control-sm example" readonly>
+                </div>
+            </div>
+            <div class="col lead-created">
+                <div class="mb-3">
+                    <label for="dateCreate" class="form-label text-start w-100">Дата создания</label>
+                    <input class="form-control form-control-sm" id="dateCreate" type="date" placeholder="Дата создания" value="" aria-label=".form-control-sm example" readonly>
+                </div>
+            </div>
+            <div class="col lead-city">
+                <div class="mb-3">
+                    <label for="leadCity" class="form-label text-start w-100">Город</label>
+                    <input class="form-control form-control-sm" id="leadCity" type="text" placeholder="Город" value="" aria-label=".form-control-sm example" readonly>
+                </div>
+            </div>
+            <div class="col lead-changed">
+                <div class="mb-3">
+                    <label for="dateModify" class="form-label text-start w-100">Дата изменения</label>
+                    <input class="form-control form-control-sm" id="dateModify" type="date" placeholder="Дата изменения" value="" aria-label=".form-control-sm example" readonly>
+                </div>
+            </div>
+            <div class="col lead-directory">
+                <div class="d-flex flex-column mb-3">
+                    <label for="leadChanged" class="form-label text-start w-100">Связанные файлы&nbsp;</label>
+                    <div class="btn-group btn-group-sm">
+                        <a href="#" id="btnOpenDiskFolder" class="btn btn-outline-secondary active" aria-current="page">Директория</a>
+                        <a href="#" id="btnUploadFile" class="btn btn-outline-secondary">
+                            Загрузить
+                            <div class="ms-3 spinner-border spinner-border-sm" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <input type="file" id="inputUploadFile" style="display: none;" multiple>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-0">
+            <div class="col row">
+                <div class="mb-0">
+                    <label for="exampleFormControlTextarea2" class="form-label text-start w-100">Комментарии менеджера</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" data-track="true" data-field="commentManager"></textarea>
+                </div>
+            </div>
+            <div class="col row">
+                <div class="mb-0">
+                    <label for="commentROP" class="form-label text-start w-100">Комментарии РОП</label>
+                    <textarea class="form-control" id="commentROP" rows="3" data-track="true" data-field="commentROP"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col row">
+                <div class="mb-0">
+                    <label for="commentForWorkshop" class="form-label text-start w-100">Информация для цеха</label>
+                    <textarea class="form-control" id="commentForWorkshop" rows="3" data-track="true" data-field="commentForWorkshop"></textarea>
+                </div>
+            </div>
+            <div class="col row">
+                <div class="mb-0">
+                    <label for="commentForLogistics" class="form-label text-start w-100">Информация для логистики</label>
+                    <textarea class="form-control" id="commentForLogistics" rows="3" data-track="true" data-field="commentForLogistics"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-secondary w-75">Замер</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary w-75">Подбор ткани</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary w-75">Сформировать КП</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary w-75">Краткая история</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary w-75">Полная история</button>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <div class="lead-products">
+                    <div class="lead-product-buttons">
+                        <div class="mb-2">
+                            <ul class="nav nav-pills">
+                                <li class="nav-item dropdown lead-button-add-product  dropend">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+                                        Д<br>О<br>Б<br>А<br>В<br>И<br>Т<br>Ь
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#productSofaModal" href="#">Диван</a></li>
+                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#productBedModal" href="#">Кровать</a></li>
+                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#productArmchairModal" href="#">Кресло</a></li>
+                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#productPoufModal" href="#">Пуф - банкетка</a></li>
+                                        <li><a class="dropdown-item" id="openMspWindow">МСП</a></li>
+<!--                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#productMspModal" href="#">МСП</a></li>-->
+                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#productSmallThingsModal" href="#">Мелочевка</a></li>
+                                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#productSolidModal" href="#">Массив</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="lead-response-calc">
+                            <button type="button" class="btn btn-primary w-75">
+                                Н<br>А<br>
+                                <br>Р<br>А<br>С<br>Ч<br>Е<br>Т
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row row-cols-1 row-cols-md-5 g-4 lead-products-cards">
+                        <div class="col lead-product-card">
+                            <div class="card h-100" data-bs-toggle="modal" data-bs-target="#productModal">
+                                <div class="card-header">
+                                    <div class="text-truncate d-flex align-items-center">
+                                        <div class="card-header-title text-truncate align-middle">
+                                            Featured sdasd sdvsd sdsdfd sdsdvs ddsvsdd zdvsd
+                                        </div>
+                                    </div>
+                                    <div class="card-header-status">📐</div>
+                                    <div class="card-header-status">✅</div>
+                                </div>
+                                <div class="card-body">
+                                    <img src="./images/01.jpg" class="card-img-top" alt="...">
+                                </div>
+                                <div class="border-light card-header">
+                                    <p class="card-text">Some quick example.</p>
+                                </div>
+
+                                <div class="card-footer">
+                                    <small class="text-body-secondary">Размеры: 2000х3000</small>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script type="module" src="scripts/index.js"></script>
+
+    <!-- <script>
+        document.addEventListener('change', function(event) {
+            if (event.target.classList.contains('file-upload-input')) {
+                const parent = event.target.parentNode;
+                const fileInput = event.target;
+                const file = fileInput.files[0];
+
+                if (file) {
+                    const uploadIcon = parent.querySelector('.upload-icon');
+                    const uploadText = parent.querySelector('.upload-text');
+                    const previewImage = parent.querySelector('.preview-image');
+
+                    uploadIcon.style.display = 'none';
+                    uploadText.style.display = 'none';
+                    previewImage.style.display = 'block';
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewImage.src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+
+        document.querySelector('.file-upload-label').addEventListener('mouseover', function() {
+            this.style.backgroundColor = '#f0f0f0';
+        });
+
+        document.querySelector('.file-upload-label').addEventListener('mouseout', function() {
+            this.style.backgroundColor = 'transparent';
+        });
+    </script> -->
+</body>
+</html>

@@ -13,67 +13,95 @@
 
     <script src="//api.bitrix24.com/api/v1/"></script>
     <script>
-        let dealId = {{ id }};
+        let dealId = dsK8Lt6Ds07fSkD7s9a9;
         let portalUrl = "{{ portal_url }}";
     </script>
 
     <title>Лид</title>
 </head>
 <body class="">
-    <div class="lead-container text-center h-100">
+    <div id="elemWaitingLoader" class="mt-5 d-flex justify-content-center">
+        <p class="fs-2">Загрузка приложения ...</p>
+        <div class="ms-3 spinner-border" style="width: 3rem; height: 3rem;" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div id="elemLeadData" class="lead-container text-center h-100 d-none">
         <div class="row">
             <div class="col lead-responsible">
                 <div class="mb-3">
-                    <label for="leadResponsible" class="form-label text-start w-100">Ответственный</label>
-                    <input class="form-control form-control-sm" id="leadResponsible" type="text" placeholder="Ответственный" value="Константин Константинопольский" aria-label=".form-control-sm example" readonly>
+                    <label for="ASSIGNED_BY_ID" class="form-label text-start w-100">Ответственный</label>
+                    <div class="d-flex flex-row">
+                        <a href="#" id="ASSIGNED_BY_ID" class="responsible-created-url link-primary"></a>
+                    </div>
+                    <!-- <input class="form-control form-control-sm" id="leadResponsible" type="text" placeholder="Ответственный" value="Константин Константинопольский" aria-label=".form-control-sm example" readonly> -->
                 </div>
             </div>
             <div class="col lead-title">
                 <div class="mb-3">
                     <label for="leadTitle" class="form-label text-start w-100">Название лида</label>
-                    <input class="form-control form-control-sm" id="leadTitle" type="text" placeholder="Название лида" value="122 Изготовление дивана" aria-label=".form-control-sm example" readonly>
+                    <input class="form-control form-control-sm" id="leadTitle" type="text" placeholder="Название лида" value="" aria-label=".form-control-sm example" readonly>
                 </div>
             </div>
             <div class="col lead-created">
                 <div class="mb-3">
-                    <label for="leadCreated" class="form-label text-start w-100">Дата создания</label>
-                    <input class="form-control form-control-sm" id="leadCreated" type="date" placeholder="Дата создания" value="2022-01-01" aria-label=".form-control-sm example" readonly>
+                    <label for="dateCreate" class="form-label text-start w-100">Дата создания</label>
+                    <input class="form-control form-control-sm" id="dateCreate" type="date" placeholder="Дата создания" value="" aria-label=".form-control-sm example" readonly>
                 </div>
             </div>
             <div class="col lead-city">
                 <div class="mb-3">
                     <label for="leadCity" class="form-label text-start w-100">Город</label>
-                    <input class="form-control form-control-sm" id="leadCity" type="text" placeholder="Город" value="Новосибирск" aria-label=".form-control-sm example" readonly>
+                    <input class="form-control form-control-sm" id="leadCity" type="text" placeholder="Город" value="" aria-label=".form-control-sm example" readonly>
                 </div>
             </div>
             <div class="col lead-changed">
                 <div class="mb-3">
-                    <label for="leadChanged" class="form-label text-start w-100">Дата изменения</label>
-                    <input class="form-control form-control-sm" id="leadChanged" type="date" placeholder="Дата изменения" value="2022-01-01" aria-label=".form-control-sm example" readonly>
+                    <label for="dateModify" class="form-label text-start w-100">Дата изменения</label>
+                    <input class="form-control form-control-sm" id="dateModify" type="date" placeholder="Дата изменения" value="" aria-label=".form-control-sm example" readonly>
                 </div>
             </div>
             <div class="col lead-directory">
                 <div class="d-flex flex-column mb-3">
-                    <label for="leadChanged" class="form-label text-start w-100">Связанные файлы&nbsp;</label>
+                    <label for="btnOpenDiskFolder" class="form-label text-start w-100">Связанные файлы&nbsp;</label>
                     <div class="btn-group btn-group-sm">
-                        <a href="#" class="btn btn-outline-secondary active" aria-current="page">Директория</a>
-                        <a href="#" class="btn btn-outline-secondary">Загрузить</a>
+                        <a href="#" id="btnOpenDiskFolder" class="btn btn-outline-secondary active" aria-current="page">Директория</a>
+                        <a href="#" id="btnUploadFile" class="btn btn-outline-secondary">
+                            Загрузить
+                            <div class="ms-3 spinner-border spinner-border-sm" role="status" style="display: none;">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <input type="file" id="inputUploadFile" style="display: none;" multiple>
+                        </a>
                     </div>
                 </div>
             </div>
-
         </div>
-        <div class="row">
+        <div class="row mt-0">
             <div class="col row">
-                <div class="mb-3">
+                <div class="mb-0">
                     <label for="exampleFormControlTextarea2" class="form-label text-start w-100">Комментарии менеджера</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo aut fugiat commodi minus doloremque excepturi quis alias praesentium, ipsum amet voluptatum accusantium eius quaerat illo velit perspiciatis odit numquam ipsam.</textarea>
+                    <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" data-track="true" data-field="commentManager"></textarea>
                 </div>
             </div>
             <div class="col row">
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea3" class="form-label text-start w-100">Комментарии РОП</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea3" rows="3">Lorem ipsum dolor sit amet consectetur adipisicing elit. At doloremque aliquid magnam dolorum ea nesciunt recusandae autem maxime nemo a iure fugit et voluptate ipsum, odit saepe voluptatibus corrupti illo?</textarea>
+                <div class="mb-0">
+                    <label for="commentROP" class="form-label text-start w-100">Комментарии РОП</label>
+                    <textarea class="form-control" id="commentROP" rows="3" data-track="true" data-field="commentROP"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col row">
+                <div class="mb-0">
+                    <label for="commentForWorkshop" class="form-label text-start w-100">Информация для цеха</label>
+                    <textarea class="form-control" id="commentForWorkshop" rows="3" data-track="true" data-field="commentForWorkshop"></textarea>
+                </div>
+            </div>
+            <div class="col row">
+                <div class="mb-0">
+                    <label for="commentForLogistics" class="form-label text-start w-100">Информация для логистики</label>
+                    <textarea class="form-control" id="commentForLogistics" rows="3" data-track="true" data-field="commentForLogistics"></textarea>
                 </div>
             </div>
         </div>

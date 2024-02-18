@@ -14,7 +14,7 @@ export class App {
         this.portalUrl = portalUrl;
         this.currentUserId = null;
 
-        this.completedUploads = 0
+        this.completedUploads = 0;
         this.elemWaitingLoader = document.querySelector("#elemWaitingLoader");
         this.containerProduct = document.querySelector("#containerProduct");
     }
