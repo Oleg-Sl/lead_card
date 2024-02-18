@@ -97,7 +97,7 @@ export class ProductCard {
                         <div class="product-card-header-title text-truncate d-flex align-items-center">
                             <div class="text-truncate align-middle">${product.title}</div>
                         </div>
-                        <div class="product-card-header-measure">${this.getMarkerIsActive(product[FIELD_PRODUCT.isActive])}📐</div>
+                        <div class="product-card-header-measure">${this.getMarkerIsMeasured(product[FIELD_PRODUCT.isMeasured])}</div>
                         <div class="product-card-header-active">${this.getMarkerIsActive(product[FIELD_PRODUCT.isActive])}</div>
                     </div>
                     <div class="product-card-body-img">
@@ -122,7 +122,7 @@ export class ProductCard {
     }
 
     getMarkerIsMeasured(isMeasured) {
-        if (isActive == 'Y') {
+        if (isMeasured == 'Y') {
             return '📐';
         }
         return '🚫';
