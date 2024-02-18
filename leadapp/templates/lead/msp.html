@@ -380,28 +380,30 @@
     <script type="module" src="{% static 'scripts/libs/chosen_v1.8.7/chosen.jquery.min.js' %}"></script>
     <script type="module" src="{% static 'scripts/msp.js' %}"></script>
 
-<!--    <script>-->
-<!--        let loadedImagesCount = 0;-->
+    <script>
+        let loadedImagesCount = 0;
 
-<!--        function updateParentHeight() {-->
-<!--            const parent = document.querySelector('.photos-parent');-->
-<!--            const parentWidth = parent.clientWidth;-->
-<!--            const coefficient = Math.SQRT2;-->
-<!--            &lt;!&ndash; console.log(parentWidth, parentWidth / coefficient); &ndash;&gt;-->
-<!--            parent.style.height = (parentWidth / coefficient) + 'px';-->
-<!--        }-->
+        function updateParentHeight() {
+            const parent = document.querySelector('.photos-parent');
+            const parentWidth = parent.clientWidth;
+            console.log("parentWidth = ", parentWidth);
+            const coefficient = Math.SQRT2;
+            <!-- console.log(parentWidth, parentWidth / coefficient); -->
+            parent.style.height = (parentWidth / coefficient) + 'px';
+        }
 
-<!--        window.addEventListener('resize', function() {-->
-<!--            updateParentHeight();-->
-<!--        });-->
+        window.addEventListener('resize', function() {
+            updateParentHeight();
+        });
 
-<!--        document.addEventListener('DOMContentLoaded', function() {-->
-<!--            updateParentHeight();-->
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("updateParentHeight!!!");
+            updateParentHeight();
 <!--            const images = document.querySelectorAll('img');-->
 <!--            images.forEach(image => {-->
 <!--                image.addEventListener('load', imageLoadedHandler);-->
 <!--            });-->
-<!--        });-->
+        });
 
 <!--        function imageLoadedHandler() {-->
 <!--            loadedImagesCount++;-->
@@ -412,7 +414,7 @@
 <!--            updateParentHeight();-->
 <!--        }-->
 
-<!--    </script>-->
+    </script>
 
 </body>
 </html>
