@@ -381,6 +381,8 @@
     <script type="module" src="{% static 'scripts/msp.js' %}"></script>
 
     <script>
+        let loadedImagesCount = 0;
+
         function updateParentHeight() {
             const parent = document.querySelector('.photos-parent');
             const parentWidth = parent.clientWidth;
