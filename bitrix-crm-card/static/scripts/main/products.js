@@ -17,7 +17,8 @@ export class ProductCard {
     }
     
     initHandler() {
-        document.querySelector('#openMspWindow').addEventListener('click', (event) => {
+        document.querySelector('#openMspWindow').addEventListener('click', async (event) => {
+            await this.addProduct();
             BX24.openApplication(
                 {
                     'opened': true,
@@ -62,6 +63,19 @@ export class ProductCard {
             }
         })
     }
+
+    async addProduct() {
+        const response = await this.bx24.callMethod(
+            'crm.item.list',
+            {
+                entityTypeId: this.smartNumber,
+                fields: {
+                    parentId1: this.leadId
+                }
+            }
+        )
+    }
+
     async getDataFromBx24() {
         const response = await this.bx24.batch.getData({
             productsData: `crm.item.list?entityTypeId=${this.smartNumber}&filter[parentId1]=${this.leadId}&order[${FIELD_PRODUCT.isActive}]=DESC`,
@@ -85,10 +99,6 @@ export class ProductCard {
     }
 
     getProductHTML(product) {
-        let urlPhoto = '' 
-        if (product?.ufCrm23_1706606863?.urlMachine) {
-            urlPhoto = this.portalUrl + '/get-image/?url=' + encodeURIComponent(product?.ufCrm23_1706606863?.urlMachine);
-        }
         return `
             <div class="lead-products-card-container" data-id="${product.id}">
                 <div class="col lead-product-card">
@@ -100,7 +110,7 @@ export class ProductCard {
                         <div class="product-card-header-active">${this.getMarkerIsActive(product[FIELD_PRODUCT.isActive])}</div>
                     </div>
                     <div class="product-card-body-img">
-                        <img src="${urlPhoto}" class="card-img-top" alt="...">
+                        <img src="${this.getPhotoUrl(product?.ufCrm23_1706606863?.urlMachine)}" class="card-img-top" alt="...">
                     </div>
                     <div class="product-card-body-freetitle">
                         <p class="card-text">${product?.ufCrm23_1707374226 || "-"}</p>
@@ -111,6 +121,15 @@ export class ProductCard {
                 </div>
             </div>
         `;
+    }
+
+    getPhotoUrl(url) {
+        let urlPhoto = 'https://app.bits-company.ru/bitrix-crm-card/static/images/default.jpeg';
+        if (url) {
+            urlPhoto = this.portalUrl + '/get-image/?url=' + encodeURIComponent(url);
+        }
+
+        return urlPhoto;
     }
 
     getMarkerIsActive(isActive) {
