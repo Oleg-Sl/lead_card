@@ -59,6 +59,7 @@ export class App {
         this.fabricRenderer.renderFabrics();
 
         this.initHandlers();
+        this.updateParentHeight();
         this.elemWaitingLoader.classList.add("d-none");
         this.containerProduct.classList.remove("d-none");
     }
@@ -194,5 +195,12 @@ export class App {
         return allItems;
     }
 
-    
+    updateParentHeight() {
+        const parent = document.querySelector('.photos-parent');
+        console.log("parent = ", parent);
+        const parentWidth = parent.clientWidth;
+        console.log("parentWidth = ", parentWidth);
+        const coefficient = Math.SQRT2;
+        parent.style.height = (parentWidth / coefficient) + 'px';
+    }
 }
