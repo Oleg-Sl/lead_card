@@ -66,7 +66,7 @@ export class ProductCard {
 
     async addProduct() {
         const response = await this.bx24.callMethod(
-            'crm.item.list',
+            'crm.item.add',
             {
                 entityTypeId: this.smartNumber,
                 fields: {
@@ -74,6 +74,8 @@ export class ProductCard {
                 }
             }
         )
+        
+        console.log("====== response ======= ", response);
     }
 
     async getDataFromBx24() {
