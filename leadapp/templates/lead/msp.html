@@ -395,7 +395,20 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             updateParentHeight();
+            const images = document.querySelectorAll('img');
+            images.forEach(image => {
+                image.addEventListener('load', imageLoadedHandler);
+            });
         });
+
+        function imageLoadedHandler() {
+            loadedImagesCount++;
+            if (loadedImagesCount === document.querySelectorAll('img').length) {
+                console.log('Все изображения загружены');
+                updateParentHeight();
+            }
+        }
+
     </script>
 
 </body>
