@@ -64,9 +64,8 @@ export class ProductCard {
     }
     async getDataFromBx24() {
         const response = await this.bx24.batch.getData({
-            productsData: `crm.item.list?entityTypeId=${this.smartNumber}&filter[parentId1]=${this.leadId}&order[${FIELD_PRODUCT.isActive}]=ASC`,
+            productsData: `crm.item.list?entityTypeId=${this.smartNumber}&filter[parentId1]=${this.leadId}&order[${FIELD_PRODUCT.isActive}]=DESC`,
         })
-        console.log(response?.result?.productsData?.items);
         return response?.result?.productsData?.items;
     }
 
