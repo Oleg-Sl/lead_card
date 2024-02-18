@@ -17,5 +17,5 @@ export const FIELD_LEAD = {
 
 export const FIELD_PRODUCT = {
     isActive: "ufCrm23_1706958090",     // Товар активен
-    folderId: "ufCrm23_1708053083",     // Папка с файлами изделия
+    isMeasured: "ufCrm23_1706958069",   // Замер нужен
 }
