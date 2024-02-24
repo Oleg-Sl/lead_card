@@ -32,6 +32,7 @@ export default class BitrixService {
 
     async callMethod(method, body) {
         const result = await this.bx24.callMethod(method, body);
+        console.log("callMethod result = ", method, body, result);
         return result;
     }
 

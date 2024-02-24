@@ -65,6 +65,8 @@ export class App {
     }
 
     initHandlers() {
+        console.log('initHandlers1 = ', `${FIELD_MSP_DATA.createdBy} = `,  document.querySelector(`#${FIELD_MSP_DATA.createdBy}`));
+        console.log('initHandlers1 = ', `${FIELD_MSP_DATA.updatedBy} = `,  document.querySelector(`#${FIELD_MSP_DATA.updatedBy}`));
         // Открываем профиль пользователя
         document.querySelector(`#${FIELD_MSP_DATA.createdBy}`).addEventListener('click', (event) => {
             console.log(event.target);
