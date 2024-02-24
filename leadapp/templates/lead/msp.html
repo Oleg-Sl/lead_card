@@ -34,22 +34,22 @@
             <div class="col d-flex align-items-start flex-column mb-3" style="max-width: 350px;">
                 <div class="input-group input-group-sm mb-3 product-date-create-container">
                     <span class="input-group-text col-5" id="dateCreate">Дата создания</span>
-                    <input type="date" id="createdTime" class="form-control product-date-create-input" aria-label="Sizing example input" aria-describedby="dateCreate" disabled>
+                    <input type="date" id="createdTime" class="form-control product-date-create-input" aria-label="Sizing example input" aria-describedby="dateCreate" readonly>
                 </div>
                 <div class="input-group input-group-sm product-date-cheanged-container">
                     <span class="input-group-text col-5" id="dateChanged">Дата изменения</span>
-                    <input type="date" id="updatedTime" class="form-control product-date-cheanged-input" aria-label="Sizing example input" aria-describedby="dateChanged" disabled>
+                    <input type="date" id="updatedTime" class="form-control product-date-cheanged-input" aria-label="Sizing example input" aria-describedby="dateChanged" readonly>
                 </div>
             </div>
 
             <div class="col d-flex align-items-start flex-column mb-3 responsible-container" style="max-width: 650px;">
                 <div class="input-group input-group-sm mb-3 product-date-create-container responsible-created">
                     <span class="input-group-text col-3 responsible-created-label">Кто заполнил</span>
-                    <input type="text" id="createdBy" class="form-control product-date-create-input responsible-created-url link-primary" aria-label="Sizing example input" aria-describedby="" value="-" disabled>
+                    <input type="text" id="createdBy" class="form-control product-date-create-input responsible-created-url link-primary" aria-label="Sizing example input" aria-describedby="" value="-" readonly>
                 </div>
                 <div class="input-group input-group-sm mb-3 product-date-create-container responsible-changed">
                     <span class="input-group-text col-3 responsible-changed-label">Кто изменил</span>
-                    <input type="text" id="updatedBy" class="form-control product-date-create-input responsible-changed-url link-primary" aria-label="Sizing example input" aria-describedby="" value="-" disabled>
+                    <input type="text" id="updatedBy" class="form-control product-date-create-input responsible-changed-url link-primary" aria-label="Sizing example input" aria-describedby="" value="-" readonly>
                 </div>
 <!--                <div class="d-flex flex-row mb-3 input-group-sm responsible-created">-->
 <!--                    <label for="createdBy" class="input-group-text me-2 responsible-created-label">Кто заполнил</label>-->
@@ -83,7 +83,7 @@
         </div>
         <div class="row mb-3">
             <div class="col">
-                <button type="button" class="btn btn-secondary w-75 product-btn-save">
+                <button type="button" class="btn btn-success w-75 product-btn-save">
                     Сохранить
                     <div class="ms-3 spinner-border spinner-border-sm text-light" role="status" style="display: none;">
                         <span class="visually-hidden">Loading...</span>
@@ -91,7 +91,7 @@
                 </button>
             </div>
             <div class="col">
-                <button type="button" id="btnCreateCopyProduct" class="btn btn-secondary w-75 product-btn-copy">
+                <button type="button" id="btnCreateCopyProduct" class="btn btn-primary w-75 product-btn-copy">
                     Копировать
                     <div class="ms-3 spinner-border spinner-border-sm text-light" role="status" style="display: none;">
                         <span class="visually-hidden">Loading...</span>
@@ -99,12 +99,24 @@
                 </button>
             </div>
             <div class="col">
-                <button type="button" id="btnDeleteProduct" class="btn btn-secondary w-75 product-btn-remove">
+                <button type="button" id="btnDeleteProduct" class="btn btn-danger w-75 product-btn-remove">
                     Удалить
                     <div class="ms-3 spinner-border spinner-border-sm text-light" role="status" style="display: none;">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </button>
+            </div>
+            <div class="col-1 d-flex align-items-center">
+                <div class="form-check w-100">
+                    <input type="checkbox" class="btn-check" id="isMeasured" autocomplete="off" data-field="isMeasured" data-track="true">
+                    <label class="btn btn-outline-success w-100" for="isMeasured">Замер</label><br>
+                </div>
+            </div>
+            <div class="col-1 d-flex align-items-center">
+                <div class="form-check w-100">
+                    <input type="checkbox" class="btn-check" id="isActive" autocomplete="off">
+                    <label class="btn btn-outline-success w-100" for="isActive">Активен</label><br>
+                </div>
             </div>
 <!--            <div class="col-1 d-flex align-items-center">-->
 <!--                <div class="form-check">-->
@@ -118,18 +130,6 @@
 <!--                    <label class="form-check-label" for="isActive">Активен</label>-->
 <!--                </div>-->
 <!--            </div>-->
-            <div class="col-1 d-flex align-items-center">
-                <div class="form-check w-100">
-                    <input type="checkbox" class="btn-check" id="isMeasured" autocomplete="off">
-                    <label class="btn btn-outline-success btn-outline-danger w-100" for="isMeasured">Замер</label><br>
-                </div>
-            </div>
-            <div class="col-1 d-flex align-items-center">
-                <div class="form-check w-100">
-                    <input type="checkbox" class="btn-check" id="isActive" autocomplete="off">
-                    <label class="btn btn-outline-success w-100" for="isActive" onclick="(e) => {if (document.querySelector('#isActive').checked) {document.querySelector('#isActive').style.backgroundColor = 'red';}}">Активен</label><br>
-                </div>
-            </div>
 <!--            <div class="btn-group w-75" role="group" aria-label="Basic checkbox toggle button group" style="max-width: 200px;">-->
 <!--                <input type="checkbox" class="btn-check product-input-is-measured" id="btncheck1" autocomplete="off">-->
 <!--                <label class="btn btn-outline-secondary" for="btncheck1">Замер</label>-->
