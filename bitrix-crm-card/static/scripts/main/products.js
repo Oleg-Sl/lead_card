@@ -18,7 +18,7 @@ export class ProductCard {
     
     initHandler() {
         document.querySelector('#openMspWindow').addEventListener('click', async (event) => {
-            const product = await this.addProduct();
+            const product = await this.addProduct('МСП');
             BX24.openApplication(
                 {
                     'opened': true,
@@ -80,7 +80,7 @@ export class ProductCard {
 
     async getDataFromBx24() {
         const response = await this.bx24.batch.getData({
-            productsData: `crm.item.list?entityTypeId=${this.smartNumber}&filter[parentId1]=${this.leadId}&order[${FIELD_PRODUCT.isActive}]=DESC`,
+            productsData: `crm.item.list?entityTypeId=${this.smartNumber}&filter[parentId1]=${this.leadId}&order[${FIELD_PRODUCT.isActive}]=DESC&order[${FIELD_PRODUCT.isMeasured}]=DESC`,
         })
         return response?.result?.productsData?.items;
     }

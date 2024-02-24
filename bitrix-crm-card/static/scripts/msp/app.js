@@ -103,6 +103,7 @@ export class App {
             spinner.style.display = 'inline-block';
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
             spinner.style.display = 'none';
+            
             this.showRequestResult("Изменения сохранены");
         })
 
@@ -215,8 +216,10 @@ export class App {
     }
 
     showRequestResult(message) {
+        console.log(message);
         const elemModal = document.querySelector(`#requestResult`);
         elemModal.querySelector('.modal-body').innerHTML = message;
         const myModal = new bootstrap.Modal(elemModal, {})
+        myModal.show();
     }
 }
