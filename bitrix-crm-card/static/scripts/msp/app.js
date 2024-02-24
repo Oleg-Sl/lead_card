@@ -197,9 +197,7 @@ export class App {
 
     updateParentHeight() {
         const parent = document.querySelector('.photos-parent');
-        console.log("parent = ", parent);
         const parentWidth = parent.clientWidth;
-        console.log("parentWidth = ", parentWidth);
         const coefficient = Math.SQRT2;
         parent.style.height = (parentWidth / coefficient) + 'px';
     }

@@ -28,6 +28,7 @@ export class DataRenderer {
     }
 
     initHandlers() {
+        // Изменение полей
         document.addEventListener('change', (event) => {
             const target = event.target;
             if (target.dataset.track && target.dataset.field) {
@@ -105,6 +106,10 @@ export class DataRenderer {
         } else {
             value = target.value;
         }
+        this.bx24.callMethod('crm.deal.update', {
+            id: this.data?.ID,
+            fields: { fieldName: value }
+        });
         this.changedData[fieldName] = value;
     }
 

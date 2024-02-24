@@ -1,7 +1,15 @@
 import BitrixService from './bx24/api.js';
-import { FIELD_MSP, FIELD_FABRIC } from './parameters/params_msp.js';
 import { App } from './msp/app.js'
 
+
+// let BX24 = {
+//     init: function (callback) {
+//         callback();
+//     },
+//     fitWindow: function() {},
+//     batch: {getData: function(){}}
+// }
+// let smartProcessId = 
 
 async function main() {
     let bx24 = new BitrixService();
@@ -11,10 +19,10 @@ async function main() {
 
 
 document.addEventListener("DOMContentLoaded", async function() {
-     BX24.init(async function(){
-        await main();
-        BX24.fitWindow();
-     });
+    BX24.init(async function(){
+    await main();
+    BX24.fitWindow();
+    });
 });
 
 
