@@ -25,8 +25,8 @@ export class Canvas {
     initSize() {
         const coefficient = Math.SQRT2;
         const canvasContainer = document.querySelector('#canvasContainer');
-        const width = canvasContainer.clientWidth + 'px';
-        const height = (canvasContainer.clientWidth / coefficient) + 'px';
+        const width = canvasContainer.clientWidth;
+        const height = canvasContainer.clientWidth / coefficient;
         console.log("width: ", width);
         console.log("height: ", height);
         this.canvas.setHeight(height);
