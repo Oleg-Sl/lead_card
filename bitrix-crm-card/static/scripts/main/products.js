@@ -64,12 +64,13 @@ export class ProductCard {
         })
     }
 
-    async addProduct() {
+    async addProduct(title) {
         const response = await this.bx24.callMethod(
             'crm.item.add',
             {
                 entityTypeId: this.smartNumber,
                 fields: {
+                    title: title,
                     parentId1: this.leadId
                 }
             }
