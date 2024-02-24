@@ -69,6 +69,7 @@ export class App {
         this.elemWaitingLoader.classList.add("d-none");
         this.containerProduct.classList.remove("d-none");
         this.updateParentHeight();
+        this.photoRenderer.init();
     }
 
     initHandlers() {
