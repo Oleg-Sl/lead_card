@@ -103,6 +103,7 @@ export class App {
             spinner.style.display = 'inline-block';
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
             spinner.style.display = 'none';
+            this.showRequestResult("Изменения сохранены");
         })
 
         // Создаем копию товара
@@ -115,6 +116,7 @@ export class App {
             spinner.style.display = 'inline-block';
             const result = await this.bx24.smartProcess.add(this.smartId, resData);
             spinner.style.display = 'none';
+            this.showRequestResult("Копия товара создана");
         })
 
         // Удаляем товар
@@ -210,5 +212,11 @@ export class App {
         const parentWidth = parent.clientWidth;
         const coefficient = Math.SQRT2;
         parent.style.height = (parentWidth / coefficient) + 'px';
+    }
+
+    showRequestResult(message) {
+        const elemModal = document.querySelector(`#requestResult`);
+        elemModal.querySelector('.modal-body').innerHTML = message;
+        const myModal = new bootstrap.Modal(elemModal, {})
     }
 }
