@@ -99,6 +99,7 @@ export class App {
             const changedData = this.dataRenderer.getChangedData();
             const changedFabric = this.fabricRenderer.getChangedData();
             const changedPhoto = this.photoRenderer.getChangedData();
+            console.log('changedData = ', changedData);
             const resData = {...changedData, ...changedFabric, ...changedPhoto};
             spinner.style.display = 'inline-block';
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
@@ -222,4 +223,16 @@ export class App {
         const myModal = new bootstrap.Modal(elemModal, {})
         myModal.show();
     }
+
+    // async addItemProductRow() {
+    //     const changedPhoto = await this.photoRenderer.getFields();
+    //     console.log("changedPhoto = ", changedPhoto);
+
+    //     // const result = await this.bx24.callMethod('crm.item.productrow.add', {
+    //     //     fields: {
+    //     //         ownerType: 'L',
+    //     //         ownerId: this.leadData?.ID,
+    //     //     }
+    //     // });
+    // }
 }
