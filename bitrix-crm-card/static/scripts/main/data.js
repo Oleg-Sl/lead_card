@@ -108,7 +108,7 @@ export class DataRenderer {
         }
         this.bx24.callMethod('crm.deal.update', {
             id: this.data?.ID,
-            fields: { fieldName: value }
+            fields: { [fieldName]: value }
         });
         this.changedData[fieldName] = value;
     }

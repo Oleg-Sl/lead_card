@@ -83,7 +83,7 @@
         </div>
         <div class="row mb-3">
             <div class="col">
-                <button type="button" class="btn btn-success w-75 product-btn-save">
+                <button type="button" class="btn btn-secondary w-75 product-btn-save">
                     Сохранить
                     <div class="ms-3 spinner-border spinner-border-sm text-light" role="status" style="display: none;">
                         <span class="visually-hidden">Loading...</span>
@@ -91,7 +91,7 @@
                 </button>
             </div>
             <div class="col">
-                <button type="button" id="btnCreateCopyProduct" class="btn btn-primary w-75 product-btn-copy">
+                <button type="button" id="btnCreateCopyProduct" class="btn btn-secondary w-75 product-btn-copy">
                     Копировать
                     <div class="ms-3 spinner-border spinner-border-sm text-light" role="status" style="display: none;">
                         <span class="visually-hidden">Loading...</span>
@@ -99,23 +99,35 @@
                 </button>
             </div>
             <div class="col">
-                <button type="button" id="btnDeleteProduct" class="btn btn-danger w-75 product-btn-remove">
+                <button type="button" id="btnDeleteProduct" class="btn btn-secondary w-75 product-btn-remove">
                     Удалить
                     <div class="ms-3 spinner-border spinner-border-sm text-light" role="status" style="display: none;">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </button>
             </div>
+<!--            <div class="col-1 d-flex align-items-center">-->
+<!--                <div class="form-check">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="isMeasured" data-field="isMeasured" data-track="true">-->
+<!--                    <label class="form-check-label" for="isMeasured">Замер</label>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-1 d-flex align-items-center">-->
+<!--                <div class="form-check">-->
+<!--                    <input class="form-check-input" type="checkbox" value="" id="isActive" data-field="isActive" data-track="true">-->
+<!--                    <label class="form-check-label" for="isActive">Активен</label>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="col-1 d-flex align-items-center">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="isMeasured" data-field="isMeasured" data-track="true">
-                    <label class="form-check-label" for="isMeasured">Замер</label>
+                <div class="form-check w-100">
+                    <input type="checkbox" class="btn-check" id="isMeasured" autocomplete="off">
+                    <label class="btn btn-outline-success btn-outline-danger w-100" for="isMeasured">Замер</label><br>
                 </div>
             </div>
             <div class="col-1 d-flex align-items-center">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="isActive" data-field="isActive" data-track="true">
-                    <label class="form-check-label" for="isActive">Активен</label>
+                <div class="form-check w-100">
+                    <input type="checkbox" class="btn-check" id="isActive" autocomplete="off">
+                    <label class="btn btn-outline-success w-100" for="isActive" onclick="(e) => {if (document.querySelector('#isActive').checked) {document.querySelector('#isActive').style.backgroundColor = 'red';}}">Активен</label><br>
                 </div>
             </div>
 <!--            <div class="btn-group w-75" role="group" aria-label="Basic checkbox toggle button group" style="max-width: 200px;">-->

@@ -67,6 +67,7 @@ export class App {
     initHandlers() {
         // Открываем профиль пользователя
         document.querySelector(`#${FIELD_MSP_DATA.createdBy}`).addEventListener('click', (event) => {
+            console.log(event.target);
             const target = event.target;
             const link = target.dataset.link;
             if (link) {
