@@ -99,7 +99,7 @@ export class App {
             const changedData = this.dataRenderer.getChangedData();
             const changedFabric = this.fabricRenderer.getChangedData();
             const changedPhoto = this.photoRenderer.getChangedData();
-            console.log('changedPhoto = ', changedPhoto);
+            // console.log('changedPhoto = ', changedPhoto);
             const resData = {...changedData, ...changedFabric, ...changedPhoto};
             spinner.style.display = 'inline-block';
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
@@ -214,6 +214,8 @@ export class App {
         const parentWidth = parent.clientWidth;
         const coefficient = Math.SQRT2;
         parent.style.height = (parentWidth / coefficient) + 'px';
+        const canvas = document.querySelector('#canvas');
+        canvas.style.height = (canvas.clientWidth / coefficient) + 'px';
     }
 
     showRequestResult(message) {

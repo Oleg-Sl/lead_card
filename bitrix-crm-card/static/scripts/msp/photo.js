@@ -1,4 +1,5 @@
 import { FIELD_MSP_PHOTOS } from '../parameters/params_msp.js';
+import { Canvas } from './canvas.js';
 
 
 export class PhotoRenderer {
@@ -6,6 +7,7 @@ export class PhotoRenderer {
         this.data = {};
         this.portalUrl = portalUrl;
 
+        this.canvas = new Canvas();
         this.mainPhotoFile = null;
         this.cropperInstances = {};
 
