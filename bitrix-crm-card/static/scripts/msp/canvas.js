@@ -1,6 +1,6 @@
 
 
-class Canvas {
+export class Canvas {
     constructor() {
         this.canvas = new fabric.Canvas('canvas');
 
