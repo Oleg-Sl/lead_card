@@ -68,7 +68,6 @@ export class App {
         this.initHandlers();
         this.elemWaitingLoader.classList.add("d-none");
         this.containerProduct.classList.remove("d-none");
-        this.
         this.updateParentHeight();
     }
 
