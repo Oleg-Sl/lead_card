@@ -27,7 +27,7 @@ export class App {
         const data = await this.bx24.batch.getData({
             user: 'user.current',
             smartProcess: `crm.item.get?entityTypeId=${this.smartId}&id=${this.entityId}`,
-            lead: `crm.lead.list?filter[id]=$result[smartProcess][item][parentId1]&select[]=${FIELD_LEAD.folderId}`,
+            lead: `crm.lead.get?filter[id]=$result[smartProcess][item][parentId1]`,
             smartFabricList: `crm.item.list?entityTypeId=${this.smartFabricsId}&select[]=id&select[]=title&select[]=${FIELD_FABRIC.name}&select[]=${FIELD_FABRIC.image}&select[]=${FIELD_FABRIC.type}&select[]=${FIELD_FABRIC.color}&order[id]=ASC`,
             smartFabric: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP_FABRICS.upholsteryFabricCollection}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
             smartFabric_1: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP_FABRICS.upholsteryFabricCollection_1}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
@@ -40,7 +40,7 @@ export class App {
         this.user = data?.result?.user;
         this.createdUser = data?.result?.createdBy[0];
         this.updatedUser = data?.result?.updatedBy[0];
-        this.leadData = data?.result?.lead?.[0];
+        this.leadData = data?.result?.lead;
         console.log("leadData = ", this.leadData);
         this.data = data?.result?.smartProcess?.item;
         this.smartFabricList = data?.result?.smartFabricList?.items;
@@ -129,17 +129,16 @@ export class App {
 
         // Открываем директорию с файлами
         document.querySelector(`#btnOpenDiskFolder`).addEventListener('click', async () => {
-            // FIELD_LEAD.folderId
-            if (!this.data?.[FIELD_MSP_DATA.folderId]) {
-                console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
+            if (!this.leadData?.[FIELD_LEAD.folderId]) {
+                console.error(`Error get folderId from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_LEAD.folderId}`);
                 return;
             }
             const data = await this.bx24.callMethod("disk.folder.get", {
-                id: this.data?.[FIELD_MSP_DATA.folderId]
+                id: this.leadData?.[FIELD_LEAD.folderId]
             });
             const link = data?.DETAIL_URL;
             if (!link) {
-                console.error(`Error get link from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
+                console.error(`Error get link from server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_LEAD.folderId}`);
                 return;
             }
             window.open(link, '_blank');
@@ -147,8 +146,8 @@ export class App {
 
         // Открыть интерфейс для загрузки файлов на диск в Bitrix24
         document.querySelector(`#btnDownloadFiles`).addEventListener('click', async () => {
-            if (!this.data?.[FIELD_MSP_DATA.folderId]) {
-                console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
+            if (!this.leadData?.[FIELD_LEAD.folderId]) {
+                console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_LEAD.folderId}`);
                 return;
             }
             document.querySelector('#inputDownloadFiles').click();
@@ -156,8 +155,8 @@ export class App {
 
         // Загрузка файлов на диск в Bitrix24
         document.querySelector('#inputDownloadFiles').addEventListener('change', async (event) => {
-            if (!this.data?.[FIELD_MSP_DATA.folderId]) {
-                console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_MSP_DATA.folderId}`);
+            if (!this.leadData?.[FIELD_LEAD.folderId]) {
+                console.error(`Error download file to server for smart processId=${this.smartId}, entityId=${this.entityId}, folderId=${FIELD_LEAD.folderId}`);
                 return;
             }
             const target = event.target;
@@ -167,7 +166,7 @@ export class App {
                 spinner.style.display = 'inline-block';
                 this.completedUploads++;
                 for (let i = 0; i < files.length; i++) {
-                    await this.bx24.disk.uploadFile(this.data?.[FIELD_MSP_DATA.folderId], files[i]);
+                    await this.bx24.disk.uploadFile(this.leadData?.[FIELD_LEAD.folderId], files[i]);
                 }
                 this.completedUploads--;
                 if (this.completedUploads === 0) {
