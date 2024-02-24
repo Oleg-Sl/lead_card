@@ -34,8 +34,8 @@ export class Canvas {
     }
 
     initHandler() {
-        document.getElementById('addImage').addEventListener('click', function() {
-            fabric.Image.fromURL('https://placekitten.com/200/300', function(img) {
+        document.getElementById('addImage').addEventListener('click', () => {
+            fabric.Image.fromURL('https://placekitten.com/200/300', (img) => {
                 img.scaleToWidth(this.canvas.width * 0.15); // Устанавливаем ширину изображения в 25% ширины холста
                 img.set({
                     left: this.canvas.width * 0.0, // Устанавливаем левую координату изображения в 10% ширины холста
@@ -45,19 +45,19 @@ export class Canvas {
             });
         });
 
-        document.getElementById('addImg').addEventListener('click', function() {
+        document.getElementById('addImg').addEventListener('click', () => {
             document.getElementById('imgLoader').click();
         })
 
         // Загрузка изображения
-        document.getElementById('imgLoader').addEventListener('change', function(e) {
+        document.getElementById('imgLoader').addEventListener('change', (e) => {
             let file = e.target.files[0];
             if (!file) return;
             
             let reader = new FileReader();
             reader.onload = (event) => {
                 let img = new Image();
-                img.onload = function() {
+                img.onload = () => {
                     let fabricImg = new fabric.Image(img, {
                         left: 100,
                         top: 100,
@@ -72,7 +72,7 @@ export class Canvas {
         });
 
         // Добавление стрелки
-        document.getElementById('addArrow').addEventListener('click', function() {
+        document.getElementById('addArrow').addEventListener('click', () => {
             let line = new fabric.Line([100, 100, 300, 200], {
                 stroke: document.getElementById('colorPicker').value,
                 strokeWidth: 3,
@@ -85,7 +85,7 @@ export class Canvas {
         });
 
         // Добавление текста
-        document.getElementById('addText').addEventListener('click', function() {
+        document.getElementById('addText').addEventListener('click', () => {
             let text = new fabric.Textbox('Ваш текст', {
                 left: 100,
                 top: 100,
@@ -98,7 +98,7 @@ export class Canvas {
         });
         
         // Удаление выделенного объекта
-        document.getElementById('deleteSelected').addEventListener('click', function() {
+        document.getElementById('deleteSelected').addEventListener('click', () => {
             let activeObject = this.canvas.getActiveObject();
             if (activeObject) {
                 this.canvas.remove(activeObject);
@@ -106,7 +106,7 @@ export class Canvas {
         });
         
         // Изменение цвета выделенного объекта
-        document.getElementById('changeColor').addEventListener('click', function() {
+        document.getElementById('changeColor').addEventListener('click', () => {
             let selectedObject = this.canvas.getActiveObject();
             if (selectedObject) {
                 selectedObject.set('fill', document.getElementById('colorPicker').value);
@@ -114,7 +114,7 @@ export class Canvas {
             }
         });
         
-        document.getElementById('saveState').addEventListener('click', function() {
+        document.getElementById('saveState').addEventListener('click', () => {
             let json = JSON.stringify(this.canvas.toJSON());
             let sizeInBytes = new Blob([json]).size; // Получаем размер данных в байтах
             let sizeInKb = sizeInBytes / 1024; // Преобразуем размер в килобайты
@@ -125,10 +125,10 @@ export class Canvas {
         });
         
         
-        document.getElementById('loadState').addEventListener('click', function() {
+        document.getElementById('loadState').addEventListener('click', () => {
             var json = localStorage.getItem('canvasState');
             if (json) {
-                this.canvas.loadFromJSON(json, function() {
+                this.canvas.loadFromJSON(json, () => {
                     this.canvas.renderAll();
                     console.log('Состояние холста загружено');
                 });
