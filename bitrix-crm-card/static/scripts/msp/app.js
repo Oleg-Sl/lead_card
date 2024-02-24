@@ -68,12 +68,11 @@ export class App {
         this.initHandlers();
         this.elemWaitingLoader.classList.add("d-none");
         this.containerProduct.classList.remove("d-none");
+        this.
         this.updateParentHeight();
     }
 
     initHandlers() {
-        console.log('initHandlers1 = ', `${FIELD_MSP_DATA.createdBy} = `,  document.querySelector(`#${FIELD_MSP_DATA.createdBy}`));
-        console.log('initHandlers1 = ', `${FIELD_MSP_DATA.updatedBy} = `,  document.querySelector(`#${FIELD_MSP_DATA.updatedBy}`));
         // Открываем профиль пользователя
         document.querySelector(`#${FIELD_MSP_DATA.createdBy}`).addEventListener('click', (event) => {
             console.log(event.target);
@@ -214,9 +213,9 @@ export class App {
         const parentWidth = parent.clientWidth;
         const coefficient = Math.SQRT2;
         parent.style.height = (parentWidth / coefficient) + 'px';
-        const canvas = document.querySelector('#canvas');
-        canvas.style.width = parentWidth + 'px';
-        canvas.style.height = (parentWidth / coefficient) + 'px';
+        // const canvas = document.querySelector('#canvasContainer');
+        // canvas.style.width = parentWidth + 'px';
+        // canvas.style.height = (parentWidth / coefficient) + 'px';
     }
 
     showRequestResult(message) {

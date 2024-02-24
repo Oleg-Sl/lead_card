@@ -22,6 +22,17 @@ export class Canvas {
         this.initHandler();
     }
 
+    initSize() {
+        const coefficient = Math.SQRT2;
+        const canvasContainer = document.querySelector('#canvasContainer');
+        const width = canvasContainer.clientWidth + 'px';
+        const height = (canvasContainer.clientWidth / coefficient) + 'px';
+        console.log("width: ", width);
+        console.log("height: ", height);
+        this.canvas.setHeight(height);
+        this.canvas.setWidth(width);
+    }
+
     initHandler() {
         document.getElementById('addImage').addEventListener('click', function() {
             fabric.Image.fromURL('https://placekitten.com/200/300', function(img) {
@@ -127,11 +138,3 @@ export class Canvas {
     }
 
 }
-
-            
-
-    
-            
-
-
-            

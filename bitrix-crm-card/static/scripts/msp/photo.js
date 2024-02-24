@@ -26,6 +26,10 @@ export class PhotoRenderer {
         this.initHandlers();
     }
 
+    init() {
+        this.canvas.initSize();
+    }
+
     initData(data) {
         this.data = {};
         for (const key in FIELD_MSP_PHOTOS) {
