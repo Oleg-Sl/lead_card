@@ -99,7 +99,7 @@ export class App {
             const changedData = this.dataRenderer.getChangedData();
             const changedFabric = this.fabricRenderer.getChangedData();
             const changedPhoto = this.photoRenderer.getChangedData();
-            console.log('changedData = ', changedData);
+            console.log('changedPhoto = ', changedPhoto);
             const resData = {...changedData, ...changedFabric, ...changedPhoto};
             spinner.style.display = 'inline-block';
             await this.bx24.smartProcess.update(this.smartId, this.entityId, resData);
