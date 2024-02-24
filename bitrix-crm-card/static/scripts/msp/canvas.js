@@ -19,6 +19,7 @@ export class Canvas {
                 });
             }
         });
+        this.initHandler();
     }
 
     initHandler() {

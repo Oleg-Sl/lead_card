@@ -215,7 +215,8 @@ export class App {
         const coefficient = Math.SQRT2;
         parent.style.height = (parentWidth / coefficient) + 'px';
         const canvas = document.querySelector('#canvas');
-        canvas.style.height = (canvas.clientWidth / coefficient) + 'px';
+        canvas.style.width = parentWidth + 'px';
+        canvas.style.height = (parentWidth / coefficient) + 'px';
     }
 
     showRequestResult(message) {
