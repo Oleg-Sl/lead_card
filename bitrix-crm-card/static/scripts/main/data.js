@@ -106,7 +106,7 @@ export class DataRenderer {
         } else {
             value = target.value;
         }
-        this.bx24.callMethod('crm.deal.update', {
+        this.bx24.callMethod('crm.lead.update', {
             id: this.data?.ID,
             fields: { [fieldName]: value }
         });

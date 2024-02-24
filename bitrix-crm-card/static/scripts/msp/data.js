@@ -27,6 +27,7 @@ export class DataRenderer {
     initHandlers() {
         document.addEventListener('change', (event) => {
             const target = event.target;
+            console.log(target);
             if (target.dataset.track && target.dataset.field) {
                 const fieldName = target.dataset.field;
                 const fieldNameBx24 = FIELD_MSP_DATA?.[fieldName];
