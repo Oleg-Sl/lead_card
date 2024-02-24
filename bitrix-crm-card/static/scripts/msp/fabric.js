@@ -85,8 +85,8 @@ export class FabricRenderer {
         const fabricColorsIds = ['#upholsteryFabricColor', '#upholsteryFabricColor_1', '#upholsteryFabricColor_2'];
         [this.fabricId_1, this.fabricId_2, this.fabricId_3].forEach((fabricId, index) => {
             const fabric = this.smartFabricList.find(item => item.id == fabricId);
-            document.querySelector(fabricTypesIds[index]).value = fabric?.[FIELD_FABRIC.type];
-            document.querySelector(fabricColorsIds[index]).value = fabric?.[FIELD_FABRIC.color];
+            document.querySelector(fabricTypesIds[index]).value = fabric?.[FIELD_FABRIC.type] || '';
+            document.querySelector(fabricColorsIds[index]).value = fabric?.[FIELD_FABRIC.color] || '';
         });
     }
 

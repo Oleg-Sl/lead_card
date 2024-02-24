@@ -27,7 +27,7 @@ export class App {
         const data = await this.bx24.batch.getData({
             user: 'user.current',
             smartProcess: `crm.item.get?entityTypeId=${this.smartId}&id=${this.entityId}`,
-            lead: `crm.lead.list?filter[id]=$result[smartProcess][item][parentId1]&select[]=`,
+            lead: `crm.lead.list?filter[id]=$result[smartProcess][item][parentId1]&select[]=${FIELD_LEAD.folderId}`,
             smartFabricList: `crm.item.list?entityTypeId=${this.smartFabricsId}&select[]=id&select[]=title&select[]=${FIELD_FABRIC.name}&select[]=${FIELD_FABRIC.image}&select[]=${FIELD_FABRIC.type}&select[]=${FIELD_FABRIC.color}&order[id]=ASC`,
             smartFabric: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP_FABRICS.upholsteryFabricCollection}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
             smartFabric_1: `crm.item.get?entityTypeId=${this.smartFabricsId}&id=$result[smartProcess][item][${FIELD_MSP_FABRICS.upholsteryFabricCollection_1}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
@@ -40,7 +40,7 @@ export class App {
         this.user = data?.result?.user;
         this.createdUser = data?.result?.createdBy[0];
         this.updatedUser = data?.result?.updatedBy[0];
-        this.leadData = data?.result?.lead;
+        this.leadData = data?.result?.lead?.[0];
         console.log("leadData = ", this.leadData);
         this.data = data?.result?.smartProcess?.item;
         this.smartFabricList = data?.result?.smartFabricList?.items;
