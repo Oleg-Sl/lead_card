@@ -55,7 +55,7 @@ export class Canvas {
             if (!file) return;
             
             let reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = (event) => {
                 let img = new Image();
                 img.onload = function() {
                     let fabricImg = new fabric.Image(img, {
