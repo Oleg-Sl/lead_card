@@ -61,6 +61,8 @@
   position: absolute;
   background-color: #ffffff;
   border: 1px solid #cccccc;
+  top: 250px;
+  left: 100px;
 }
 .draggable-window .window-header {
   cursor: move;
