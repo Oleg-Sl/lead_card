@@ -61,12 +61,12 @@ export class App {
         this.photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
         this.dataRenderer = new DataRenderer(this.bx24, this.data, this.fields, this.createdUser, this.updatedUser);
         this.fabricRenderer = new FabricRenderer(this.bx24, this.data, this.smartFabricList, this.portalUrl);
-        this.calcuation = new CalculationManager(this.entityId);
+        // this.calcuation = new CalculationManager(this.entityId);
 
         this.photoRenderer.renderPhotos();
         this.dataRenderer.renderData();
         this.fabricRenderer.renderFabrics();
-        this.calcuation.init();
+        // this.calcuation.init();
 
         this.initHandlers();
         this.elemWaitingLoader.classList.add("d-none");
