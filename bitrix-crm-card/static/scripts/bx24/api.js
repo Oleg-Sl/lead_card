@@ -24,7 +24,7 @@ export default class BitrixService {
         this.disk = new FilesMethods(this.bx24);
 
         this.domain = null;
-    }
+    } 
 
     async init() {
         this.domain = await this.bx24.getDomain();
@@ -35,6 +35,8 @@ export default class BitrixService {
         console.log("callMethod result = ", method, body, result);
         return result;
     }
+
+    
 
     makeCall(phoneNumber) {
         this.bx24.makeCall(phoneNumber);

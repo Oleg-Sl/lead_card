@@ -1,4 +1,4 @@
-import { FakeBitrixService } from "./bx24.js";
+import { BitrixService } from "../../bx24/api.js";
 
 import {
     SMART_ID_PRODUCT,
@@ -183,7 +183,7 @@ export class CalculationManager {
         this.mainWindow = document.querySelector('#calculationWindow');
         this.containerCalculationsList = document.querySelector('#productCalculations');
 
-        this.bx24 = new FakeBitrixService();
+        this.bx24 = new BitrixService();
         this.calculationList = new Records(this.containerCalculationsList);
 
         this.materials = [];
@@ -406,17 +406,23 @@ export class CalculationManager {
     }
 
     async getDataFromBx24() {
-        const result = await this.bx24.callBatch({
-            "material": `crm.item.list?entityTypeId=${SMART_ID_MATERIAL}`,
-            "history": `crm.item.list?entityTypeId=${SMART_ID_HISTORY}&filter[parentId${SMART_ID_PRODUCT}]=${this.smartId}`,
-            "coefficient": `crm.item.list?entityTypeId=${SMART_ID_COEFFICIENT}`,
-            "fields": `crm.item.fields?entityTypeId=${SMART_ID_HISTORY}`,
+        const result = await this.bx24.callMethod('batch', {
+            halt: 0,
+            cmd: {
+                "material": `crm.item.list?entityTypeId=${SMART_ID_MATERIAL}`,
+                "history": `crm.item.list?entityTypeId=${SMART_ID_HISTORY}&filter[parentId${SMART_ID_PRODUCT}]=${this.smartId}`,
+                "coefficient": `crm.item.list?entityTypeId=${SMART_ID_COEFFICIENT}`,
+                "fields": `crm.item.fields?entityTypeId=${SMART_ID_HISTORY}`,
+            }
         });
 
         this.materials = result?.material?.items || [];
         this.history = result?.history?.items || [];
         this.coefficients = result?.coefficient?.items || [];
         this.fields = result?.fields?.fields || [];
+        console.log("this.materials = ", this.materials);
+        console.log("this.history = ", this.history);
+        console.log("this.coefficients = ", this.coefficients);
         console.log("this.fields = ", this.fields);
     }
 
@@ -429,7 +435,11 @@ export class CalculationManager {
             cmd[userId] = `user.get?id=${userId}`;
         }
 
-        const result = await this.bx24.callBatch(cmd);
+        const result = await this.bx24.callMethod('batch', {
+            halt: 0,
+            cmd: cmd
+        });
+        console.log("user result = ", result);
         for (const userId in result) {
             const user = Array.isArray(result[userId]) ? result[userId]?.[0] : result[userId];
             this.users[user.ID] = user;
