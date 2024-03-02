@@ -1,4 +1,4 @@
-import { BitrixService } from "../../bx24/api.js";
+import BitrixService from "../../bx24/api.js";
 
 import {
     SMART_ID_PRODUCT,
