@@ -276,6 +276,7 @@ export class CalculationManager {
                 }
             });
 
+            console.log('Добавление расчета = ', result);
             const data = this.getCalculationData(result?.result?.item);
             this.calculationList.add(new Record(this.mainWindow, data));
             const record = this.calculationList.get(data.id);
@@ -416,10 +417,10 @@ export class CalculationManager {
             }
         });
 
-        this.materials = result?.material?.items || [];
-        this.history = result?.history?.items || [];
-        this.coefficients = result?.coefficient?.items || [];
-        this.fields = result?.fields?.fields || [];
+        this.materials = result?.result?.material?.items || [];
+        this.history = result?.result?.history?.items || [];
+        this.coefficients = result?.result?.coefficient?.items || [];
+        this.fields = result?.result?.fields?.fields || [];
         console.log("this.materials = ", this.materials);
         console.log("this.history = ", this.history);
         console.log("this.coefficients = ", this.coefficients);
@@ -440,7 +441,7 @@ export class CalculationManager {
             cmd: cmd
         });
         console.log("user result = ", result);
-        for (const userId in result) {
+        for (const userId in result?.result) {
             const user = Array.isArray(result[userId]) ? result[userId]?.[0] : result[userId];
             this.users[user.ID] = user;
         }
