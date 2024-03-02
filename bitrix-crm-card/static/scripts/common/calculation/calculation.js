@@ -277,7 +277,7 @@ export class CalculationManager {
             });
 
             console.log('Добавление расчета = ', result);
-            const data = this.getCalculationData(result?.result?.item);
+            const data = this.getCalculationData(result?.item);
             this.calculationList.add(new Record(this.mainWindow, data));
             const record = this.calculationList.get(data.id);
             record.showWindow();
@@ -442,7 +442,7 @@ export class CalculationManager {
         });
         console.log("user result = ", result);
         for (const userId in result?.result) {
-            const user = Array.isArray(result[userId]) ? result[userId]?.[0] : result[userId];
+            const user = Array.isArray(result?.result[userId]) ? result?.result[userId]?.[0] : result?.result[userId];
             this.users[user.ID] = user;
         }
     }
