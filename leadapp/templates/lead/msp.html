@@ -167,7 +167,25 @@
                     </table>
                 </div>
                 <!-- Себестоимость -->
-                <div class="product-calculations">
+                <div id="productCalculations" class="product-calculations">
+                    <table class="table table-bordered table-sm mb-1">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="table-header-size">Просмотр</th>
+                                <th class="table-header-size">Дата рсчета</th>
+                                <th class="table-header-size">Кто делал расчет</th>
+                                <th class="table-header-size">Комментарий</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--  -->
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-start mb-3">
+                        <button type="button" class="btn btn-success product-btn-save">Добавить</button>
+                    </div>
+                </div>
+                <!-- <div class="product-calculations">
                     <table class="table table-bordered table-sm mb-3">
                         <thead class="table-light">
                             <tr>
@@ -200,7 +218,7 @@
                             </td>
                         </tr>
                     </table>
-                </div>
+                </div> -->
                 <!-- Комментарий ответственного-->
                 <div class="product-comment-rop col border border-secondary-subtle mb-2 bg-light bg-opacity-5 text-dark">
                     <label for="managerNotes" class="fs-6 fw-bold table-header-size">Заметки руководителя</label>
@@ -466,6 +484,46 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно с расчетами -->
+    <div id="calculationWindow" class="draggable-window d-none">
+        <div class="window-header">Дата актуальности цен: <span class="date-price-validity">01.01.2022</span></div>
+        <div class="window-content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Материал</th>
+                        <th>Стоимость</th>
+                        <th>Значение</th>
+                        <th>Сумма</th>
+                        <th>Комментарий</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td placeholder="">Основа/фанера 15/рама fasda ads aa adsf</td>
+                        <td><input type="number" value="1500" disabled></td>
+                        <td><input type="number" value="5"></td>
+                        <td><input type="number" value="1500" disabled></td>
+                        <td><input type="text" value="bla-bla-bla"></td>
+                    </tr>
+                    <tr>
+                        <td style="grid-column: 1 / span 3;"><div>Себестоимость</div></td>
+                        <td><input type="number" value="5" disabled></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><div>Комментарий</div></td>
+                        <td class="comment"><textarea name="" id="" rows="2"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="window-footer">
+            <button id="saveCalculation" type="button" class="btn btn-success btn-sm">Сохранить</button>
+            <button id="closeCalculation" type="button" class="btn btn-danger btn-sm">Закрыть</button>
         </div>
     </div>
 
