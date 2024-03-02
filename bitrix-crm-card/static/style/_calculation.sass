@@ -1,0 +1,57 @@
+.draggable-window
+    position: absolute
+    background-color: #ffffff
+    border: 1px solid #cccccc
+    // width: 300px
+
+    .window-header
+        cursor: move
+        padding: 3px
+        background-color: #f0f0f0
+        border-bottom: 1px solid #cccccc
+        text-align: center
+
+    th:first-child, td:first-child
+        border-left: 1px solid #cccccc
+    tr:first-child
+        border-top: 1px solid #cccccc
+
+    .window-content
+        display: grid
+        grid-template-columns: 200px 90px 90px 90px 150px
+        input
+            width: 100%
+            text-align: right
+            border: none
+            padding: 0
+        textarea
+            width: 100%
+            border: none
+            padding: 2px
+            resize: vertical
+
+        .comment
+            grid-column: 2 / span 4
+
+        table, thead, tbody, tr
+            display: contents
+
+        th, td
+            border-right: 1px solid #cccccc
+            border-bottom: 1px solid #cccccc
+            overflow: hidden
+            white-space: nowrap
+            text-overflow: ellipsis
+            div
+                display: flex
+                // align-content: center
+                // justify-content: center
+                align-items: center
+                height: 100%
+                overflow: hidden
+                white-space: nowrap
+                text-overflow: ellipsis
+
+    .window-footer
+        display: grid
+        grid-template-columns: 1fr 1fr

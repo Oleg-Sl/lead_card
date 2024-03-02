@@ -57,6 +57,66 @@
   height: calc(50% - 10px);
 }
 
+.draggable-window {
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+}
+.draggable-window .window-header {
+  cursor: move;
+  padding: 3px;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #cccccc;
+  text-align: center;
+}
+.draggable-window th:first-child, .draggable-window td:first-child {
+  border-left: 1px solid #cccccc;
+}
+.draggable-window tr:first-child {
+  border-top: 1px solid #cccccc;
+}
+.draggable-window .window-content {
+  display: grid;
+  grid-template-columns: 200px 90px 90px 90px 150px;
+}
+.draggable-window .window-content input {
+  width: 100%;
+  text-align: right;
+  border: none;
+  padding: 0;
+}
+.draggable-window .window-content textarea {
+  width: 100%;
+  border: none;
+  padding: 2px;
+  resize: vertical;
+}
+.draggable-window .window-content .comment {
+  grid-column: 2/span 4;
+}
+.draggable-window .window-content table, .draggable-window .window-content thead, .draggable-window .window-content tbody, .draggable-window .window-content tr {
+  display: contents;
+}
+.draggable-window .window-content th, .draggable-window .window-content td {
+  border-right: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.draggable-window .window-content th div, .draggable-window .window-content td div {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.draggable-window .window-footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
 body {
   height: 105%;
 }
