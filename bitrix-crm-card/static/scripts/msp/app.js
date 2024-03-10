@@ -3,8 +3,8 @@ import { FIELD_MSP_DATA, FIELD_MSP_FABRICS, FIELD_FABRIC } from '../parameters/p
 import { PhotoRenderer } from './photo.js';
 import { DataRenderer } from './data.js';
 import { FabricRenderer } from './fabric.js';
-import { CalculationManager } from '../common/calculation/calculation.js'
-
+// import { CalculationManager } from '../common/calculation/calculation.js'
+import { Calculation } from '../common/calculations/calculation.js'
 
 import { FIELD_LEAD } from '../parameters/params_lead.js';
 
@@ -21,6 +21,9 @@ export class App {
         this.completedUploads = 0;
         this.elemWaitingLoader = document.querySelector("#elemWaitingLoader");
         this.containerProduct = document.querySelector("#containerProduct");
+
+        this.modalCalcualtion = document.querySelector('#calculationWindow');
+        this.containerCalculation = document.querySelector('#productCalculations');
     }
 
     async init() {
@@ -61,12 +64,12 @@ export class App {
         this.photoRenderer = new PhotoRenderer(this.data, this.portalUrl);
         this.dataRenderer = new DataRenderer(this.bx24, this.data, this.fields, this.createdUser, this.updatedUser);
         this.fabricRenderer = new FabricRenderer(this.bx24, this.data, this.smartFabricList, this.portalUrl);
-        this.calcuation = new CalculationManager(this.entityId);
+        this.calculationManager = new Calculation(this.bx24, this.smartId, this.entityId, this.modalCalcualtion, this.containerCalculation);
 
         this.photoRenderer.renderPhotos();
         this.dataRenderer.renderData();
         this.fabricRenderer.renderFabrics();
-        this.calcuation.init();
+        await calculationManager.init();
 
         this.initHandlers();
         this.elemWaitingLoader.classList.add("d-none");
