@@ -205,7 +205,7 @@ export class Calculation {
 
         const calculate = DataFormatter.formatCalculationData(
             this.rawData.materials,
-            result?.result?.item,
+            result?.item,
             this.rawData.coefficients,
             this.rawData.fieldsHystory,
             this.rawData.fabrics,
