@@ -40,6 +40,8 @@ export class DataConnector {
       cmd: cmd
     });
 
+    console.log("result get data = ", result);
+
     const user = Array.isArray(result?.result?.result?.user) ? result?.result?.result?.user?.[0] : result?.result?.result?.user;
     const fabric_1 = result?.result?.result?.smartFabric_1?.item;
     const fabric_2 = result?.result?.result?.smartFabric_2?.item;
@@ -74,6 +76,8 @@ export class DataConnector {
       smartFabric_2: `crm.item.get?entityTypeId=${SMART_ID_FABRIC}&id=$result[smartProcess][item][${FIELD_MSP_FABRICS.upholsteryFabricCollection_2}]&select[]=id&select[]=title&select[]=ufCrm17_1705390343&select[]=ufCrm17_1705390515&select[]=ufCrm17_1705828938`,
     });
 
+    console.log("result get fabrics = ", result);
+
     const user = Array.isArray(result?.user) ? result?.user?.[0] : result?.user;
     const materials = result?.material?.items || [];
     const histories = result?.history?.items || [];
@@ -100,6 +104,8 @@ export class DataConnector {
         halt: 0,
         cmd: cmd
     });
+
+    console.log("result get users = ", result);
     for (const userId in result?.result?.result) {
         const user = Array.isArray(result?.result?.result[userId]) ? result?.result?.result[userId]?.[0] : result?.result?.result[userId];
         users[user.ID] = user;

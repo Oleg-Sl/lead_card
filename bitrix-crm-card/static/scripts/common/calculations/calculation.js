@@ -201,6 +201,7 @@ export class Calculation {
             entityTypeId: SMART_ID_HISTORY,
             fields: calculateData
         });
+        console.log('result create calc = ', result);
 
         const calculate = DataFormatter.formatCalculationData(
             this.rawData.materials,
