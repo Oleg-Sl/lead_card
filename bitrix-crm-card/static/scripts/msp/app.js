@@ -69,7 +69,7 @@ export class App {
         this.photoRenderer.renderPhotos();
         this.dataRenderer.renderData();
         this.fabricRenderer.renderFabrics();
-        await calculationManager.init();
+        await this.calculationManager.init();
 
         this.initHandlers();
         this.elemWaitingLoader.classList.add("d-none");
