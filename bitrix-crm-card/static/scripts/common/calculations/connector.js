@@ -42,14 +42,14 @@ export class DataConnector {
 
     console.log("result get data = ", result);
 
-    const user = Array.isArray(result?.result?.result?.user) ? result?.result?.result?.user?.[0] : result?.result?.result?.user;
-    const fabric_1 = result?.result?.result?.smartFabric_1?.item;
-    const fabric_2 = result?.result?.result?.smartFabric_2?.item;
-    const fabric_3 = result?.result?.result?.smartFabric_3?.item;
-    const materials = result?.result?.result?.material?.items || [];
-    const histories = result?.result?.result?.history?.items || [];
-    const coefficients = result?.result?.result?.coefficient?.items?.[0] || {};
-    const fieldsHystory = result?.result?.result?.fieldsHystory?.fields || [];
+    const user = Array.isArray(result?.result?.user) ? result?.result?.user?.[0] : result?.result?.user;
+    const fabric_1 = result?.result?.smartFabric_1?.item;
+    const fabric_2 = result?.result?.smartFabric_2?.item;
+    const fabric_3 = result?.result?.smartFabric_3?.item;
+    const materials = result?.result?.material?.items || [];
+    const histories = result?.result?.history?.items || [];
+    const coefficients = result?.result?.coefficient?.items?.[0] || {};
+    const fieldsHystory = result?.result?.fieldsHystory?.fields || [];
     
     return {
       user,
@@ -106,8 +106,8 @@ export class DataConnector {
     });
 
     console.log("result get users = ", result);
-    for (const userId in result?.result?.result) {
-        const user = Array.isArray(result?.result?.result[userId]) ? result?.result?.result[userId]?.[0] : result?.result?.result[userId];
+    for (const userId in result?.result) {
+        const user = Array.isArray(result?.result[userId]) ? result?.result[userId]?.[0] : result?.result[userId];
         users[user.ID] = user;
     }
     return users;
