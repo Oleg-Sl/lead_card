@@ -94,7 +94,7 @@ class MainWindow {
 };
 
 
-class Calculation {
+export class Calculation {
     constructor(bx24, smartProductId, entityProductId, modal, calculationContainer) {
         this.bx24 = bx24;
         this.smartProductId = smartProductId;
