@@ -1,6 +1,6 @@
 import { DataFormatter } from './formatter.js';
 import { DataConnector } from './connector.js';
-import { FakeBitrixService } from './bx24.js';
+// import { FakeBitrixService } from './bx24.js';
 import {
     SMART_ID_PRODUCT,
   
