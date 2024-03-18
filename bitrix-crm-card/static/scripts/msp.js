@@ -14,7 +14,7 @@ import { App } from './msp2/app.js'
 
 
 async function main() {
-    // let bx24 = new BitrixService();
+    let bx24 = new BitrixService();
     
     let app = new App(smartProcessId, bx24, portalUrl);
     await app.init();
