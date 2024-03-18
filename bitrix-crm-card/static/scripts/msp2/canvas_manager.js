@@ -80,9 +80,9 @@ export class CanvasManager {
         xhr.open('GET', url);
         xhr.responseType = 'blob'; // Устанавливаем тип ответа как blob
     
-        xhr.onload = function(event) {
+        xhr.onload = (event) => {
             const reader = new FileReader();
-            reader.onload = function(event) {
+            reader.onload = (event) => {
                 const base64Data = event.target.result.split(',')[1]; // Отрезаем "data:application/octet-stream;base64," из base64 строки
                 const jsonString = atob(base64Data); // Декодируем строку base64 в JSON строку
                 const jsonData = JSON.parse(jsonString); // Преобразуем JSON строку в объект JSON
