@@ -17,8 +17,8 @@ export class CanvasManager {
         const urlCanvasFile = this.dataManager?.product?.[SMART_FIELD_MSP_PHOTOS.photo_1]?.urlMachine;
         const url = this.portalUrl + '/get-image/?url=' + encodeURIComponent(urlCanvasFile);
         console.log('url = ', url);
-        // const data = this.loadURLAndData(url);
-        // console.log('data = ', data);
+        const data = this.loadURLAndData(url);
+        console.log('data = ', data);
         // this.canvas.initFromSavedData(data);
         // this.canvas.loadCanvasFromBase64(url)
     }
@@ -89,7 +89,7 @@ export class CanvasManager {
     
                 // Восстанавливаем полотно из полученных данных
                 // restoreCanvasFromJSON(jsonData);
-                // console.log("jsonData = ", jsonData);
+                console.log("jsonData = ", jsonData);
                 this.canvas.initFromSavedData(jsonData);
             };
             reader.readAsDataURL(xhr.response);

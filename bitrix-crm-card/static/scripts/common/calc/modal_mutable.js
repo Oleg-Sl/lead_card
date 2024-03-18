@@ -36,7 +36,6 @@ export class ModalMutable {
             if (target.classList.contains('cost-work')) {
                 this.calcCostPrice();
             }
-
         })
     }
 
@@ -44,8 +43,8 @@ export class ModalMutable {
         const elemAmount = elemTr.querySelector('.amount');
         const elemPrice = elemTr.querySelector('.price');
         const elemValue = elemTr.querySelector('.value');
-        const coefficient = elemValue.dataset.coefficient || 1;
         if (elemAmount && elemPrice && elemValue) {
+            const coefficient = elemValue.dataset.coefficient || 1;
             elemAmount.value = +elemValue.value * +elemPrice.value * + coefficient;
         }
     }
@@ -67,7 +66,7 @@ export class ModalMutable {
         this.btnSave.classList.remove('d-none');
         this.btnCopy.classList.add('d-none');
         this.render(calculate);
-        this.containerMaterials.querySelectorAll('tr').forEach(elemTr => this.calcMaterialAmount(elemTr));
+        // this.containerMaterials.querySelectorAll('tr').forEach(elemTr => this.calcMaterialAmount(elemTr));
         this.calcCostPrice();
         this.modal.classList.remove('d-none');
     }
@@ -97,8 +96,8 @@ export class ModalMutable {
             ${this.getMaterialsHTML(calculate.materials)}
             <tr data-id="${calculate.id}">
                 <td placeholder="">Работа</td>
-                <td><input type="number" class="price" min="0" value="" disabled></td>
-                <td><input type="number" class="value" min="0" value="" disabled></td>
+                <td><input type="number" class="" min="0" value="" disabled></td>
+                <td><input type="number" class="" min="0" value="" disabled></td>
                 <td><input type="number" class="amount cost-work updated-field" min="0" value="${calculate.workRating}" data-field="${SMART_FIELDS_CALCULATION.workRating}"></td>
                 <td><input type="text" class="comment updated-field" min="0" value="${calculate.workComment}" data-field="${SMART_FIELDS_CALCULATION.workComment}"></td>
             </tr>

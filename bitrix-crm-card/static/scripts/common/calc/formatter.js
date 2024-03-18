@@ -74,7 +74,7 @@ export class DataFormatter {
                 field: field,
                 title: this.getTitle(field),
                 isChangePrice: !CALCULATION_FABRICS_FIELDS.includes(field),
-                price: !CALCULATION_FABRICS_FIELDS.includes(field) ? 0 : this.getFabricPrice(this.fabrics, field),
+                price: !CALCULATION_FABRICS_FIELDS.includes(field) ? calculation[SMART_FIELDS_CALCULATION[`${field}Price`]] || 0 : this.getFabricPrice(this.fabrics, field),
                 coefficient: this.getCoefficient(field),
                 value: calculation[SMART_FIELDS_CALCULATION[`${field}Value`]] || 0,
                 amount: calculation[SMART_FIELDS_CALCULATION[`${field}Amount`]] || 0,

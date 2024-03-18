@@ -85,7 +85,7 @@ export class Calculation {
     async copyCalculation(calculateId) {
         // const calculation = this.dataManager.getCalculation(calculateId);
         const calculationData = this.dataManager.getCopyCalculation(calculateId);
-        console.log("calculation = ", calculationData);
+        console.log("copyCalculation = ", calculationData);
         this.modalMutable.openModal(calculationData);
 
 
