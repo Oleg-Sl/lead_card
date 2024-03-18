@@ -1,5 +1,6 @@
 import BitrixService from './bx24/api.js';
-import { App } from './msp/app.js'
+// import { App } from './msp/app.js'
+import { App } from './msp2/app.js'
 
 
 // let BX24 = {
@@ -11,8 +12,10 @@ import { App } from './msp/app.js'
 // }
 // let smartProcessId = 
 
+
 async function main() {
-    let bx24 = new BitrixService();
+    // let bx24 = new BitrixService();
+    
     let app = new App(smartProcessId, bx24, portalUrl);
     await app.init();
 }

@@ -43,7 +43,7 @@ export class PhotoRenderer {
         let data = {};
 
         for (const id in this.cropperInstances) {
-            const fieldData =  this.photoFields.find(field => field.id === id);
+            const fieldData = this.photoFields.find(field => field.id === id);
             const cropperInstance = this.cropperInstances[id];
             const croppedCanvas = cropperInstance.cropper.getCroppedCanvas();
             const fileName = cropperInstance.fileName;

@@ -36,8 +36,6 @@ export default class BitrixService {
         return result;
     }
 
-    
-
     makeCall(phoneNumber) {
         this.bx24.makeCall(phoneNumber);
     }
@@ -52,5 +50,39 @@ export default class BitrixService {
 
     getUrlSendMessageFromDealId(dealId) {
         return `https://${this.domain}/bitrix/components/bitrix/crm.activity.planner/slider.php?context=deal-${dealId}&ajax_action=ACTIVITY_EDIT&activity_id=0&TYPE_ID=4&OWNER_ID=${dealId}&OWNER_TYPE=DEAL&OWNER_PSID=0&FROM_ACTIVITY_ID=0&MESSAGE_TYPE=&SUBJECT=&BODY=&=undefined&__post_data_hash=-1046067848&IFRAME=Y&IFRAME_TYPE=SIDE_SLIDER`;
+    }
+
+    async uploadFile(folderId, file) {
+        try {
+            const base64Data = await this.readFileAsBase64(file);
+            const result = await this.bx24.callMethod("disk.folder.uploadfile", {
+                id: folderId,
+                data: {
+                    NAME: file.name
+                },
+                fileContent: base64Data,
+                generateUniqueName: true
+            });
+            return result;
+        } catch (error) {
+            console.error('Error uploading file: ', error);
+        }
+    }
+
+    async readFileAsBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                const base64Data = reader.result.split(',')[1];
+                resolve(base64Data);
+            };
+
+            reader.onerror = (error) => {
+                reject(error);
+            };
+
+            reader.readAsDataURL(file);
+        });
     }
 }

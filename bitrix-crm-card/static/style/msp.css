@@ -119,6 +119,23 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.dropdown-fabric-menu {
+  width: 450px;
+}
+.dropdown-fabric-menu .dropdown-fabric-menu-content table {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+.dropdown-fabric-menu .dropdown-fabric-menu-content tbody, .dropdown-fabric-menu .dropdown-fabric-menu-content tr {
+  display: contents;
+}
+.dropdown-fabric-menu .dropdown-fabric-menu-content td {
+  border: 1px solid #e3e3e3;
+  padding-left: 4px;
+  padding-right: 4px;
+  font-size: 14px;
+}
+
 body {
   height: 105%;
 }

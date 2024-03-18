@@ -181,27 +181,36 @@ export class Calculation {
             newData.costPrice += +newData[`${material.field}Amount`];
         }
 
-        let calculateData = {
-            // [`parentId${SMART_ID_PRODUCT}`]: this.smartProductId
-        };
+        let calculateData = {};
         for (const field in newData) {
             if (SMART_FIELDS_HISTORY[field]) {
                 calculateData[SMART_FIELDS_HISTORY[field]] = newData[field];
             }
         }
+        console.log('calculateData = ', calculateData);
+        const calculateCopy = DataFormatter.formatEmptyItem(
+            this.rawData.materials,
+            this.rawData.coefficients,
+            calculateData,
+            this.rawData.fabrics,
+            this.users
+        );
 
-        this.createCalculation(calculateData);
+        console.log('calculateCopy = ', calculateCopy);
+
+        this.modalMutable.openModal(calculateCopy);
+        // this.createCalculation(calculateData);
     }
 
     async createCalculation(calculateData) {
         calculateData[`parentId${SMART_ID_PRODUCT}`] = this.entityProductId;
         calculateData[SMART_FIELDS_HISTORY.datePriceValidity] = this.getLastDateCreatedMaterials();
+        calculateData[SMART_FIELDS_HISTORY.createdBy] = this.user.ID;
 
         const result = await this.bx24.callMethod('crm.item.add', {
             entityTypeId: SMART_ID_HISTORY,
             fields: calculateData
         });
-        console.log('result create calc = ', result);
 
         const calculate = DataFormatter.formatCalculationData(
             this.rawData.materials,
@@ -219,7 +228,7 @@ export class Calculation {
         if (!this.rawData.materials.length) {
             return null;
         }
-    
+
         let maxDate = new Date(this.rawData.materials[0][SMART_FIELDS_MATERIAL.datePriceValidity]);
         for (let i = 1; i < this.rawData.materials.length; i++) {
             const currentDate = new Date(this.rawData.materials[i][SMART_FIELDS_MATERIAL.datePriceValidity]);

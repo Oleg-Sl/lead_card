@@ -34,14 +34,14 @@ export class ModalMutable {
     }
 
     initHandler() {
+        // Сохранение калькуляции
         this.saveBtn.addEventListener('click', () => this.saveCalculation());
+        // Закрытие окна калькуляции
         this.closeBtn.addEventListener('click', () => this.closeModal());
+        // Изменение значения полей
         this.container.addEventListener('change', (event) => {
             const target = event.target;
             const elemTr = target.closest('tr');
-            // const field = elemTr.dataset.field;
-            // console.log("target = ", target);
-
             // Изменение значения
             if (target.classList.contains('value')) {
                 this.calcMaterialAmount(elemTr);
@@ -58,6 +58,7 @@ export class ModalMutable {
 
         })
     }
+
     calcMaterialAmount(elemTr) {
         const elemAmount = elemTr.querySelector('.amount');
         const elemPrice = elemTr.querySelector('.price');
@@ -202,7 +203,9 @@ export class ModalUnmutable {
     }
 
     initHandler() {
+        // Копирование расчёта
         this.copyBtn.addEventListener('click', () => this.copyCalculation());
+        // Закрытие модального окна
         this.closeBtn.addEventListener('click', () => this.closeModal());
         // window.addEventListener('click', (event) => {
         //   if (event.target === this.modal) {
@@ -234,7 +237,7 @@ export class ModalUnmutable {
             }
         }
         this.manager.copyCalculation(this.copyBtn.dataset.id, data);
-        this.closeModal();
+        // this.closeModal();
     }
 
     render(calculate) {

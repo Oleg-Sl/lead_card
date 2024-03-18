@@ -20,82 +20,63 @@ import {
 
 export class DataFormatter {
 
-    static formatData(materials, histories, coefficients, fieldsHystory, fabrics, users) {
+    static formatData(materials, calculations, coefficients, calculationFields, fabrics, users) {
         let dataList = [];
-        for (const history of histories) {
-            dataList.push(this.formatCalculationData(materials, history, coefficients, fieldsHystory, fabrics, users));
-            // const userId = history?.[SMART_FIELDS_HISTORY.createdBy];
-            // const materialsList = this.formatItem(materials, history, coefficients, fieldsHystory, fabrics);
-            // console.log('materialsList = ', materialsList);
-            // dataList.push({
-            //     id: history?.id,
-            //     datePriceValidity: history?.[SMART_FIELDS_HISTORY.datePriceValidity],
-            //     datePriceValidityOfToday: history?.[SMART_FIELDS_HISTORY.datePriceValidityOfToday],
-            //     workRating: history?.[SMART_FIELDS_HISTORY.workRating] || 0,
-            //     workComment: history?.[SMART_FIELDS_HISTORY.workComment],
-            //     costPrice: history?.[SMART_FIELDS_HISTORY.costPrice] || 0,
-            //     comment: history?.[SMART_FIELDS_HISTORY.comment],
-            //     createdBy: users?.[userId],
-            //     materials: materialsList
-            // });
+        for (const calculation of calculations) {
+            dataList.push(this.formatCalculationData(materials, calculation, coefficients, calculationFields, fabrics, users));
         }
 
         return dataList;
     }
 
-    static formatCalculationData(materials, history, coefficients, fieldsHystory, fabrics, users) {
-        const userId = history?.[SMART_FIELDS_HISTORY.createdBy];
-        const materialsList = this.formatItem(materials, history, coefficients, fieldsHystory, fabrics);
-
+    static formatCalculationData(materials, calculation, coefficients, calculationFields, fabrics, users) {
+        const userId = calculation?.[SMART_FIELDS_HISTORY.createdBy];
+        const materialsList = this.formatItem(materials, calculation, coefficients, calculationFields, fabrics);
         return {
-            id: history?.id,
-            datePriceValidity: history?.[SMART_FIELDS_HISTORY.datePriceValidity],
-            datePriceValidityOfToday: history?.[SMART_FIELDS_HISTORY.datePriceValidityOfToday],
-            workRating: history?.[SMART_FIELDS_HISTORY.workRating] || 0,
-            workComment: history?.[SMART_FIELDS_HISTORY.workComment],
-            costPrice: history?.[SMART_FIELDS_HISTORY.costPrice] || 0,
-            comment: history?.[SMART_FIELDS_HISTORY.comment],
+            id: calculation?.id,
+            datePriceValidity: calculation?.[SMART_FIELDS_HISTORY.datePriceValidity],
+            datePriceValidityOfToday: calculation?.[SMART_FIELDS_HISTORY.datePriceValidityOfToday],
+            workRating: calculation?.[SMART_FIELDS_HISTORY.workRating] || 0,
+            workComment: calculation?.[SMART_FIELDS_HISTORY.workComment],
+            costPrice: calculation?.[SMART_FIELDS_HISTORY.costPrice] || 0,
+            comment: calculation?.[SMART_FIELDS_HISTORY.comment],
             createdBy: users?.[userId],
             materials: materialsList
         };
     }
 
-    // static formatMaterialsData(materials, history, coefficients, fieldsHystory, fabrics) {
-    //     return this.formatItem(materials, history, coefficients, fieldsHystory, fabrics);
-    // }
-
-    static formatItem(materials, history, coefficients, fieldsHystory, fabrics) {
+    static formatItem(materials, calculation, coefficients, calculationFields, fabrics) {
         let data = [];
 
-        // Перебор полей смарт-процесса "история history расчетов"
+        // Перебор полей смарт-процесса "история calculation расчетов"
         for (const field of HISTORY_FIELDS) {
             const item = {
                 field: field,
-                title: this.getTitle(field, fieldsHystory),
+                title: this.getTitle(field, calculationFields),
                 isChangePrice: !HISTORY_FABRICS_FIELDS.includes(field),
                 price: !HISTORY_FABRICS_FIELDS.includes(field) ? 0 : this.getFabricPrice(fabrics, field),
                 coefficient: this.getCoefficient(field, coefficients),
-                value: history[SMART_FIELDS_HISTORY[`${field}Value`]] || 0,
-                amount: history[SMART_FIELDS_HISTORY[`${field}Amount`]] || 0,
-                comment: history[SMART_FIELDS_HISTORY[`${field}Comment`]] || '',
+                value: calculation[SMART_FIELDS_HISTORY[`${field}Value`]] || 0,
+                amount: calculation[SMART_FIELDS_HISTORY[`${field}Amount`]] || 0,
+                comment: calculation[SMART_FIELDS_HISTORY[`${field}Comment`]] || '',
             };
             data.push(item);
         }
 
         // Перебор полей смарт-процесса "база материалов"
-        const material = this.findClosestDateLessThanOrEqual(materials, history?.[SMART_FIELDS_HISTORY.datePriceValidity], SMART_FIELDS_MATERIAL.datePriceValidity);
-        console.log("history = ", history);
+        const material = this.findClosestDateLessThanOrEqual(materials, calculation?.[SMART_FIELDS_HISTORY.datePriceValidity], SMART_FIELDS_MATERIAL.datePriceValidity);
+        console.log("history = ", calculation);
         console.log(material);
         for (const field of MATERIAL_FIELDS) {
             const item = {
                 field: field,
-                title: this.getTitle(field,fieldsHystory),
+                title: this.getTitle(field,calculationFields),
                 isChangePrice: false,
                 price: material?.[SMART_FIELDS_MATERIAL[field]] || 0,
                 coefficient: this.getCoefficient(field, coefficients),
-                value: history[SMART_FIELDS_HISTORY[`${field}Value`]] || 0,
-                amount: history[SMART_FIELDS_HISTORY[`${field}Amount`]] || 0,
-                comment: history[SMART_FIELDS_HISTORY[`${field}Comment`]] || '',
+                value: calculation[SMART_FIELDS_HISTORY[`${field}Value`]] || 0,
+                amount: calculation[SMART_FIELDS_HISTORY[`${field}Amount`]] || 0,
+                comment: calculation[SMART_FIELDS_HISTORY[`${field}Comment`]] || '',
             };
             data.push(item);
         };
